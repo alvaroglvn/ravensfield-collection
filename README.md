@@ -6,3 +6,5 @@ This project uses the following open-source software. Thanks to the maintainers 
 
 - [gosec](https://github.com/securego/gosec)
 - [staticcheck](https://github.com/dominikh/go-tools)
+- [chi](https://github.com/go-chi/chi)
+- [godotenv](https://github.com/joho/godotenv)
