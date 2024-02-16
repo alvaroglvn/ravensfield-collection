@@ -7,10 +7,14 @@ import (
 
 	"github.com/alvaroglvn/ravensfield-collection/configs"
 	"github.com/alvaroglvn/ravensfield-collection/initiate"
+	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	helpers.PromptBuilder()
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Printf("warning: assuming default configuration. .env unreadable: %v", err)
@@ -26,4 +30,5 @@ func main() {
 	}
 
 	log.Fatal(server.ListenAndServe())
+
 }

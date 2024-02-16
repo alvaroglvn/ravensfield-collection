@@ -25,3 +25,8 @@ go.work
 
 #executables
 build/
+
+#other
+alter
+.vscode
+

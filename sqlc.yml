@@ -1,0 +1,8 @@
+version: "2"
+sql:
+  - engine: "sqlite"
+    queries: "sqlite/queries"
+    schema: "sqlite/schema"
+    gen:
+      go:
+        out: "sqlite/museum_db"

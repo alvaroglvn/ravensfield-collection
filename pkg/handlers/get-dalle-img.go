@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 
-	// "fmt"
 	"io"
 	"net/http"
 
@@ -35,7 +34,7 @@ func GetDalleImg(w http.ResponseWriter, r *http.Request) {
 
 	var config = configs.BuildConfig()
 
-	prompt := "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: professional photography for an art catalog showcasing a weird eerie mysterious dada bracelet. No text."
+	prompt := helpers.PromptBuilder()
 
 	dalleRequest := DalleRequest{
 		Prompt:         prompt,
