@@ -54,7 +54,7 @@ func GetDalleImg(w http.ResponseWriter, r *http.Request) {
 
 	// fmt.Println(string(requestBody))
 
-	request, err := http.NewRequest("POST", config.DalleURL, bytes.NewBuffer(requestBody))
+	request, err := http.NewRequest("POST", config.DalleEp, bytes.NewBuffer(requestBody))
 	if err != nil {
 		helpers.RespondWithError(w, 500, "Error building request")
 		return
