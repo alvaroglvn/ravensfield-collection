@@ -11,7 +11,6 @@ import (
 type ApiConfig struct {
 	Port      string
 	OpenAIKey string
-	DalleEp   string
 }
 
 func BuildConfig() ApiConfig {
@@ -25,7 +24,6 @@ func BuildConfig() ApiConfig {
 	config := ApiConfig{
 		Port:      ":" + os.Getenv("PORT"),
 		OpenAIKey: os.Getenv("OPENAI_API_KEY"),
-		DalleEp:   "https://api.openai.com/v1/images/generations",
 	}
 	return config
 }

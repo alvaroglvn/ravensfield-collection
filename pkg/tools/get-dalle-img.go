@@ -1,14 +1,10 @@
-package handlers
+package tools
 
 import (
 	"bytes"
 	"encoding/json"
-
 	"io"
 	"net/http"
-
-	"github.com/alvaroglvn/ravensfield-collection/configs"
-	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
 type DalleRequest struct {
@@ -30,12 +26,7 @@ type Image struct {
 	URL string `json:"url"`
 }
 
-func GetDalleImg(w http.ResponseWriter, r *http.Request) {
-
-	var config = configs.BuildConfig()
-
-	prompt := helpers.PromptBuilder()
-
+func GetDalleImg(prompt string, openAIKey string) (string, error) {
 	dalleRequest := DalleRequest{
 		Prompt:         prompt,
 		Model:          "dall-e-3",
@@ -48,43 +39,37 @@ func GetDalleImg(w http.ResponseWriter, r *http.Request) {
 
 	requestBody, err := json.Marshal(dalleRequest)
 	if err != nil {
-		helpers.RespondWithError(w, 500, "Error marshalling request body")
-		return
+		return "", err
 	}
 
-	// fmt.Println(string(requestBody))
-
-	request, err := http.NewRequest("POST", config.DalleEp, bytes.NewBuffer(requestBody))
+	var dalleEndpoint = "https://api.openai.com/v1/images/generations"
+	request, err := http.NewRequest("POST", dalleEndpoint, bytes.NewBuffer(requestBody))
 	if err != nil {
-		helpers.RespondWithError(w, 500, "Error building request")
-		return
+		return "", err
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+config.OpenAIKey)
+	request.Header.Set("Authorization", "Bearer "+openAIKey)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
 	if err != nil {
-		helpers.RespondWithError(w, 500, "Error making request")
-		return
+		return "", err
 	}
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-		helpers.RespondWithError(w, 500, "Error reading response")
-		return
+		return "", err
 	}
-
-	// fmt.Println(string(body))
 
 	var dalleResponse DalleResponse
 	err = json.Unmarshal(body, &dalleResponse)
 	if err != nil {
-		helpers.RespondWithError(w, 500, "Error unmarshalling response")
-		return
+		return "", err
 	}
 
-	helpers.RespondWithJson(w, 201, dalleResponse)
+	createdImgUrl := dalleResponse.Data[0].URL
+
+	return createdImgUrl, nil
 }
