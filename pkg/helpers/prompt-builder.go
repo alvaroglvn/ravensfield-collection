@@ -42,7 +42,7 @@ func PromptBuilder() string {
 
 	artwork := choice3.String
 
-	prompt := fmt.Sprintf("I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: photograph showcasing %s %s %s. The object needs to be perfectly lit and displayed for an art catalog. No text or fonts.", mood, style, artwork)
+	prompt := fmt.Sprintf("I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: photograph showcasing %s %s %s. The object needs to be on display for an art catalog with professional lighting and realistic textures. The image cannot have any letters, lettering, or fonts.", mood, style, artwork)
 
 	return prompt
 }

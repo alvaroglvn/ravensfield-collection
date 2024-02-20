@@ -1,6 +1,7 @@
-Describe the artwork in the picture in four short paragraphs, following these premises:
-1. The first paragraph describes what sets the object apart, highlighting its unique characteristics or materials.
-2. The second paragraph talks about its creator, if known, or its origin if unknown.
-3. The third paragraph describes a supernatural mystery related to the object.
-4. The fourth paragraph brings it all together and makes a conclusion.
-5. The text needs to mix the speech from art curation with tropes from dark fantasy, science-fiction, and horror.
+Describe the artwork in the picture in four short paragraphs plus a tag, following these premises:
+1. The first line has to be a museum tag like this: [Author] | [Title, Year] | [Medium] The author must be an imaginary person. Only if the piece is an archeological piece or similar, the author can be unknown.
+2. The first paragraph describes what sets the object apart, highlighting its unique characteristics or materials.
+3. The second paragraph talks about its creator, if known, or its origin if unknown.
+4. The third paragraph describes a supernatural mystery related to the object.
+5. The fourth paragraph brings it all together and makes a conclusion.
+6. The text needs to mix the speech from art curation with tropes from dark fantasy, science-fiction, and horror.

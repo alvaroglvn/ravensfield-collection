@@ -7,49 +7,6 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
-type VisionRequest struct {
-	Model     string    `json:"model"`
-	Messages  []Message `json:"messages"`
-	MaxTokens int       `json:"max_tokens"`
-}
-
-type Message struct {
-	Role    string        `json:"role"`
-	Content []interface{} `json:"content"`
-}
-
-type TextContent struct {
-	Type string `json:"type"`
-	Text string `json:"text"`
-}
-
-type ImageContent struct {
-	Type     string   `json:"type"`
-	ImageURL ImageURL `json:"image_url"`
-}
-
-type ImageURL struct {
-	URL string `json:"url"`
-}
-
-type VisionResponse struct {
-	ID      string `json:"id"`
-	Object  string `json:"object"`
-	Created int    `json:"created"`
-	Model   string `json:"model"`
-	Choices []struct {
-		Message struct {
-			Role    string `json:"role"`
-			Content string `json:"content"`
-		} `json:"message"`
-	} `json:"choices"`
-	Usage struct {
-		PromptTokens     int `json:"prompt_tokens"`
-		CompletionTokens int `json:"completion_tokens"`
-		TotalTokens      int `json:"total_tokens"`
-	} `json:"usage"`
-}
-
 func ImgDescribe(imgURL string) (string, error) {
 
 	userText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-user.txt")
@@ -62,7 +19,7 @@ func ImgDescribe(imgURL string) (string, error) {
 		return "", fmt.Errorf("error gathering system text: %v", err)
 	}
 
-	visionRequest := VisionRequest{
+	visionRequest := CompRequest{
 		Model: "gpt-4-vision-preview",
 		Messages: []Message{
 			{Role: "user",
@@ -89,10 +46,10 @@ func ImgDescribe(imgURL string) (string, error) {
 				},
 			},
 		},
-		MaxTokens: 300,
+		MaxTokens: 400,
 	}
 
-	var visionResponse VisionResponse
+	var visionResponse CompResponse
 
 	visionEndpoint := "https://api.openai.com/v1/chat/completions"
 

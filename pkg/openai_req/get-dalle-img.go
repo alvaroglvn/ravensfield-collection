@@ -5,25 +5,6 @@ import (
 	"fmt"
 )
 
-type DalleRequest struct {
-	Prompt         string `json:"prompt"`
-	Model          string `json:"model"`
-	NumberImgs     int    `json:"n"`
-	Quality        string `json:"quality"`
-	ResponseFormat string `json:"response_format"`
-	Size           string `json:"size"`
-	Style          string `json:"style"`
-}
-
-type DalleResponse struct {
-	Created int     `json:"created"`
-	Data    []Image `json:"data"`
-}
-
-type Image struct {
-	URL string `json:"url"`
-}
-
 func GetDalleImg(prompt string) (string, error) {
 	dalleRequest := DalleRequest{
 		Prompt:         prompt,
