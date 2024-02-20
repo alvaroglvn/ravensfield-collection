@@ -1,14 +1,10 @@
-package helpers
+package tools
 
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/alvaroglvn/ravensfield-collection/configs"
-	"github.com/joho/godotenv"
 )
 
 type VisionRequest struct {
@@ -54,9 +50,7 @@ type VisionResponse struct {
 	} `json:"usage"`
 }
 
-func ImgDescribe(imgURL string) (string, error) {
-	godotenv.Load()
-	config := configs.BuildConfig()
+func ImgDescribe(imgURL string, openAIKey string) (string, error) {
 
 	visionRequest := VisionRequest{
 		Model: "gpt-4-vision-preview",
@@ -93,13 +87,14 @@ func ImgDescribe(imgURL string) (string, error) {
 		return "", err
 	}
 
-	request, err := http.NewRequest("POST", config.VisionEp, bytes.NewBuffer(reqBody))
+	visionEndpoint := "https://api.openai.com/v1/chat/completions"
+	request, err := http.NewRequest("POST", visionEndpoint, bytes.NewBuffer(reqBody))
 	if err != nil {
 		return "", err
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+config.OpenAIKey)
+	request.Header.Set("Authorization", "Bearer "+openAIKey)
 
 	client := &http.Client{}
 	response, err := client.Do(request)
@@ -120,8 +115,6 @@ func ImgDescribe(imgURL string) (string, error) {
 	}
 
 	description := visionResponse.Choices[0].Message.Content
-
-	fmt.Println(description)
 
 	return description, nil
 }
