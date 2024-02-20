@@ -1,10 +1,8 @@
-package tools
+package openai_req
 
 import (
-	"bytes"
 	"encoding/json"
-	"io"
-	"net/http"
+	"fmt"
 )
 
 type DalleRequest struct {
@@ -26,7 +24,7 @@ type Image struct {
 	URL string `json:"url"`
 }
 
-func GetDalleImg(prompt string, openAIKey string) (string, error) {
+func GetDalleImg(prompt string) (string, error) {
 	dalleRequest := DalleRequest{
 		Prompt:         prompt,
 		Model:          "dall-e-3",
@@ -37,39 +35,22 @@ func GetDalleImg(prompt string, openAIKey string) (string, error) {
 		Style:          "vivid",
 	}
 
-	requestBody, err := json.Marshal(dalleRequest)
-	if err != nil {
-		return "", err
-	}
+	var dalleResponse DalleResponse
 
 	var dalleEndpoint = "https://api.openai.com/v1/images/generations"
-	request, err := http.NewRequest("POST", dalleEndpoint, bytes.NewBuffer(requestBody))
+
+	respBody, err := OpenAIConnect(dalleRequest, dalleEndpoint)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}
 
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+openAIKey)
-
-	client := &http.Client{}
-	response, err := client.Do(request)
+	err = json.Unmarshal(respBody, &dalleResponse)
 	if err != nil {
-		return "", err
-	}
-	defer response.Body.Close()
-
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return "", err
+		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	var dalleResponse DalleResponse
-	err = json.Unmarshal(body, &dalleResponse)
-	if err != nil {
-		return "", err
-	}
+	createdUrl := dalleResponse.Data[0].URL
+	fmt.Println(createdUrl)
 
-	createdImgUrl := dalleResponse.Data[0].URL
-
-	return createdImgUrl, nil
+	return createdUrl, nil
 }

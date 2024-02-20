@@ -1,10 +1,8 @@
-package tools
+package openai_req
 
 import (
-	"bytes"
 	"encoding/json"
-	"io"
-	"net/http"
+	"fmt"
 )
 
 type VisionRequest struct {
@@ -50,7 +48,7 @@ type VisionResponse struct {
 	} `json:"usage"`
 }
 
-func ImgDescribe(imgURL string, openAIKey string) (string, error) {
+func ImgDescribe(imgURL string) (string, error) {
 
 	visionRequest := VisionRequest{
 		Model: "gpt-4-vision-preview",
@@ -82,36 +80,18 @@ func ImgDescribe(imgURL string, openAIKey string) (string, error) {
 		MaxTokens: 300,
 	}
 
-	reqBody, err := json.Marshal(visionRequest)
-	if err != nil {
-		return "", err
-	}
+	var visionResponse VisionResponse
 
 	visionEndpoint := "https://api.openai.com/v1/chat/completions"
-	request, err := http.NewRequest("POST", visionEndpoint, bytes.NewBuffer(reqBody))
+
+	respBody, err := OpenAIConnect(visionRequest, visionEndpoint)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}
 
-	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set("Authorization", "Bearer "+openAIKey)
-
-	client := &http.Client{}
-	response, err := client.Do(request)
+	err = json.Unmarshal(respBody, &visionResponse)
 	if err != nil {
-		return "", err
-	}
-	defer response.Body.Close()
-
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		return "", err
-	}
-
-	var visionResponse VisionResponse
-	err = json.Unmarshal(body, &visionResponse)
-	if err != nil {
-		return "", err
+		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
 	description := visionResponse.Choices[0].Message.Content

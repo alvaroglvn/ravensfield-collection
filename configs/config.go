@@ -9,8 +9,7 @@ import (
 )
 
 type ApiConfig struct {
-	Port      string
-	OpenAIKey string
+	Port string
 }
 
 func BuildConfig() ApiConfig {
@@ -22,8 +21,7 @@ func BuildConfig() ApiConfig {
 	defer db.Close()
 
 	config := ApiConfig{
-		Port:      ":" + os.Getenv("PORT"),
-		OpenAIKey: os.Getenv("OPENAI_API_KEY"),
+		Port: ":" + os.Getenv("PORT"),
 	}
 	return config
 }
