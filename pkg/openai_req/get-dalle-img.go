@@ -50,7 +50,6 @@ func GetDalleImg(prompt string) (string, error) {
 	}
 
 	createdUrl := dalleResponse.Data[0].URL
-	fmt.Println(createdUrl)
 
 	return createdUrl, nil
 }

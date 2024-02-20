@@ -3,6 +3,8 @@ package openai_req
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
 type VisionRequest struct {
@@ -50,6 +52,16 @@ type VisionResponse struct {
 
 func ImgDescribe(imgURL string) (string, error) {
 
+	userText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-user.txt")
+	if err != nil {
+		return "", fmt.Errorf("error gathering user text: %v", err)
+	}
+
+	systemText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-system.txt")
+	if err != nil {
+		return "", fmt.Errorf("error gathering system text: %v", err)
+	}
+
 	visionRequest := VisionRequest{
 		Model: "gpt-4-vision-preview",
 		Messages: []Message{
@@ -57,7 +69,7 @@ func ImgDescribe(imgURL string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "Describe the artwork in the picture in four short paragraphs",
+						Text: userText,
 					},
 					ImageContent{
 						Type: "image_url",
@@ -72,7 +84,7 @@ func ImgDescribe(imgURL string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "You are an art scholar and curator, with a knack for the mystic.",
+						Text: systemText,
 					},
 				},
 			},
