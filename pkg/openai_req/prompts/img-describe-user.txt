@@ -1,7 +1,29 @@
-Describe the artwork in the picture in four short paragraphs plus a tag, following these premises:
-1. The first line has to be a museum tag like this: [Author] | [Title, Year] | [Medium] The author must be an imaginary person. Only if the piece is an archeological piece or similar, the author can be unknown.
-2. The first paragraph describes what sets the object apart, highlighting its unique characteristics or materials.
-3. The second paragraph talks about its creator, if known, or its origin if unknown.
-4. The third paragraph describes a supernatural mystery related to the object.
-5. The fourth paragraph brings it all together and makes a conclusion.
-6. The text needs to mix the speech from art curation with tropes from dark fantasy, science-fiction, and horror.
+Describe the artwork in the image in 300 words.
+
+General guidance:
+- The text needs to take the shape of a short informative article.
+- The speech must resemble the forms and vocabulary of art curation.
+- The article must mix realism with tropes from dark fantasy, sciece fiction, and horror. For inspiration, think of the plots and tropes in the stories of Ray Bradbury, Harlan Ellison, Algernon Blackwood, and M.R. James. This point is for inspiration only. NEVER mention any of these words directly in your text.
+- The article will be divided into four paragraphs. Paragraphs 1 and 4 will be shorter, while paragraphs 2 and 3 will be longer and carry most of the story.
+
+Follow these steps to create the text:
+
+Step 1 - Before the description, write a museum tag that follows this structure:
+| [Artist] | [Title (Year)] | [Medium] |
+- The artist must be an imaginary person. If the artwork is an archeological piece or similar, the author can be unkown.
+- The year must relate to the art style of the artwork, and not be larger than today's date. If the artwork is an archeological piece, it can be an approximation, or of unkown origin.
+- The medium might include materials if the artwork calls for it.
+
+Step 2 - Write the first paragraph. This paragraph is an introduction, describing an overview of why the artist and his/her body of work are relevant, and why this particular piece is considered a highlight. If the author is unkown, this paragraph can describe a general historical factoid or similar that relates to the piece.
+
+Step 3 - Write the second paragraph. This paragraph dives a bit deeper into the artist biography, personality, and the creative process behind the artwork.
+
+Step 4 - Write the third paragraph. This paragraph describes a supernatural unsolved mystery related to the artwork, as set up by the previous paragraph.
+
+Step 5 - Write the fourth paragraph. This paragraph must bring all of the previous information together and act as the article's conclusion.
+
+Step 6 - Between two of the paragraphs, add one fictional quote from a fictional character related to the artwork like so:
+"Quote" -Name, Title
+The quote can come from the artist himself or from someone else.
+Example:
+"This piece gives me technicolor nightmares." -James Wyndblahn, filmmaker.
