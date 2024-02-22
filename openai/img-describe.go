@@ -1,20 +1,18 @@
-package openai_req
+package openai
 
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
 func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
-	userText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-user.txt")
+	userText, err := convertToPrompt("openai/prompts/img-describe-user.txt")
 	if err != nil {
 		return "", fmt.Errorf("error gathering user text: %v", err)
 	}
 
-	systemText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-system.txt")
+	systemText, err := convertToPrompt("openai/prompts/img-describe-system.txt")
 	if err != nil {
 		return "", fmt.Errorf("error gathering system text: %v", err)
 	}
@@ -46,7 +44,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				},
 			},
 		},
-		MaxTokens: 400,
+		MaxTokens: 1000,
 	}
 
 	var visionResponse CompResponse
@@ -57,6 +55,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}
+
+	fmt.Println(string(respBody))
 
 	err = json.Unmarshal(respBody, &visionResponse)
 	if err != nil {

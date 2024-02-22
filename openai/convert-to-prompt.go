@@ -1,4 +1,4 @@
-package helpers
+package openai
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func ConvertToPrompt(textFile string) (string, error) {
+func convertToPrompt(textFile string) (string, error) {
 	contentBytes, err := os.ReadFile(filepath.Clean(textFile))
 	if err != nil {
 		return "", fmt.Errorf("error reading the prompt file")

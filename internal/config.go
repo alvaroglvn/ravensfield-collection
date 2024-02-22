@@ -1,4 +1,4 @@
-package configs
+package internal
 
 import (
 	"database/sql"
@@ -9,7 +9,8 @@ import (
 )
 
 type ApiConfig struct {
-	Port string
+	Port      string
+	OpenAiKey string
 }
 
 func BuildConfig() ApiConfig {
@@ -21,7 +22,8 @@ func BuildConfig() ApiConfig {
 	defer db.Close()
 
 	config := ApiConfig{
-		Port: ":" + os.Getenv("PORT"),
+		Port:      ":" + os.Getenv("PORT"),
+		OpenAiKey: os.Getenv("OPENAI_API_KEY"),
 	}
 	return config
 }

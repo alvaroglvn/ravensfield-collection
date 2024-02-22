@@ -1,4 +1,4 @@
-package openai_req
+package openai
 
 import (
 	"bytes"

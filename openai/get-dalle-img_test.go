@@ -1,4 +1,4 @@
-package openai_req
+package openai
 
 import (
 	"io"
@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
+	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
 func Test_GetDalleImg(t *testing.T) {
 
-	helpers.LoadEnv()
+	utils.LoadEnv()
 	apiKey := os.Getenv("OPENAI_API_KEY")
 
 	imgUrl, err := GetDalleImg("The fluffiest kitten", apiKey)
