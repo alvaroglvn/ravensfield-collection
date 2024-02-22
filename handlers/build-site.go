@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	// "fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -23,20 +22,16 @@ func BuildSite(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("static/templates/layout.html"))
 
 	prompt := openai.PromptBuilder()
-	// fmt.Println(prompt)
 
 	imgUrl, err := openai.GetDalleImg(prompt, openAiKey)
 	if err != nil {
 		utils.RespondWithError(w, 500, "error creating Dalle image")
 	}
 
-	// fmt.Println(imgUrl)
-
 	imgText, err := openai.ImgDescribe(imgUrl, openAiKey)
 	if err != nil {
 		utils.RespondWithError(w, 500, "error creating GPT text")
 	}
-	// fmt.Println(imgText)
 
 	data := PageData{
 		ImgUrl:      imgUrl,

@@ -56,8 +56,6 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}
 
-	fmt.Println(string(respBody))
-
 	err = json.Unmarshal(respBody, &visionResponse)
 	if err != nil {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
