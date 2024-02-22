@@ -19,6 +19,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Install godotenv
+        run: go install github.com/joho/godotenv/cmd/godotenv@latest
+
       - name: Run unit tests
         run: godotenv -f ./.env go test ./... -race -cover
 
