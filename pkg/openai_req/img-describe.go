@@ -7,7 +7,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
-func ImgDescribe(imgURL string) (string, error) {
+func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 	userText, err := helpers.ConvertToPrompt("pkg/openai_req/prompts/img-describe-user.txt")
 	if err != nil {
@@ -53,7 +53,7 @@ func ImgDescribe(imgURL string) (string, error) {
 
 	visionEndpoint := "https://api.openai.com/v1/chat/completions"
 
-	respBody, err := OpenAIConnect(visionRequest, visionEndpoint)
+	respBody, err := OpenAIConnect(visionRequest, visionEndpoint, openAiKey)
 	if err != nil {
 		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}

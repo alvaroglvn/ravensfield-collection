@@ -7,15 +7,11 @@ import (
 
 	"github.com/alvaroglvn/ravensfield-collection/configs"
 	"github.com/alvaroglvn/ravensfield-collection/initiate"
-	"github.com/joho/godotenv"
+	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Printf("error loading env file: %v", err)
-		return
-	}
+	helpers.LoadEnv()
 
 	config := configs.BuildConfig()
 

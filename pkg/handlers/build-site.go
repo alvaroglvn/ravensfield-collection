@@ -3,6 +3,7 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/alvaroglvn/ravensfield-collection/pkg/helpers"
 	"github.com/alvaroglvn/ravensfield-collection/pkg/openai_req"
@@ -14,16 +15,20 @@ type PageData struct {
 }
 
 func BuildSite(w http.ResponseWriter, r *http.Request) {
+
+	helpers.LoadEnv()
+	openAiKey := os.Getenv("OPENAI_API_KEY")
+
 	tmpl := template.Must(template.ParseFiles("static/templates/layout.html"))
 
 	prompt := helpers.PromptBuilder()
 
-	imgUrl, err := openai_req.GetDalleImg(prompt)
+	imgUrl, err := openai_req.GetDalleImg(prompt, openAiKey)
 	if err != nil {
 		helpers.RespondWithError(w, 500, "error creating Dalle image")
 	}
 
-	imgText, err := openai_req.ImgDescribe(imgUrl)
+	imgText, err := openai_req.ImgDescribe(imgUrl, openAiKey)
 	if err != nil {
 		helpers.RespondWithError(w, 500, "error creating GPT text")
 	}
@@ -33,5 +38,8 @@ func BuildSite(w http.ResponseWriter, r *http.Request) {
 		Description: imgText,
 	}
 
-	tmpl.Execute(w, data)
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		helpers.RespondWithError(w, 500, "error executing html template")
+	}
 }

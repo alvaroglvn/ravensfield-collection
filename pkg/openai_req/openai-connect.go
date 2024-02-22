@@ -6,12 +6,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
-
-	"github.com/joho/godotenv"
 )
 
-func OpenAIConnect(request interface{}, endpoint string) ([]byte, error) {
+func OpenAIConnect(request interface{}, endpoint, openAiKey string) ([]byte, error) {
 
 	reqBody, err := json.Marshal(request)
 	if err != nil {
@@ -22,12 +19,6 @@ func OpenAIConnect(request interface{}, endpoint string) ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error making request to DallE: %v", err)
 	}
-
-	err = godotenv.Load()
-	if err != nil {
-		return nil, fmt.Errorf("error loading env file: %v", err)
-	}
-	openAiKey := os.Getenv("OPENAI_API_KEY")
 
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+openAiKey)

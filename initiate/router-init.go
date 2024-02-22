@@ -10,7 +10,7 @@ func RouterInit() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 
-	router.Get("/request", handlers.GetImgAndText)
+	// router.Get("/request", handlers.GetImgAndText)
 	router.Get("/test", handlers.BuildSite)
 
 	return router
