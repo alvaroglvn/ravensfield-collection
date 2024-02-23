@@ -37,7 +37,10 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 	//Endpoints
-	router.Get("/test", handlers.BuildSite)
+	//Workflow 1 - madlibs prompt > image > article
+	router.Get("/test", handlers.BuildTestSiteHandler(config))
+	//Workflow 2 - article > prompt > image
+	router.Get("/test2", handlers.BuildTest2Handler(config))
 
 	//Start server
 	server := &http.Server{

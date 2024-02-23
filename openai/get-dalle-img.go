@@ -10,7 +10,7 @@ func GetDalleImg(prompt, openAiKey string) (string, error) {
 		Prompt:         prompt,
 		Model:          "dall-e-3",
 		NumberImgs:     1,
-		Quality:        "hd",
+		Quality:        "standard",
 		ResponseFormat: "url",
 		Size:           "1024x1024",
 		Style:          "vivid",

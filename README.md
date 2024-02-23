@@ -8,3 +8,4 @@ This project uses the following open-source software. Thanks to the maintainers 
 - [staticcheck](https://github.com/dominikh/go-tools)
 - [chi](https://github.com/go-chi/chi)
 - [godotenv](https://github.com/joho/godotenv)
+- [go-sqlite3](https://github.com/mattn/go-sqlite3)
