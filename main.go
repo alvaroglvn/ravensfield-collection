@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
@@ -22,6 +23,7 @@ func main() {
 	utils.LoadEnv()
 	port := os.Getenv("PORT")
 	openAiKey := os.Getenv("OPENAI_API_KEY")
+	ghostKey := os.Getenv("GHOST_KEY")
 
 	//Load database
 	db, err := sql.Open("sqlite3", "/sqlite/db/art-museum.sqlite")
@@ -31,7 +33,7 @@ func main() {
 	defer db.Close()
 
 	//Build config
-	config := internal.BuildConfig(port, openAiKey, db)
+	config := internal.BuildConfig(port, openAiKey, ghostKey, db)
 
 	//Load router with CORS
 	router := chi.NewRouter()
@@ -41,6 +43,8 @@ func main() {
 	router.Get("/test", handlers.BuildTestSiteHandler(config))
 	//Workflow 2 - article > prompt > image
 	router.Get("/test2", handlers.BuildTest2Handler(config))
+	//post to ghost
+	router.Get("/ghostpost", ghost.GhostPostHandler(config))
 
 	//Start server
 	server := &http.Server{
