@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
+	"github.com/alvaroglvn/ravensfield-collection/openai"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
@@ -15,7 +15,7 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 
 	ghostKey := c.GhostKey
 
-	ghostApiUrl := "http://localhost:8081/ghost/api/admin/posts"
+	ghostApiUrl := "http://localhost:8081/ghost/api/admin/posts/?source=html"
 
 	ghostToken, err := CreateAdminToken(ghostKey)
 	if err != nil {
@@ -23,12 +23,18 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 	}
 
 	handlerFunct := func(w http.ResponseWriter, r *http.Request) {
+		img, tag, title, descript, err := openai.GetArticlePieces(c.OpenAiKey)
+		if err != nil {
+			fmt.Println(err)
+		}
 
 		postData := GhostPost{
 			Posts: []Post{
 				{
-					Title:     "test",
-					FeatImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Monkey_drinking_coca-cola.jpg/640px-Monkey_drinking_coca-cola.jpg",
+					Title:     title,
+					HTML:      descript,
+					FeatImage: img,
+					ImgCapt:   tag,
 					Status:    "draft",
 				},
 			},
@@ -53,16 +59,6 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 			utils.RespondWithError(w, 500, "error sending request")
 		}
 		defer resp.Body.Close()
-
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			fmt.Println("Error reading response body:", err)
-			return
-		}
-
-		fmt.Println("Response Status:", resp.Status)
-		fmt.Println("Response Body:", string(body))
-
 	}
 	return handlerFunct
 }

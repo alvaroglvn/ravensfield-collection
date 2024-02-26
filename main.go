@@ -44,7 +44,7 @@ func main() {
 	//Workflow 2 - article > prompt > image
 	router.Get("/test2", handlers.BuildTest2Handler(config))
 	//post to ghost
-	router.Get("/ghostpost", ghost.GhostPostHandler(config))
+	router.Post("/ghostpost", ghost.GhostPostHandler(config))
 
 	//Start server
 	server := &http.Server{

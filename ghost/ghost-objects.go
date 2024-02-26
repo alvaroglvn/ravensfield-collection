@@ -6,6 +6,8 @@ type GhostPost struct {
 
 type Post struct {
 	Title     string `json:"title"`
+	HTML      string `json:"html"`
 	FeatImage string `json:"feature_image"`
+	ImgCapt   string `json:"feature_image_caption"`
 	Status    string `json:"status"`
 }
