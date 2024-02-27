@@ -9,6 +9,7 @@ import (
 
 	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
+	"github.com/alvaroglvn/ravensfield-collection/leonardo"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -23,6 +24,7 @@ func main() {
 	port := os.Getenv("PORT")
 	openAiKey := os.Getenv("OPENAI_API_KEY")
 	ghostKey := os.Getenv("GHOST_KEY")
+	leoKey := os.Getenv("LEONARDO_KEY")
 
 	//Load database
 	db, err := sql.Open("sqlite3", "/sqlite/db/art-museum.sqlite")
@@ -32,7 +34,7 @@ func main() {
 	defer db.Close()
 
 	//Build config
-	config := internal.BuildConfig(port, openAiKey, ghostKey, db)
+	config := internal.BuildConfig(port, openAiKey, ghostKey, leoKey, db)
 
 	//Load router with CORS
 	router := chi.NewRouter()
@@ -41,6 +43,8 @@ func main() {
 
 	//post to ghost
 	router.Post("/ghostpost", ghost.GhostPostHandler(config))
+	//get leo img
+	router.Post("/leo", leonardo.LeoHandler(config))
 
 	//Start server
 	server := &http.Server{

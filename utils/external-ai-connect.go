@@ -1,4 +1,4 @@
-package openai
+package utils
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func OpenAIConnect(request interface{}, endpoint, openAiKey string) ([]byte, error) {
+func ExternalAIConnect(request interface{}, endpoint, apiKey string) ([]byte, error) {
 
 	reqBody, err := json.Marshal(request)
 	if err != nil {
@@ -21,7 +21,7 @@ func OpenAIConnect(request interface{}, endpoint, openAiKey string) ([]byte, err
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+openAiKey)
+	req.Header.Set("Authorization", "Bearer "+apiKey)
 
 	client := http.Client{}
 	resp, err := client.Do(req)
