@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/alvaroglvn/ravensfield-collection/ghost"
-	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
@@ -39,10 +38,7 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 	//Endpoints
-	//Workflow 1 - madlibs prompt > image > article
-	router.Get("/test", handlers.BuildTestSiteHandler(config))
-	//Workflow 2 - article > prompt > image
-	router.Get("/test2", handlers.BuildTest2Handler(config))
+
 	//post to ghost
 	router.Post("/ghostpost", ghost.GhostPostHandler(config))
 
