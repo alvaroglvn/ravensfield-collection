@@ -3,16 +3,22 @@ package openai
 import (
 	"encoding/json"
 	"fmt"
+	//"math/rand"
 )
 
 func GetDalleImg(prompt, openAiKey string) (string, error) {
+
+	// sizes := [3]string{"1024x1024", "1792x1024", "1024x1792"}
+	// randIndex := rand.Intn(len(sizes))
+	// size := sizes[randIndex]
+
 	dalleRequest := DalleRequest{
 		Prompt:         prompt,
 		Model:          "dall-e-3",
 		NumberImgs:     1,
 		Quality:        "standard",
 		ResponseFormat: "url",
-		Size:           "1024x1024",
+		Size:           "1792x1024",
 		Style:          "vivid",
 	}
 
