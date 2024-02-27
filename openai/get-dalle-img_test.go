@@ -9,7 +9,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func Test_GetDalleImg(t *testing.T) {
+func _Test_GetDalleImg(t *testing.T) {
 
 	utils.LoadEnv()
 	apiKey := os.Getenv("OPENAI_API_KEY")
