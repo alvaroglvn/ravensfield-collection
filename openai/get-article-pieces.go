@@ -9,7 +9,7 @@ import (
 
 func GetArticlePieces(openaiKey string) (imgUrl, tag, title, descript string, err error) {
 
-	prompt := PromptBuilder()
+	prompt := utils.PromptBuilder()
 
 	imgUrl, err = GetDalleImg(prompt, openaiKey)
 	if err != nil {

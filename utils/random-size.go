@@ -22,11 +22,11 @@ func GetRandomSize() (width, height int) {
 	case "square":
 		width, height = 1024, 1024
 	case "portrait":
-		width, height = 820, 1024
+		width, height = 768, 1024
 	case "landscape":
-		width, height = 1024, 820
+		width, height = 1024, 768
 	case "wide":
-		width, height = 1024, 536
+		width, height = 1360, 768
 	}
 
 	return width, height

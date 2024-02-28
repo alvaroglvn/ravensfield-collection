@@ -21,7 +21,7 @@ func BuildTestSiteHandler(c internal.ApiConfig) http.HandlerFunc {
 	handlerFunct := func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("static/templates/layout.html"))
 
-		prompt := openai.PromptBuilder()
+		prompt := utils.PromptBuilder()
 
 		imgUrl, err := openai.GetDalleImg(prompt, openAiKey)
 		if err != nil {

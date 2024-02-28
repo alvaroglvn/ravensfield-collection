@@ -53,7 +53,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 	visionEndpoint := "https://api.openai.com/v1/chat/completions"
 
-	respBody, err := utils.ExternalAIConnect(visionRequest, visionEndpoint, openAiKey)
+	respBody, err := utils.ExternalAIPostReq(visionRequest, visionEndpoint, openAiKey)
 	if err != nil {
 		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}

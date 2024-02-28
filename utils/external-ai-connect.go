@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func ExternalAIConnect(request interface{}, endpoint, apiKey string) ([]byte, error) {
+func ExternalAIPostReq(request interface{}, endpoint, apiKey string) ([]byte, error) {
 
 	reqBody, err := json.Marshal(request)
 	if err != nil {

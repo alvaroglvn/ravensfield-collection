@@ -1,4 +1,4 @@
-package openai
+package utils
 
 import (
 	"context"
@@ -42,7 +42,10 @@ func PromptBuilder() string {
 
 	artwork := choice3.String
 
-	prompt := fmt.Sprintf("I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: %s %s %s museum piece photographed for art catalog using a Sigma 85mm f/1.4 lens and studio light. Don't include any lettering, fonts, or text.", mood, style, artwork)
+	prompt := fmt.Sprintf("museum piece photographed for art catalog: %s %s %s museum piece photographed for art catalog.", mood, style, artwork)
 
 	return prompt
 }
+
+//dalle version
+// "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: %s %s %s museum piece photographed for art catalog using a Sigma 85mm f/1.4 lens and studio light. Don't include any lettering, fonts, or text.", mood, style, artwork

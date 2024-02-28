@@ -12,7 +12,7 @@ func GetImgTextJson(c internal.ApiConfig) http.HandlerFunc {
 	openAiKey := c.OpenAiKey
 
 	handlerFunct := func(w http.ResponseWriter, r *http.Request) {
-		prompt := openai.PromptBuilder()
+		prompt := utils.PromptBuilder()
 
 		imgUrl, err := openai.GetDalleImg(prompt, openAiKey)
 		if err != nil {

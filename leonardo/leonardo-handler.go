@@ -1,6 +1,7 @@
 package leonardo
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
@@ -11,14 +12,18 @@ func LeoHandler(c internal.ApiConfig) http.HandlerFunc {
 	leoKey := c.LeoKey
 
 	handlerFunct := func(w http.ResponseWriter, r *http.Request) {
-		prompt := "museum piece photographed for art catalog: brutalist sculpture made of brushed bronze"
+		prompt := utils.PromptBuilder()
 
-		err := GetLeonardoImg(prompt, leoKey)
+		imgId, err := CreateLeoImg(prompt, leoKey)
 		if err != nil {
 			utils.RespondWithError(w, 500, "error creating image")
 		}
 
-		utils.RespondWithJson(w, 201, "image created")
+		imgUrl, err := GetLeoImgUrl(imgId, leoKey)
+		if err != nil {
+			utils.RespondWithError(w, 500, "error loading image url")
+		}
+		fmt.Println(imgUrl)
 	}
 
 	return handlerFunct

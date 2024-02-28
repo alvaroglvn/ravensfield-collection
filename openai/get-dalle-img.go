@@ -23,7 +23,7 @@ func GetDalleImg(prompt, openAiKey string) (string, error) {
 
 	var dalleEndpoint = "https://api.openai.com/v1/images/generations"
 
-	respBody, err := utils.ExternalAIConnect(dalleRequest, dalleEndpoint, openAiKey)
+	respBody, err := utils.ExternalAIPostReq(dalleRequest, dalleEndpoint, openAiKey)
 	if err != nil {
 		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
 	}
