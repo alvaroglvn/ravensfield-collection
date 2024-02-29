@@ -35,13 +35,13 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 
 	respBody, err := utils.ExternalAIPostReq(leoReq, leoEndpoint, leoKey)
 	if err != nil {
-		return "", fmt.Errorf("error connecting to Leonardo's API: %v", err)
+		return "", fmt.Errorf("error connecting to Leonardo's API: %s", err)
 	}
 
 	var resp LeonardoResp
 	err = json.Unmarshal(respBody, &resp)
 	if err != nil {
-		return "", fmt.Errorf("error unmarshalling response: %v", err)
+		return "", fmt.Errorf("error unmarshalling response: %s", err)
 	}
 
 	imgId = resp.Job.GenId
@@ -56,21 +56,27 @@ func getImgData(imgId, leoKey string) (Generations, error) {
 
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		return gens, fmt.Errorf("error sending GET request to Leonardo: %v", err)
+		return gens, fmt.Errorf("error sending GET request to Leonardo: %s", err)
 	}
 
 	req.Header.Add("accept", "application/json")
 	req.Header.Add("authorization", "Bearer "+leoKey)
 
 	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return gens, fmt.Errorf("response error: %s", err)
+	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return gens, fmt.Errorf("error reading response body: %v", err)
+		return gens, fmt.Errorf("error reading response body: %s", err)
 	}
 	defer resp.Body.Close()
 
 	err = json.Unmarshal(body, &gens)
+	if err != nil {
+		return gens, fmt.Errorf("unmarshalling error: %s", err)
+	}
 	return gens, nil
 }
 
@@ -84,17 +90,17 @@ func getImgUrl(imgId, leoKey string) (imgUrl string, err error) {
 		case <-ticker.C:
 			data, err := getImgData(imgId, leoKey)
 			if err != nil {
-				return "", fmt.Errorf("error retrieving image data: %v", err)
+				return "", fmt.Errorf("error retrieving image data: %s", err)
 			}
 
 			status := data.GenerationsByPk.Status
 			if status == "COMPLETE" {
 				return data.GenerationsByPk.GeneratedImages[0].URL, nil
 			} else if status == "FAILED" {
-				return "", fmt.Errorf("unable to create new image: %v", err)
+				return "", fmt.Errorf("unable to create new image: %s", err)
 			}
 		case <-timeout:
-			return "", fmt.Errorf("timeout reached before completing image generation: %v", err)
+			return "", fmt.Errorf("timeout reached before completing image generation: %s", err)
 		}
 	}
 }
@@ -104,12 +110,12 @@ func LeonardoPipeline(leoKey string) (imgUrl string, err error) {
 
 	imgId, err := generateLeoImg(prompt, leoKey)
 	if err != nil {
-		return "", fmt.Errorf("error generating image: %v", err)
+		return "", fmt.Errorf("error generating image: %s", err)
 	}
 
 	imgUrl, err = getImgUrl(imgId, leoKey)
 	if err != nil {
-		return "", fmt.Errorf("unable to retrieve image url: %v", err)
+		return "", fmt.Errorf("unable to retrieve image url: %s", err)
 	}
 
 	return imgUrl, nil
