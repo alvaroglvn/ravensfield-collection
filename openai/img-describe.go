@@ -7,7 +7,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func ImgDescribe(imgURL, openAiKey string) (string, error) {
+func imgDescribe(imgURL, openAiKey string) (string, error) {
 
 	userText, err := convertToPrompt("openai/prompts/img-describe-user.txt")
 	if err != nil {

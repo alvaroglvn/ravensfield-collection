@@ -7,26 +7,33 @@ import (
 	"net/http"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
+	"github.com/alvaroglvn/ravensfield-collection/leonardo"
 	"github.com/alvaroglvn/ravensfield-collection/openai"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
 func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 
-	ghostKey := c.GhostKey
-
-	ghostApiUrl := "http://localhost:8081/ghost/api/admin/posts/?source=html"
-
-	ghostToken, err := CreateAdminToken(ghostKey)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	handlerFunct := func(w http.ResponseWriter, r *http.Request) {
-		img, tag, title, descript, err := openai.GetArticlePieces(c.OpenAiKey)
+	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
+		//create leonardo image
+		img, err := leonardo.LeonardoPipeline(c.LeoKey)
 		if err != nil {
-			fmt.Println(err)
+			utils.RespondWithError(w, 500, fmt.Sprintf("image error: %s", err))
 		}
+
+		//create openAi text
+		tag, title, descript, err := openai.GetTextFromImg(img, c.OpenAiKey)
+		if err != nil {
+			utils.RespondWithError(w, 500, fmt.Sprintf("text error: %s", err))
+		}
+
+		//create Ghost post
+		ghostKey := c.GhostKey
+		ghostToken, err := createAdminToken(ghostKey)
+		if err != nil {
+			utils.RespondWithError(w, 500, fmt.Sprintf("unable to create ghost auth: %s", err))
+		}
+		ghostEndpoint := "http://localhost:8081/ghost/api/admin/posts/?source=html"
 
 		postData := GhostPost{
 			Posts: []Post{
@@ -40,15 +47,15 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 			},
 		}
 
-		postDataBytes, err := json.Marshal(postData)
+		marshPostData, err := json.Marshal(postData)
 		if err != nil {
 			utils.RespondWithError(w, 500, "error marshalling post data")
 		}
 
 		client := &http.Client{}
-		req, err := http.NewRequest("POST", ghostApiUrl, bytes.NewBuffer(postDataBytes))
+		req, err := http.NewRequest("POST", ghostEndpoint, bytes.NewBuffer(marshPostData))
 		if err != nil {
-			utils.RespondWithError(w, 500, "error connecting to ghost")
+			utils.RespondWithError(w, 500, fmt.Sprintf("error with ghost request: %s", err))
 		}
 
 		req.Header.Set("Content-Type", "application/json")
@@ -56,9 +63,9 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 
 		resp, err := client.Do(req)
 		if err != nil {
-			utils.RespondWithError(w, 500, "error sending request")
+			utils.RespondWithError(w, 500, fmt.Sprintf("error with ghost response: %s", err))
 		}
 		defer resp.Body.Close()
 	}
-	return handlerFunct
+	return handlerFunc
 }

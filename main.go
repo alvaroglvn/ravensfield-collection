@@ -9,7 +9,7 @@ import (
 
 	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
-	"github.com/alvaroglvn/ravensfield-collection/leonardo"
+	//"github.com/alvaroglvn/ravensfield-collection/leonardo"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -43,8 +43,6 @@ func main() {
 
 	//post to ghost
 	router.Post("/ghostpost", ghost.GhostPostHandler(config))
-	//get leo img
-	router.Post("/leo", leonardo.LeoHandler(config))
 
 	//Start server
 	server := &http.Server{
