@@ -13,8 +13,14 @@ This project uses the following open-source software. Thanks to the maintainers 
 
 ## Development commands
 
-```bash
-docker run -d --name raven-ghost -e NODE_ENV=development -e url=http://localhost:8081 -p 8081:2368 ghost
+```text
+docker run -d \
+    --name raven-ghost \
+    -e NODE_ENV=development \
+    -e url=http://localhost:8081 \
+    -p 8081:2368 \
+    --mount type=bind,source="$(pwd)"/theme,target=/var/lib/ghost/content/themes/ravensfield \
+    ghost 
 ```
 
 ```gow

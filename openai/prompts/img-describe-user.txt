@@ -25,8 +25,9 @@ Step 5 - Write the third paragraph. This paragraph describes a supernatural unso
 
 Step 6 - Write the fourth paragraph. This paragraph must bring all of the previous information together and act as the article's conclusion.
 
-Step 7 - Between two of the paragraphs, add one fictional quote in cursive. The quote must come from a fictional character related to the artwork like so:
+Step 7 - Between two of the paragraphs, add one fictional quote. The quote must come from a fictional character related to the artwork like so:
 "Quote" -Name, Title
 The quote can come from the artist himself or from someone else.
 Example:
 "This piece gives me technicolor nightmares." -James Wyndblahn, filmmaker.
+Mark the quote as a blockquote in your markdown.
