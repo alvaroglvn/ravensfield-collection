@@ -1,0 +1,55 @@
+
+.title-block{
+    margin: 10vmin;
+
+}
+
+.main-title{
+    text-align: center;
+    letter-spacing: 0.25vmin;
+    font-size: 5vmin;
+}
+
+.main-subtitle{
+    text-align: center;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 2.5vmin;
+    margin-top: 1vmin;
+}
+
+.hero {
+    padding: 1vmin;
+    border: 0.75vmin double #1D2228;
+    position: relative;
+    margin-bottom: 10vmin;
+}
+
+.hero-highlight{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #f6f6f6;
+    padding: 20px;
+    font-size: 32px;
+    font-family: var(--font-sans-serif);
+    font-weight: 600;
+}
+
+.explore-title{
+    text-align: center;
+    margin-bottom: 5vmin;
+    font-size: 4vmin;
+
+}
+
+.latest-posts{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 4vmin;
+}
+
+.post-container{
+    border: 0.75vmin, double, #1D2228;
+    padding: 1vmin;
+}

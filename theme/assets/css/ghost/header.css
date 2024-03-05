@@ -2,14 +2,15 @@
 /* ---------------------------------------------------------- */
 
 .gh-head {
-    padding: 3vmin 4vmin;
+    padding: 2vmin 3vmin;
     font-size: 1.6rem;
     line-height: 1.3em;
     background: inherit;
+    background: #1D2228;
 }
 
 .gh-head a {
-    color: inherit;
+    color: #f6f6f6;
     text-decoration: none;
 }
 
@@ -42,7 +43,7 @@
 }
 
 .gh-head-logo img {
-    max-height: 40px;
+    max-height: 10vmin;
 }
 
 

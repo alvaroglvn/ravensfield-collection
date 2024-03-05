@@ -12,8 +12,8 @@
     --color-error: #f05230;
 
     /* Fonts */
-    --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    --font-serif: Georgia, Times, serif;
+    --font-sans-serif: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+    --font-serif: Goudy Old Style, Garamond, Big Caslon, Times New Roman, serif;
     --font-mono: Menlo, Courier, monospace;
     --font-light: 100;
     --font-normal: 400;

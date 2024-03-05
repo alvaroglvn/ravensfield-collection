@@ -38,10 +38,10 @@
         </div>
         <div class="gh-head-actions">
             <div class="gh-head-actions-list">
-                {{search}}
+                {{!-- {{search}} --}}
                 {{#if @site.members_enabled}}
                     {{^if @member}}
-                    <a class="gh-button" href="{{@site.signup_url}}">Subscribe</a>
+                    <a class="nav-subs-button" href="{{@site.signup_url}}">Subscribe</a>
                     {{else}}
                     <a class="gh-button" href="#/portal/account">Account</a>
                     {{/if}}
@@ -61,11 +61,11 @@
 <footer class="gh-foot">
     <div class="gh-container">
         <div class="gh-foot-menu">
-            {{navigation type="secondary"}}
+            {{navigation}}
         </div>
-        <div class="gh-foot-meta">
+        {{!-- <div class="gh-foot-meta">
             Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
-        </div>
+        </div> --}}
     </div>
 </footer>
 

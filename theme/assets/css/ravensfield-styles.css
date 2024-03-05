@@ -1,0 +1,27 @@
+.card-button{
+    margin: 2vw;
+    border: 0.5vmin double #1D2228;
+    background-color: transparent;
+    padding: 1vw;
+    font-size: 2vw;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.card-button:hover{
+    cursor: pointer;
+    border: 0.5vmin double #f6f6f6;
+    background-color: #1D2228;
+    color: #f6f6f6;
+}
+
+.nav-subs-button{
+    border: 0.5vmin double #f6f6f6;
+    background-color: transparent;
+    padding: 1vw;
+    font-size: 2vw;
+}
+
+.nav-subs-button:hover{
+    background-color: #f6f6f6;
+    color: #1D2228;
+}

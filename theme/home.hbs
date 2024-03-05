@@ -1,0 +1,33 @@
+{{!< default}}
+
+<div class="gh-page">
+    <div class="gh-container">
+        <div class="title-block">
+            <h1 class="main-title">{{@site.title}}</h1>
+        <p class="main-subtitle">Ars quae numquam fuit, de se somniat</p>
+        </div>
+        {{#get "posts"}}
+        {{#foreach posts order="published_at asc" limit="1"}}
+        <section class="hero">
+            <figure>
+                <div class="hero-highlight">Collection Highlight</div>
+                {{> card}}
+            </figure>
+        </section>
+        {{/foreach}}
+
+
+        <h2 class="explore-title">Explore the collection</h2>
+        <section class="latest-posts">
+            {{#foreach posts from="2" order="published_at asc" limit="4"}}
+            <div class="post-container">
+            {{> card-sm }}
+            </div>
+            {{/foreach}}
+        </section>
+
+
+    </div>
+</div>
+{{/get}}
+
