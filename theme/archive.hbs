@@ -2,10 +2,11 @@
 
 <div class="gh-page">
     <div class="gh-container">
+        <h2 class="section-title archive">The Ravensfield Archive</h2>
         {{#if @member}}
         <main class="latest-posts">
-            {{#get "posts" limit="all" order="published_at desc"}}
-        {{#foreach posts visibility="all"}}
+        {{#get "posts" limit="all"}}
+        {{#foreach posts}}
         <div class="post-container">
             {{> card-sm }}
         </div>

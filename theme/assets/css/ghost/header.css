@@ -2,7 +2,7 @@
 /* ---------------------------------------------------------- */
 
 .gh-head {
-    padding: 2vmin 3vmin;
+    padding: 2vmin 5vmin;
     font-size: 1.6rem;
     line-height: 1.3em;
     background: inherit;
@@ -53,6 +53,7 @@
 .gh-head-menu {
     display: flex;
     align-items: center;
+    font-size: 2vmin;
 }
 
 .gh-head-menu .nav {
@@ -69,7 +70,6 @@
 
 .gh-head-menu .nav a {
     display: inline-block;
-    padding: 5px 0;
 }
 
 .gh-head-menu .nav-current a {

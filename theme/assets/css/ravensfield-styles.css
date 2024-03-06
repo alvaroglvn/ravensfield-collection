@@ -4,7 +4,8 @@
     background-color: transparent;
     padding: 1vw;
     font-size: 2vw;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans-serif);
+    transition: .4s ease;
 }
 
 .card-button:hover{
@@ -12,16 +13,97 @@
     border: 0.5vmin double #f6f6f6;
     background-color: #1D2228;
     color: #f6f6f6;
+    transition: ease-in-out;
 }
 
-.nav-subs-button{
+.nav-button{
     border: 0.5vmin double #f6f6f6;
     background-color: transparent;
     padding: 1vw;
     font-size: 2vw;
+    color: #f6f6f6
 }
 
-.nav-subs-button:hover{
+.nav-button:hover{
     background-color: #f6f6f6;
     color: #1D2228;
 }
+
+
+.section-title{
+    text-align: center;
+    margin-bottom: 5vmin;
+    font-size: 4vmin;
+
+}
+
+.nav-button-sm{
+    font-size: 1.75vw;
+}
+
+.archive{
+    margin-top: 5vmin;
+}
+
+.latest-posts{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 4vmin;
+    margin-bottom: 10vmin;
+}
+
+.post-container{
+    border: 0.75vmin, double, #1D2228;
+    padding: 1vmin;
+}
+
+.museum-tag{
+    font-size: 1.5vh;
+    font-style: italic;
+    color: black;
+}
+
+.gh-content p{
+    color: black;
+    font-size: 1.75!important;
+    font-weight: 600!important;
+}
+
+@media (max-width: 900px) {
+    .nav-button{
+        border: none;
+        padding: 0;
+        font-size: 3vw;
+    }
+
+    .nav-button:hover{
+        background-color: transparent;
+        color: #f6f6f6;
+        text-decoration: underline;
+    }
+
+    .card-button {
+        font-size: 3vw;
+
+    }
+
+    .nav-button-sm{
+        font-size: 1vh;
+    }
+
+    .sm-card-title{
+        margin: 1vh;
+        font-size: 1.75vh;
+    }
+
+    .museum-tag{
+        font-size: 1.10vh;
+    }
+
+    .latest-posts{
+        grid-template-columns: repeat(1, minmax(300px, 1fr));
+
+    }
+}
+
+

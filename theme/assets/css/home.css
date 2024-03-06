@@ -1,7 +1,9 @@
 
 .title-block{
-    margin: 10vmin;
-
+    color: #f6f6f6;
+    background-color: #1D2228;
+    margin-bottom: 5vh;
+    padding-bottom: 5vh;
 }
 
 .main-title{
@@ -12,9 +14,10 @@
 
 .main-subtitle{
     text-align: center;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans-serif);
     font-size: 2.5vmin;
     margin-top: 1vmin;
+    font-style: italic;
 }
 
 .hero {
@@ -30,26 +33,19 @@
     left: 0;
     z-index: 2;
     background-color: #f6f6f6;
-    padding: 20px;
-    font-size: 32px;
+    padding: 1.5vh;
+    font-size: 3vh;
     font-family: var(--font-sans-serif);
     font-weight: 600;
 }
 
-.explore-title{
-    text-align: center;
-    margin-bottom: 5vmin;
-    font-size: 4vmin;
+@media(max-width:700px){
+    .hero-highlight{
+        font-size: 2vh;
+        padding: 1vh;
+    }
 
-}
-
-.latest-posts{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    gap: 4vmin;
-}
-
-.post-container{
-    border: 0.75vmin, double, #1D2228;
-    padding: 1vmin;
+    .main-subtitle{
+        font-size: 1.10vh;
+    }
 }
