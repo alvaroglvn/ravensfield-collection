@@ -78,8 +78,18 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+
+      - name: Build theme
+        run: |
+          cd theme
+          npm install
+          npm run build
+
       - name: Deploy Ghost Theme
         uses: TryGhost/action-deploy-theme@v1
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          working-directory: theme
