@@ -143,13 +143,13 @@ h5,
 h6 {
     margin: 0;
     line-height: 1.15em;
-    font-weight: 700;
-    font-family: var(--font-serif);
+    font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman, serif;
+    letter-spacing: 0.25vh;
 }
 
 h1 {
     font-size: 4.6rem;
-    letter-spacing: -0.5px;
+    /* letter-spacing: -0.5px; */
 }
 @media (max-width: 500px) {
     h1 {

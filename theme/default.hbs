@@ -38,8 +38,7 @@
         </div>
         <div class="gh-head-actions">
             <div class="gh-head-actions-list">
-                {{!-- {{search}} --}}
-                <a class="nav-button-sm">About the project</a>
+                <a class="nav-button-sm" href="/project/">About the project</a>
                 {{#if @site.members_enabled}}
                     {{^if @member}}
                     <a class="nav-button" href="{{@site.signup_url}}">Subscribe</a>
@@ -55,13 +54,14 @@
 <main class="gh-main">
 
     {{{body}}}
-    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
 
+    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
 </main>
 
 <footer class="gh-foot">
     <div class="gh-container">
-        <p>The Ravensfield Collection, {{date format="YYYY"}}, by Alvaro Galvan</p>
+        <p>The Ravensfield Collection, {{date format="YYYY"}} by <a href="https://alvarogalvan.com">A. Galvan</a></p>
+        <p>This project is licensed under Creative Commons</p>
     </div>
 </footer>
 

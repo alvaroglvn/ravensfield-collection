@@ -49,7 +49,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 4vmin;
-    margin-bottom: 10vmin;
+    margin-bottom: 20vmin;
 }
 
 .post-container{
@@ -65,8 +65,7 @@
 
 .gh-content p{
     color: black;
-    font-size: 1.75!important;
-    font-weight: 600!important;
+    font-size: 18px;
 }
 
 @media (max-width: 900px) {
@@ -106,4 +105,49 @@
     }
 }
 
+ol{
+    margin-bottom: 1-button0vh;
+}
 
+ol li{
+    margin-bottom: 2vh;
+}
+
+.memb-card{
+    border: 0.75vmin double #1D2228;
+    max-width: 100%;
+    padding: 2vh;
+    text-align: center;
+    background-color: transparent;
+}
+
+.memb-card img{
+    max-width: 15vmin;
+    margin: 0 auto;
+}
+
+.memb-card-title{
+    margin-bottom: 2vh;
+}
+
+.memb-card h3{
+    font-size: 4vmin;
+}
+
+.memb-card h4{
+    font-size: 2.40vmin;
+}
+
+.memb-card p{
+    font-family: var(--font-serif);
+    font-size: 2vmin;
+    font-weight: 600;
+    margin-bottom: 2.5vh;
+    line-height: 2.5vh;
+}
+
+@media (max-width: 600px){
+    .memb-card p{
+        line-height: 1.25vh;
+    }
+}

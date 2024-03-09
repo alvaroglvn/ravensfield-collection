@@ -122,7 +122,7 @@ html,
     margin: 0 0 1rem;
     font-size: 1.4rem;
     line-height: 1.2em;
-    letter-spacing: 0.5px;
+    /* letter-spacing: 0.5px; */
     text-transform: uppercase;
     opacity: 0.8;
 }
@@ -194,7 +194,7 @@ html,
     display: block;
     margin: 0 0 1rem;
     font-size: 1.4rem;
-    letter-spacing: 0.5px;
+    /* letter-spacing: 0.5px; */
     text-transform: uppercase;
     opacity: 0.8;
 }

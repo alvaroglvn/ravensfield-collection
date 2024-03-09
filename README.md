@@ -15,13 +15,12 @@ This project uses the following open-source software. Thanks to the maintainers 
 
 ```text
 docker run -d \
-    --name raven-ghost \
+    --name ravensfield \
     -e NODE_ENV=development \
-    -e url=http://localhost:8081 \
-    -p 8081:2368 \
+    -e url=http://localhost:8081 -p 8081:2368 \
     --mount type=bind,source="$(pwd)"/theme,target=/var/lib/ghost/content/themes/ravensfield \
     ghost 
-```
+```  
 
 ```gow
 -c run main.go
