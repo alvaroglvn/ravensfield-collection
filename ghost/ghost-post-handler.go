@@ -33,7 +33,7 @@ func GhostPostHandler(c internal.ApiConfig) http.HandlerFunc {
 		if err != nil {
 			utils.RespondWithError(w, 500, fmt.Sprintf("unable to create ghost auth: %s", err))
 		}
-		ghostEndpoint := "http://localhost:8081/ghost/api/admin/posts/?source=html"
+		ghostEndpoint := c.GhostURL + "/ghost/api/admin/posts/?source=html"
 
 		postData := GhostPost{
 			Posts: []Post{

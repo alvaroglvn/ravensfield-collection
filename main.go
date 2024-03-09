@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/alvaroglvn/ravensfield-collection/ghost"
+	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 
 	//"github.com/alvaroglvn/ravensfield-collection/leonardo"
@@ -25,7 +26,9 @@ func main() {
 	port := os.Getenv("PORT")
 	openAiKey := os.Getenv("OPENAI_API_KEY")
 	ghostKey := os.Getenv("GHOST_KEY")
+	ghostUrl := os.Getenv("GHOST_URL")
 	leoKey := os.Getenv("LEONARDO_KEY")
+	masterKey := os.Getenv("MASTER_KEY")
 
 	//Load database
 	db, err := sql.Open("sqlite3", "/sqlite/db/art-museum.sqlite")
@@ -35,7 +38,7 @@ func main() {
 	defer db.Close()
 
 	//Build config
-	config := internal.BuildConfig(port, openAiKey, ghostKey, leoKey, db)
+	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey, db)
 
 	//Load router with CORS
 	router := chi.NewRouter()
@@ -43,11 +46,11 @@ func main() {
 	//Endpoints
 
 	//post to ghost
-	router.Post("/ghostpost", ghost.GhostPostHandler(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", ghost.GhostPostHandler(config))
 
 	//Start server
 	server := &http.Server{
-		Addr:              config.Port,
+		Addr:              ":" + config.Port,
 		Handler:           router,
 		ReadHeaderTimeout: 2 * time.Second,
 	}
