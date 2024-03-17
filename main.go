@@ -7,11 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
-
-	//"github.com/alvaroglvn/ravensfield-collection/leonardo"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -46,7 +43,7 @@ func main() {
 	//Endpoints
 
 	//post to ghost
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", ghost.GhostPostHandler(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
 
 	//Start server
 	server := &http.Server{

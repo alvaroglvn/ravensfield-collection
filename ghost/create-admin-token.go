@@ -9,7 +9,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func createAdminToken(ghostKey string) (string, error) {
+func CreateAdminToken(ghostKey string) (string, error) {
 	splitKey := strings.Split(ghostKey, ":")
 
 	keyID, hexKeySecret := splitKey[0], splitKey[1]

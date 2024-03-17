@@ -30,7 +30,6 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 		PhRealStrength: 0.45,
 		PromptMagic:    false,
 		PresetStyle:    "PHOTOGRAPHY",
-		SDVersion:      "v1_5",
 	}
 
 	respBody, err := utils.ExternalAIPostReq(leoReq, leoEndpoint, leoKey)

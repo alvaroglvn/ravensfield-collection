@@ -53,7 +53,7 @@ type Generations struct {
 		// InitStrength        float64       `json:"initStrength"`
 		// GuidanceScale       float64       `json:"guidanceScale"`
 		// ID                  string        `json:"id"`
-		// CreatedAt           string    `json:"createdAt"`
+		// CreatedAt           string    	 `json:"createdAt"`
 		// PromptMagic         bool          `json:"promptMagic"`
 		// PromptMagicVersion  string        `json:"promptMagicVersion"`
 		// PromptMagicStrength float64       `json:"promptMagicStrength"`

@@ -42,7 +42,7 @@ func PromptBuilder() string {
 
 	artwork := choice3.String
 
-	prompt := fmt.Sprintf("museum piece photographed for art catalog: %s %s %s museum piece photographed for art catalog.", mood, style, artwork)
+	prompt := fmt.Sprintf("museum piece photographed for art catalog: %s %s %s.", mood, style, artwork)
 
 	return prompt
 }
