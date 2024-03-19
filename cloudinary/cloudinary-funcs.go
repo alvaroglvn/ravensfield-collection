@@ -37,6 +37,10 @@ func GetImgsFromCloud() (*admin.AssetsResult, error) {
 		fmt.Println(err)
 	}
 
+	resp, err = cld.Admin.AssetsByTag(ctx, admin.AssetsByTagParams{
+		Tag: "new",
+	})
+
 	return resp, nil
 }
 
@@ -62,11 +66,25 @@ func UploadImgFromUrl(url string) error {
 
 	_, err := cld.Upload.Upload(ctx, url, uploader.UploadParams{
 		Folder: "ravensfield-objects",
+		Tags:   []string{"new"},
 	})
 
 	if err != nil {
 		return fmt.Errorf("upload error: %s", err)
 	}
 
+	return nil
+}
+
+func UntagImage(imgId string, resp *admin.AssetsResult) error {
+	cld, ctx := cloudCredentials()
+
+	_, err := cld.Upload.RemoveTag(ctx, uploader.RemoveTagParams{
+		PublicIDs: []string{imgId},
+		Tag:       "new",
+	})
+	if err != nil {
+		return fmt.Errorf("error untagging image: %s", err)
+	}
 	return nil
 }

@@ -31,7 +31,6 @@ func GetNextImage(config internal.ApiConfig) (imgId, imgUrl string, err error) {
 
 	//get image id
 	index := len(images.Assets) - 1
-
 	imgId = images.Assets[index].PublicID
 
 	//get img url

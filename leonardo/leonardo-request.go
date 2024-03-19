@@ -19,8 +19,8 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 
 	leoReq := LeonardoReq{
 		Prompt:         prompt,
-		NegativePr:     "text, fonts, lettering",
-		GuidanceScale:  10,
+		NegativePr:     "text, fonts, lettering, letters",
+		GuidanceScale:  8,
 		Width:          width,
 		Height:         height,
 		NofImages:      1,

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	// "github.com/alvaroglvn/ravensfield-collection/cloudinary"
+	"github.com/alvaroglvn/ravensfield-collection/cloudinary"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
@@ -13,7 +13,7 @@ import (
 func PostArticle(config internal.ApiConfig) http.HandlerFunc {
 	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
 		//get image from cloud
-		_, imgUrl, err := pipelines.GetNextImage(config)
+		imgId, imgUrl, err := pipelines.GetNextImage(config)
 		if err != nil {
 			utils.RespondWithError(w, 500, fmt.Sprintf("error getting image from cloud: %s", err))
 			return
@@ -36,18 +36,16 @@ func PostArticle(config internal.ApiConfig) http.HandlerFunc {
 			return
 		}
 
-		//after upload, delete image from cloud
-		// images, err := cloudinary.GetImgsFromCloud()
-		// if err != nil {
-		// 	utils.RespondWithError(w, 500, fmt.Sprintf("error: %s", err))
-		// 	return
-		// }
-		// err = cloudinary.DeleteUsedImg(imgId, images)
-		// if err != nil {
-		// 	utils.RespondWithError(w, 500, fmt.Sprintf("error: %s", err))
-		// 	return
-		// }
+		//after upload is complete, untag image
+		images, err := cloudinary.GetImgsFromCloud()
+		if err != nil {
+			utils.RespondWithJson(w, 500, fmt.Sprintf("error: %s", err))
+		}
 
+		err = cloudinary.UntagImage(imgId, images)
+		if err != nil {
+			utils.RespondWithError(w, 500, fmt.Sprintf("error: %s", err))
+		}
 	}
 	return handlerFunc
 }
