@@ -5,7 +5,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func CreateArticle(img, tag, title, descript string, config internal.ApiConfig) ghost.GhostPost {
+func CreateArticle(img, title, tag, descript string, config internal.ApiConfig) ghost.GhostPost {
 
 	postData := ghost.GhostPost{
 		Posts: []ghost.Post{

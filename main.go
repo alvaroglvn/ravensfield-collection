@@ -24,19 +24,21 @@ func main() {
 	ghostKey := os.Getenv("GHOST_KEY")
 	ghostUrl := os.Getenv("GHOST_URL")
 	leoKey := os.Getenv("LEONARDO_KEY")
+	claudeKey := os.Getenv("CLAUDE_KEY")
 	masterKey := os.Getenv("MASTER_KEY")
-	//claudeKey := os.Getenv("CLAUDE_KEY")
 
 	//Build config
-	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey)
+	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, claudeKey, masterKey)
 
 	//Load router with CORS
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 	//Endpoints
 
-	//post to ghost
+	//post using openai
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
+	//post using claude
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/claudepost", handlers.PostClaudeArticle(config))
 
 	//Start server
 	server := &http.Server{

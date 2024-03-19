@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/alvaroglvn/ravensfield-collection/claude"
 	"github.com/alvaroglvn/ravensfield-collection/cloudinary"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func PostArticle(config internal.ApiConfig) http.HandlerFunc {
+func PostClaudeArticle(config internal.ApiConfig) http.HandlerFunc {
 	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
 		//get image from cloud
 		imgId, imgUrl, err := pipelines.GetNextImage(config)
@@ -20,7 +21,7 @@ func PostArticle(config internal.ApiConfig) http.HandlerFunc {
 		}
 
 		//get text from image
-		tag, title, descript, err := pipelines.BuildTextFromImg(imgUrl, config)
+		title, tag, descript, err := claude.ClaudeTextElements(imgUrl, config)
 		if err != nil {
 			utils.RespondWithError(w, 500, fmt.Sprintf("error generating text from image: %s", err))
 			return

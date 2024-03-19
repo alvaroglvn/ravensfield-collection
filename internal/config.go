@@ -6,10 +6,11 @@ type ApiConfig struct {
 	GhostKey  string
 	GhostURL  string
 	LeoKey    string
+	ClaudeKey string
 	MasterKey string
 }
 
-func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey string) ApiConfig {
+func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, claudeKey, masterKey string) ApiConfig {
 
 	config := ApiConfig{
 		Port:      port,
@@ -17,6 +18,7 @@ func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey string) 
 		GhostKey:  ghostKey,
 		GhostURL:  ghostUrl,
 		LeoKey:    leoKey,
+		ClaudeKey: claudeKey,
 		MasterKey: masterKey,
 	}
 	return config
