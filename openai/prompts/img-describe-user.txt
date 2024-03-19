@@ -8,12 +8,12 @@ General guidance:
 
 Follow these steps to create the text:
 
-Step 1 - Give this article a catchy and engaging title that will entice the audience to read the full story. It must be short and to the point.
+Step 1 - Give this article a catchy and engaging title that will entice the audience to read the full story. It must be short and to the point. Please, do not add any markdown formatting to this title.
 
 Step 2 - Before the description, write a museum tag that follows this structure:
 | [Artist] | [Title (Year)] | [Medium] |
 - The artist must be an imaginary person.
-- If the piece is an archeological finding or similar, the author can be unknown.
+- The author might be unkown in some rare cases, such as if the piece is an archeological finding or its origin is a mystery.
 - The year must relate to the art style of the artwork, and not be larger than today's date. If the artwork is an archeological piece, it can be an approximation, or of unkown origin.
 - The medium might include materials if the artwork calls for it.
 
@@ -31,3 +31,5 @@ The quote can come from the artist himself or from someone else.
 Example:
 "This piece gives me technicolor nightmares." -James Wyndblahn, filmmaker.
 Mark the quote as a blockquote in your markdown.
+
+Please, before you build the response, make sure that you are going through all of these steps carefully without forgetting any.
