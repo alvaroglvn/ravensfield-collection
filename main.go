@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 	"net/http"
 	"os"
@@ -27,15 +26,8 @@ func main() {
 	leoKey := os.Getenv("LEONARDO_KEY")
 	masterKey := os.Getenv("MASTER_KEY")
 
-	//Load database
-	db, err := sql.Open("sqlite3", "/sqlite/db/art-museum.sqlite")
-	if err != nil {
-		log.Fatal("unable to load database")
-	}
-	defer db.Close()
-
 	//Build config
-	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey, db)
+	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey)
 
 	//Load router with CORS
 	router := chi.NewRouter()

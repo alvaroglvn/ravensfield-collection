@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	madlibsprompt "github.com/alvaroglvn/ravensfield-collection/madlibs-prompt"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
@@ -105,7 +106,10 @@ func getImgUrl(imgId, leoKey string) (imgUrl string, err error) {
 }
 
 func LeonardoPipeline(leoKey string) (imgUrl string, err error) {
-	prompt := utils.PromptBuilder()
+	prompt, err := madlibsprompt.BuildRandPrompt()
+	if err != nil {
+		return "", fmt.Errorf("error creating prompt: %s", err)
+	}
 
 	imgId, err := generateLeoImg(prompt, leoKey)
 	if err != nil {

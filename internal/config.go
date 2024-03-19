@@ -1,9 +1,5 @@
 package internal
 
-import (
-	"database/sql"
-)
-
 type ApiConfig struct {
 	Port      string
 	OpenAiKey string
@@ -11,10 +7,9 @@ type ApiConfig struct {
 	GhostURL  string
 	LeoKey    string
 	MasterKey string
-	Database  *sql.DB
 }
 
-func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey string, database *sql.DB) ApiConfig {
+func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey string) ApiConfig {
 
 	config := ApiConfig{
 		Port:      port,
@@ -23,7 +18,6 @@ func BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey string, 
 		GhostURL:  ghostUrl,
 		LeoKey:    leoKey,
 		MasterKey: masterKey,
-		Database:  database,
 	}
 	return config
 }
