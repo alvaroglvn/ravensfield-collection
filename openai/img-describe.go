@@ -7,14 +7,14 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func imgDescribe(imgURL, openAiKey string) (string, error) {
+func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
-	userText, err := convertToPrompt("openai/prompts/img-describe-user.txt")
+	userText, err := utils.ConvertToPrompt("openai/prompts/img-describe-user.txt")
 	if err != nil {
 		return "", fmt.Errorf("error gathering user text: %v", err)
 	}
 
-	systemText, err := convertToPrompt("openai/prompts/img-describe-system.txt")
+	systemText, err := utils.ConvertToPrompt("openai/prompts/img-describe-system.txt")
 	if err != nil {
 		return "", fmt.Errorf("error gathering system text: %v", err)
 	}
@@ -46,7 +46,10 @@ func imgDescribe(imgURL, openAiKey string) (string, error) {
 				},
 			},
 		},
-		MaxTokens: 1000,
+		MaxTokens:       1000,
+		FreqPenalty:     0.5,
+		PresencePenalty: 0.5,
+		Temperature:     1,
 	}
 
 	var visionResponse CompResponse

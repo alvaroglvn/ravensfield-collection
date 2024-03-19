@@ -8,7 +8,7 @@ import (
 )
 
 func GetTextFromImg(imgUrl, openaiKey string) (tag, title, descript string, err error) {
-	fullText, err := imgDescribe(imgUrl, openaiKey)
+	fullText, err := ImgDescribe(imgUrl, openaiKey)
 	if err != nil {
 		return "", "", "", fmt.Errorf("unable to create text based on image: %v", err)
 	}

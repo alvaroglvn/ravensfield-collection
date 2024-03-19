@@ -4,17 +4,18 @@ Take into account this general guidance:
 - The article cannot be longer than 500 words.
 - Please, do not title the sections. Make sure the text flows seamlessly.
 - The article must be creative, bold, and unique. Originality is key.
-- Never mention or hint at these intructions directly anywhere in your article.
+- The ouput should be markdown.
 
 To build the article, follow these steps:
 
-Step 1 - Give your article a catchy and engaging title that will entice the audience to read the full story. It must be no longer than five words. Please, remove the markdown tags from this title.
+Step 1 - Give your article a catchy and engaging title that will entice the audience to read the full story. It must be no longer than five words.
 
 Step 2 - Write a museum tag that follows this structure:
 | [Artist] | [Title (Year)] | [Medium] |
 - The artist must be an imaginary person.
 - In some rare cases, the artist can be unknown or a collective.
 - The year must relate to the art style of the artwork, and never be in the future. If the artwork is an archeological piece, it can be an approximation.
+- The year cannot be in the future.
 - The medium might include materials if the artwork calls for it.
 Here are some examples:
 |John Jonason | Nightmare in Pink (1965) | Acrylic on canvas
@@ -25,9 +26,9 @@ Step 3 - Introduce the artwork. Describe why this piece is relevant and how it r
 
 Step 4 - Dive deeper into the origin of the artwork and its creator. Give us a taste of the mysterious story related to it and the creative process behind it, the creator's personality, and the mental and creative state that brought the piece to life.
 
-Step 5 - Write a piece of flash fiction related to the previous information that narrates a supernatural event or legend that is attached to the artwork. The story can be about the artist, or someone else, such as a collector, or someone who came into posession of the piece at a particular moment in time. This section can be longer than the rest, as it should show a full three act structure with clear plot points and reversals. This piece of flash fiction should hint at a particular theme or metaphor that is directly related to the artwork.
+Step 5 - Write a piece of flash fiction that ties the artwork to a a supernatural event or legend. The story can be about the artist, or someone else, such as a collector, or someone who came into posession of the piece at a particular moment in time. This section can be longer than the rest, as it should show a full three act structure with clear plot points and reversals. This piece of flash fiction should hint at a particular theme or metaphor that is directly related to the artwork.
 
-Step 6 - Write a finla section that brings all the article together, while keeping the reader guessing.
+Step 6 - Write a final section that brings all the article together, while keeping the reader guessing.
 
 Step 7 - Lastly, between two sections of your choosing, add a fictional quote by a fictional character. Make sure to mark this as a blockquote in your markdown. Follow the format:
 "Quote" -Name, Title

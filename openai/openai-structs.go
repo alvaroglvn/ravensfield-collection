@@ -24,9 +24,12 @@ type Image struct {
 //COMPLETION
 
 type CompRequest struct {
-	Model     string    `json:"model"`
-	Messages  []Message `json:"messages"`
-	MaxTokens int       `json:"max_tokens"`
+	Model           string    `json:"model"`
+	Messages        []Message `json:"messages"`
+	MaxTokens       int       `json:"max_tokens"`
+	FreqPenalty     float64   `json:"frequency_penalty,omitempty"`
+	PresencePenalty float64   `json:"presence_penalty,omitempty"`
+	Temperature     float64   `json:"temperature,omitempty"`
 }
 
 type Message struct {

@@ -25,6 +25,7 @@ func main() {
 	ghostUrl := os.Getenv("GHOST_URL")
 	leoKey := os.Getenv("LEONARDO_KEY")
 	masterKey := os.Getenv("MASTER_KEY")
+	//claudeKey := os.Getenv("CLAUDE_KEY")
 
 	//Build config
 	config := internal.BuildConfig(port, openAiKey, ghostKey, ghostUrl, leoKey, masterKey)

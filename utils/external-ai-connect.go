@@ -17,7 +17,7 @@ func ExternalAIPostReq(request interface{}, endpoint, apiKey string) ([]byte, er
 
 	req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer(reqBody))
 	if err != nil {
-		return nil, fmt.Errorf("error making request to DallE: %v", err)
+		return nil, fmt.Errorf("error making request: %v", err)
 	}
 
 	req.Header.Set("Content-Type", "application/json")
