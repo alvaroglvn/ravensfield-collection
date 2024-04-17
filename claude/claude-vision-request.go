@@ -41,7 +41,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						Type: "image",
 						Source: Source{
 							Type:      "base64",
-							MediaType: "image/png",
+							MediaType: "image/webp",
 							Data:      imageBase64,
 						},
 					},
@@ -81,6 +81,8 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("error reading response: %s", err)
 	}
+
+	// fmt.Println(string(body))
 
 	var claudeResponse ClaudeResponse
 

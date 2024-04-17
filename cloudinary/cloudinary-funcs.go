@@ -34,18 +34,35 @@ func GetImgsFromCloud() (*admin.AssetsResult, error) {
 		Prefix:       "ravensfield-objects",
 	})
 	if err != nil {
-		fmt.Println(err)
+		return resp, fmt.Errorf("error loading images: %s", err)
 	}
 
 	resp, err = cld.Admin.AssetsByTag(ctx, admin.AssetsByTagParams{
 		Tag: "new",
 	})
+	if err != nil {
+		return resp, fmt.Errorf("error loading images by tag: %s", err)
+	}
+
+	// resp.Assets = sortList(resp.Assets)
 
 	return resp, nil
 }
 
 func GetNextImgUrl(resp *admin.AssetsResult) (string, error) {
-	imgUrl := resp.Assets[len(resp.Assets)-1].URL
+	cld, _ := cloudCredentials()
+	img, err := cld.Image(resp.Assets[len(resp.Assets)-1].PublicID)
+	if err != nil {
+		return "", fmt.Errorf("error loading image: %s", err)
+	}
+	//cloudinary auto transformation
+	img.Transformation = "f_webp/q_auto"
+	//generate url
+	imgUrl, err := img.String()
+	if err != nil {
+		return "", fmt.Errorf("error getting image url: %s", err)
+	}
+
 	return imgUrl, nil
 }
 
