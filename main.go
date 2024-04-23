@@ -1,13 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
+	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
+
+	// "github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -34,6 +38,13 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 	//Endpoints
+
+	path := "ghost/test.webp"
+	newUrl, err := ghost.UploadImage(config, path)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(newUrl)
 
 	//post using openai
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
