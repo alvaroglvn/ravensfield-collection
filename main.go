@@ -7,11 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 
-	// "github.com/alvaroglvn/ravensfield-collection/pipelines"
+	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -39,12 +38,11 @@ func main() {
 	router.Use(cors.Handler(cors.Options{}))
 	//Endpoints
 
-	path := "ghost/test.webp"
-	newUrl, err := ghost.UploadImage(config, path)
+	ghostImg, err := pipelines.CloudinaryToGhost(config)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
-	fmt.Println(newUrl)
+	fmt.Println(ghostImg)
 
 	//post using openai
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))

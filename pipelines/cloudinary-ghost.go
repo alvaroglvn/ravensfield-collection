@@ -1,66 +1,31 @@
 package pipelines
 
-// import (
-// 	"fmt"
-// 	"io"
-// 	"net/http"
-// 	"os"
+import (
+	"net/http"
 
-// 	"github.com/alvaroglvn/ravensfield-collection/ghost"
-// 	"github.com/alvaroglvn/ravensfield-collection/internal"
-// )
+	"github.com/alvaroglvn/ravensfield-collection/ghost"
+	"github.com/alvaroglvn/ravensfield-collection/internal"
+)
 
-// func CloudinaryToGhost(config internal.ApiConfig) error {
+func CloudinaryToGhost(config internal.ApiConfig) (ghostImgUrl string, err error) {
 
-// 	_, imgUrl, err := GetNextImage(config)
-// 	if err != nil {
-// 		return err
-// 	}
+	_, imgUrl, err := GetNextImage(config)
+	if err != nil {
+		return "", err
+	}
 
-// 	//fetch image from url
-// 	resp, err := http.Get(imgUrl)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	defer resp.Body.Close()
+	//fetch image from url
+	resp, err := http.Get(imgUrl)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
 
-// 	fmt.Println(imgUrl)
+	ghostImgUrl, err = ghost.UploadImage(config, imgUrl)
+	if err != nil {
+		return "", err
+	}
 
-// 	file, err := os.Create("ghost/test.webp")
-// 	if err != nil {
-// 		return err
-// 	}
-// 	defer file.Close()
+	return ghostImgUrl, err
 
-// 	_, err = io.Copy(file, resp.Body)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	//get image as data
-// 	imgData, err := io.ReadAll(resp.Body)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// //upload image to ghost
-// err = ghost.UploadImgToGhost(imgData, config)
-// if err != nil {
-// 	return err
-// }
-
-//build multipart dataform
-
-// dataform, contentType, err := ghost.ImgToMPDataform(imgData, config)
-// if err != nil {
-// 	return err
-// }
-
-// //upload to ghost
-// err = ghost.UploadImgToGhost(dataform, contentType, config)
-// if err != nil {
-// 	return err
-// }
-
-// 	return nil
-// }
+}
