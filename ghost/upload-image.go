@@ -9,63 +9,52 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/textproto"
-	//"os"
-	"strings"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-// https://res.cloudinary.com/alvaroglvn-image-cloud/image/upload/v1710866517/ravensfield-objects/img-odybhdmIDozdNVGIDKIIVTEY_mczgjd.png
-
-func createMultipartFormData(imgUrl string) (*multipart.Writer, io.Reader) {
-
-	const paramName = "file"
-
-	file, err := http.Get(imgUrl)
-	if err != nil {
-		log.Println(err)
-	}
-	defer file.Body.Close()
-
-	fileContents, err := io.ReadAll(file.Body)
-	if err != nil {
-		log.Println(err)
-	}
-
-	body := new(bytes.Buffer)
-	writer := multipart.NewWriter(body)
-
-	header := make(textproto.MIMEHeader)
-	header.Set("Content-Type", "image/webp")
-	header.Set("Content-Disposition", fmt.Sprintf(`form-data; name="%s"; filename="%s"`,
-		escapeQuotes(paramName), escapeQuotes("object.webp")))
-	part, err := writer.CreatePart(header)
-	if err != nil {
-		log.Println(err)
-	}
-	_, err = part.Write(fileContents)
-	if err != nil {
-		log.Println(err)
-	}
-
-	params := map[string]string{
-		"purpose": "image",
-		"ref":     imgUrl,
-	}
-	for key, val := range params {
-		_ = writer.WriteField(key, val)
-	}
-
-	err = writer.Close()
-	if err != nil {
-		log.Println(err)
-	}
-
-	return writer, body
+type ImageResponse struct {
+	Images []Image
+}
+type Image struct {
+	URL string
 }
 
-func UploadImage(config internal.ApiConfig, imgUrl string) (imageURL string, err error) {
-	writer, body := createMultipartFormData(imgUrl)
+func createMultipartFormData(imgContent []byte, fileName string) (*multipart.Writer, io.Reader) {
+
+	//create buffer
+	buf := new(bytes.Buffer)
+	writer := multipart.NewWriter(buf)
+
+	//set headers for form file field
+	formFileHead := make(textproto.MIMEHeader)
+	formFileHead.Set("Content-Type", "image/webp")
+	formFileHead.Set("Content-Disposition", fmt.Sprintf(`form-data; name="file"; filename="%s.webp"`, fileName))
+	part, err := writer.CreatePart(formFileHead)
+	if err != nil {
+		log.Println(err)
+	}
+	//write image content to form file
+	_, err = part.Write(imgContent)
+	if err != nil {
+		log.Println(err)
+	}
+
+	//set purpose field
+	if err := writer.WriteField("purpose", "image"); err != nil {
+		log.Println(err)
+	}
+
+	//close writer
+	if err := writer.Close(); err != nil {
+		log.Println(err)
+	}
+
+	return writer, buf
+}
+
+func UploadImage(config internal.ApiConfig, imgContent []byte, fileName string) (imageURL string, err error) {
+	writer, body := createMultipartFormData(imgContent, fileName)
 	var uri = config.GhostURL + "/ghost/api/admin/images/upload/"
 
 	//ghost authorization
@@ -111,16 +100,3 @@ func UploadImage(config internal.ApiConfig, imgUrl string) (imageURL string, err
 
 	return images.Images[0].URL, nil
 }
-
-type ImageResponse struct {
-	Images []Image
-}
-type Image struct {
-	URL string
-}
-
-func escapeQuotes(s string) string {
-	return quoteEscaper.Replace(s)
-}
-
-var quoteEscaper = strings.NewReplacer("\\", "\\\\", `"`, "\\\"")
