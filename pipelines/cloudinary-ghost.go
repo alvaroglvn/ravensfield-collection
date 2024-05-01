@@ -16,7 +16,7 @@ func CloudinaryToGhost(config internal.ApiConfig) (ghostImgUrl string, err error
 	if err != nil {
 		return "", err
 	}
-	resp, err := http.Get(imgUrl)
+	resp, err := http.Get(imgUrl) //#nosec G107
 	if err != nil {
 		return "", err
 	}

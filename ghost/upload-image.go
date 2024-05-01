@@ -32,28 +32,29 @@ func createMultipartFormData(imgContent []byte, fileName string) (*multipart.Wri
 	formFileHead.Set("Content-Disposition", fmt.Sprintf(`form-data; name="file"; filename="%s.webp"`, fileName))
 	part, err := writer.CreatePart(formFileHead)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	//write image content to form file
 	_, err = part.Write(imgContent)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 
 	//set purpose field
 	if err := writer.WriteField("purpose", "image"); err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 
 	//close writer
 	if err := writer.Close(); err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 
 	return writer, buf
 }
 
 func UploadImage(config internal.ApiConfig, imgContent []byte, fileName string) (imageURL string, err error) {
+	//turn data into multipart dataform
 	writer, body := createMultipartFormData(imgContent, fileName)
 	var uri = config.GhostURL + "/ghost/api/admin/images/upload/"
 
@@ -64,38 +65,31 @@ func UploadImage(config internal.ApiConfig, imgContent []byte, fileName string) 
 		return "", fmt.Errorf("authorization token error: %s", err)
 	}
 
+	//send request
 	request, err := http.NewRequest("POST", uri, body)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("request error: %s", err)
 	}
+	//set headers
 	request.Header.Set("Content-Type", writer.FormDataContentType())
 	request.Header.Set("Authorization", "Ghost "+ghostToken)
 
+	//get response
 	client := &http.Client{}
 	response, err := client.Do(request)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("response error: %s", err)
 	}
-	defer func() {
-		if err := response.Body.Close(); err != nil {
-			fmt.Printf("cannot close body reader: %v\n", err)
-		}
-	}()
+	defer response.Body.Close()
 
 	content, err := io.ReadAll(response.Body)
 	if err != nil {
-		return "", err
-	}
-
-	responseBody := string(content[:])
-	if response.StatusCode != http.StatusCreated {
-		return "", fmt.Errorf("wrong http code: %d (%q)",
-			response.StatusCode, responseBody)
+		return "", fmt.Errorf("reading error: %s", err)
 	}
 
 	var images ImageResponse
 	if err := json.Unmarshal(content[:], &images); err != nil {
-		return "", err
+		return "", fmt.Errorf("unmarshalling err: %s", err)
 	}
 
 	return images.Images[0].URL, nil

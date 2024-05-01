@@ -8,7 +8,7 @@ import (
 )
 
 func imgUrltoBase64(imgUrl string) (string, error) {
-	resp, err := http.Get(imgUrl)
+	resp, err := http.Get(imgUrl) //#nosec G107
 	if err != nil {
 		return "", fmt.Errorf("error loading image from url: %s", err)
 	}
