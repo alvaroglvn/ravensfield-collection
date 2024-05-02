@@ -10,21 +10,21 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func CloudinaryToGhost(config internal.ApiConfig) (ghostImgUrl string, err error) {
+func CloudinaryToGhost(config internal.ApiConfig) (err error) {
 	//fetch image from Cloudinary
 	_, imgUrl, err := GetNextImage(config)
 	if err != nil {
-		return "", err
+		return err
 	}
 	resp, err := http.Get(imgUrl) //#nosec G107
 	if err != nil {
-		return "", err
+		return err
 	}
 	defer resp.Body.Close()
 
 	fileContents, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return err
 	}
 
 	//create file name
@@ -32,10 +32,15 @@ func CloudinaryToGhost(config internal.ApiConfig) (ghostImgUrl string, err error
 	fileName := splitUrl[9] + "-" + splitUrl[10][0:8]
 
 	//upload image to Ghost
-	ghostImgUrl, err = ghost.UploadImage(config, fileContents, fileName)
+	ghostImgUrl, err := ghost.UploadImage(config, fileContents, fileName)
 	if err != nil {
-		return "", err
+		return err
 	}
 
-	return ghostImgUrl, err
+	//create empty draft with featured image
+	postData := CreateArticle(ghostImgUrl, fileName, "", "", config)
+
+	_, err = UploadArticletoGhost(postData, config)
+
+	return nil
 }

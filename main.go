@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -9,8 +8,6 @@ import (
 
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
-
-	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -36,14 +33,8 @@ func main() {
 	//Load router with CORS
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
+
 	//Endpoints
-
-	ghostImg, err := pipelines.CloudinaryToGhost(config)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(ghostImg)
-
 	//post using openai
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
 	//post using claude
