@@ -15,6 +15,9 @@ func CreateArticle(img, title, tag, descript string, config internal.ApiConfig) 
 				FeatImage: img,
 				ImgCapt:   tag,
 				Status:    "draft",
+				Tags: []ghost.Tag{
+					{Name: "no text"},
+				},
 			},
 		},
 	}
