@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	//"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/pipelines"
@@ -36,10 +37,20 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 
-	err := pipelines.CloudinaryToGhost(config)
+	// err := pipelines.CloudinaryToGhost(config)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+
+	err := pipelines.UpdateGentext(config)
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// _, _, _, err := ghost.GetOldestPostID(config)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 
 	//Endpoints
 	//post using openai
