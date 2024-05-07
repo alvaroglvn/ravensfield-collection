@@ -1,16 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
-	//"github.com/alvaroglvn/ravensfield-collection/ghost"
+	//"github.com/alvaroglvn/ravensfield-collection/handlers"
+	//"github.com/alvaroglvn/ravensfield-collection/cloudinary"
+	//"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
-	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 
 	"github.com/go-chi/chi/v5"
@@ -37,26 +37,13 @@ func main() {
 	router := chi.NewRouter()
 	router.Use(cors.Handler(cors.Options{}))
 
-	// err := pipelines.CloudinaryToGhost(config)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	err := pipelines.UpdateGentext(config)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	// _, _, _, err := ghost.GetOldestPostID(config)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
 	//Endpoints
+	//Upload images to Ghost and create empty articles
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/uploader", handlers.ImageUploader(config))
 	//post using openai
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
-	//post using claude
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/claudepost", handlers.PostClaudeArticle(config))
+	// router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
+	// //post using claude
+	// router.With(handlers.CreateMasterKeyWare(config)).Post("/claudepost", handlers.PostClaudeArticle(config))
 
 	//Start server
 	server := &http.Server{

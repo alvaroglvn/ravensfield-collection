@@ -10,12 +10,12 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func UploadArticletoGhost(article ghost.GhostPost, config internal.ApiConfig) (*http.Response, error) {
+func UploadArticletoGhost(article ghost.GhostPost, config internal.ApiConfig) error {
 	//ghost authorization
 	ghostKey := config.GhostKey
 	ghostToken, err := ghost.CreateAdminToken(ghostKey)
 	if err != nil {
-		return &http.Response{}, fmt.Errorf("error generating ghost authorization token: %s", err)
+		return fmt.Errorf("error generating ghost authorization token: %s", err)
 	}
 
 	//set endpoint
@@ -24,14 +24,14 @@ func UploadArticletoGhost(article ghost.GhostPost, config internal.ApiConfig) (*
 	//marshal post data
 	marshData, err := json.Marshal(article)
 	if err != nil {
-		return &http.Response{}, fmt.Errorf("marshalling error: %s", err)
+		return fmt.Errorf("marshalling error: %s", err)
 	}
 
 	//make request
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", postEndpoint, bytes.NewBuffer(marshData))
 	if err != nil {
-		return &http.Response{}, fmt.Errorf("error building request: %s", err)
+		return fmt.Errorf("error building request: %s", err)
 	}
 
 	//set headers
@@ -41,9 +41,9 @@ func UploadArticletoGhost(article ghost.GhostPost, config internal.ApiConfig) (*
 	//build response
 	resp, err := client.Do(req)
 	if err != nil {
-		return &http.Response{}, fmt.Errorf("error building response: %s", err)
+		return fmt.Errorf("error building response: %s", err)
 	}
 	defer resp.Body.Close()
 
-	return resp, nil
+	return nil
 }

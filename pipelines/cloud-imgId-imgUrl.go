@@ -1,43 +1,45 @@
 package pipelines
 
-import (
-	"fmt"
+// import (
+// 	"context"
+// 	"fmt"
 
-	"github.com/alvaroglvn/ravensfield-collection/cloudinary"
-	"github.com/alvaroglvn/ravensfield-collection/internal"
-)
+// 	"github.com/cloudinary/cloudinary-go/v2"
 
-func GetNextImage(config internal.ApiConfig) (imgId, imgUrl string, err error) {
-	//load cloud images
-	images, err := cloudinary.GetImgsFromCloud()
-	if err != nil {
-		return "", "", fmt.Errorf("error loading cloud folder: %s", err)
-	}
+// 	"github.com/alvaroglvn/ravensfield-collection/internal"
+// )
 
-	//if there are no images in cloud
-	if len(images.Assets) == 0 {
-		//generate new image and upload
-		err = LeoToCloud(config)
-		if err != nil {
-			return "", "", fmt.Errorf("error generating new image: %s", err)
-		}
+// func GetNextImage(cld *cloudinary.Cloudinary, ctx context.Context, config internal.ApiConfig) (imgId, imgUrl string, err error) {
+// 	//load cloud images
+// 	images, err := cloudinary.GetImgsFromCloud()
+// 	if err != nil {
+// 		return "", "", fmt.Errorf("error loading cloud folder: %s", err)
+// 	}
 
-		//reload gallery
-		images, err = cloudinary.GetImgsFromCloud()
-		if err != nil {
-			return "", "", fmt.Errorf("error loading cloud folder: %s", err)
-		}
-	}
+// 	//if there are no images in cloud
+// 	if len(images.Assets) == 0 {
+// 		//generate new image and upload
+// 		err = LeoToCloud(config)
+// 		if err != nil {
+// 			return "", "", fmt.Errorf("error generating new image: %s", err)
+// 		}
 
-	//get image id
-	index := len(images.Assets) - 1
-	imgId = images.Assets[index].PublicID
+// 		//reload gallery
+// 		images, err = cloudinary.GetImgsFromCloud()
+// 		if err != nil {
+// 			return "", "", fmt.Errorf("error loading cloud folder: %s", err)
+// 		}
+// 	}
 
-	//get img url
-	imgUrl, err = cloudinary.GetNextImgUrl(images)
-	if err != nil {
-		return "", "", fmt.Errorf("error getting image url: %s", err)
-	}
+// 	//get image id
+// 	index := len(images.Assets) - 1
+// 	imgId = images.Assets[index].PublicID
 
-	return imgId, imgUrl, nil
-}
+// 	//get img url
+// 	imgUrl, err = cloudinary.GetNextImgUrl(images)
+// 	if err != nil {
+// 		return "", "", fmt.Errorf("error getting image url: %s", err)
+// 	}
+
+// 	return imgId, imgUrl, nil
+// }

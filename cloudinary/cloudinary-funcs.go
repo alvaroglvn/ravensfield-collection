@@ -13,7 +13,7 @@ import (
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 )
 
-func cloudCredentials() (*cloudinary.Cloudinary, context.Context) {
+func CloudCredentials() (*cloudinary.Cloudinary, context.Context) {
 	// Add your Cloudinary credentials, set configuration parameter
 	// Secure=true to return "https" URLs, and create a context
 	//===================
@@ -26,49 +26,58 @@ func cloudCredentials() (*cloudinary.Cloudinary, context.Context) {
 	return cld, ctx
 }
 
-func GetImgsFromCloud() (*admin.AssetsResult, error) {
-	cld, ctx := cloudCredentials()
+func getImgsFromCloud(cld *cloudinary.Cloudinary, ctx context.Context) (*admin.AssetsResult, error) {
+	// cld, ctx := CloudCredentials()
 
 	resp, err := cld.Admin.Assets(ctx, admin.AssetsParams{
 		DeliveryType: "upload",
 		Prefix:       "ravensfield-objects",
 	})
 	if err != nil {
-		return resp, fmt.Errorf("error loading images: %s", err)
+		return resp, fmt.Errorf("error loading assets: %s", err)
 	}
-
-	resp, err = cld.Admin.AssetsByTag(ctx, admin.AssetsByTagParams{
-		Tag: "new",
-	})
-	if err != nil {
-		return resp, fmt.Errorf("error loading images by tag: %s", err)
-	}
-
-	// resp.Assets = sortList(resp.Assets)
 
 	return resp, nil
 }
 
-func GetNextImgUrl(resp *admin.AssetsResult) (string, error) {
-	cld, _ := cloudCredentials()
-	img, err := cld.Image(resp.Assets[len(resp.Assets)-1].PublicID)
+func GetImgsData(cld *cloudinary.Cloudinary, ctx context.Context) (imgIds, imgUrls []string, err error) {
+	//1 - Load images archive
+	imgArchive, err := getImgsFromCloud(cld, ctx)
 	if err != nil {
-		return "", fmt.Errorf("error loading image: %s", err)
-	}
-	//cloudinary auto transformation
-	img.Transformation = "f_webp/q_auto"
-	//generate url
-	imgUrl, err := img.String()
-	if err != nil {
-		return "", fmt.Errorf("error getting image url: %s", err)
+		return nil, nil, fmt.Errorf("cloudinary error: %s", err)
 	}
 
-	return imgUrl, nil
+	//2 - Loop through assets, transform into wepb, and get data
+	imgIds = []string{}
+	imgUrls = []string{}
+
+	if len(imgArchive.Assets) != 0 {
+		for i, asset := range imgArchive.Assets {
+			//add image's id to ids list
+			imgIds = append(imgIds, asset.PublicID)
+			//get image
+			img, err := cld.Image(imgArchive.Assets[i].PublicID)
+			if err != nil {
+				return nil, nil, fmt.Errorf("error loading image: %s", err)
+			}
+			//transform image into webp
+			img.Transformation = "f_webp/q_auto"
+			//get image's url
+			imgUrl, err := img.String()
+			if err != nil {
+				return nil, nil, fmt.Errorf("error loading image's url: %s", err)
+			}
+			//add image's url to list
+			imgUrls = append(imgUrls, imgUrl)
+		}
+	}
+
+	return imgIds, imgUrls, nil
 }
 
-func DeleteUsedImg(imgId string, resp *admin.AssetsResult) error {
+func DeleteImg(imgId string, resp *admin.AssetsResult) error {
 
-	cld, ctx := cloudCredentials()
+	cld, ctx := CloudCredentials()
 	_, err := cld.Admin.DeleteAssets(ctx, admin.DeleteAssetsParams{
 		PublicIDs: api.CldAPIArray{imgId},
 	})
@@ -79,7 +88,7 @@ func DeleteUsedImg(imgId string, resp *admin.AssetsResult) error {
 }
 
 func UploadImgFromUrl(url string) error {
-	cld, ctx := cloudCredentials()
+	cld, ctx := CloudCredentials()
 
 	_, err := cld.Upload.Upload(ctx, url, uploader.UploadParams{
 		Folder: "ravensfield-objects",
@@ -94,7 +103,7 @@ func UploadImgFromUrl(url string) error {
 }
 
 func UntagImage(imgId string, resp *admin.AssetsResult) error {
-	cld, ctx := cloudCredentials()
+	cld, ctx := CloudCredentials()
 
 	_, err := cld.Upload.RemoveTag(ctx, uploader.RemoveTagParams{
 		PublicIDs: []string{imgId},

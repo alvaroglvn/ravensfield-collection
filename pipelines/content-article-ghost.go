@@ -1,6 +1,8 @@
 package pipelines
 
 import (
+	"time"
+
 	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
@@ -11,6 +13,7 @@ func CreateArticle(img, title, tag, descript string, config internal.ApiConfig) 
 		Posts: []ghost.Post{
 			{
 				Title:     title,
+				UpdatedAt: time.Now().UTC().Format(time.RFC3339),
 				HTML:      descript,
 				FeatImage: img,
 				ImgCapt:   tag,
