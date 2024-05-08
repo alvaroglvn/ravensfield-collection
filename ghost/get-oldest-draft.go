@@ -18,7 +18,7 @@ func GetOldestPostID(config internal.ApiConfig) (postId, updatedAt, featImgUrl s
 	}
 
 	//set endpoint
-	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=1&filter=tag:no-text&fields=id,feature_image,updated_at"
+	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=1&filter=tag:no-text&fields=id,feature_image,updated_at&order=published_at%20asc"
 
 	//make request
 	client := &http.Client{}

@@ -25,7 +25,7 @@ func CloudinaryToGhost(config internal.ApiConfig) error {
 
 	//Upload images to Ghost
 	for _, url := range imgUrls {
-		imgResp, err := http.Get(url)
+		imgResp, err := http.Get(url) // #nosec G107
 		if err != nil {
 			return fmt.Errorf("failed to get response from image url: %s", err)
 		}

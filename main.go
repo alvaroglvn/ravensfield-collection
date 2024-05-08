@@ -40,6 +40,8 @@ func main() {
 	//Endpoints
 	//Upload images to Ghost and create empty articles
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/uploader", handlers.ImageUploader(config))
+	//Generate new article from feature image
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/generate", handlers.GenTextAndPost(config))
 	//post using openai
 	// router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
 	// //post using claude

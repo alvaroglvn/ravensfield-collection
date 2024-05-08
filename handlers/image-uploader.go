@@ -18,3 +18,13 @@ func ImageUploader(config internal.ApiConfig) http.HandlerFunc {
 	}
 	return handlerFunc
 }
+
+func GenTextAndPost(config internal.ApiConfig) http.HandlerFunc {
+	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
+		err := pipelines.UpdateGentext(config)
+		if err != nil {
+			utils.RespondWithError(w, 500, fmt.Sprintf("failed to generate article: %s", err))
+		}
+	}
+	return handlerFunc
+}
