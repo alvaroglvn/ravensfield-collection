@@ -45,8 +45,8 @@ func CloudinaryToGhost(config internal.ApiConfig) error {
 		}
 
 		//create empty article with feature image
-		postContent := CreateArticle(ghostImgUrl, fileName, "", "", config)
-		err = UploadArticletoGhost(postContent, config)
+		postContent := ghost.CreateArticle(ghostImgUrl, fileName, "", "", config)
+		err = ghost.SaveDraft(postContent, config)
 		if err != nil {
 			return fmt.Errorf("error creating new article: %s", err)
 		}

@@ -1,4 +1,4 @@
-package pipelines
+package ghost
 
 import (
 	"bytes"
@@ -6,14 +6,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func UploadArticletoGhost(article ghost.GhostPost, config internal.ApiConfig) error {
+func SaveDraft(article GhostPost, config internal.ApiConfig) error {
 	//ghost authorization
 	ghostKey := config.GhostKey
-	ghostToken, err := ghost.CreateAdminToken(ghostKey)
+	ghostToken, err := CreateAdminToken(ghostKey)
 	if err != nil {
 		return fmt.Errorf("error generating ghost authorization token: %s", err)
 	}

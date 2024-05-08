@@ -6,9 +6,6 @@ import (
 	"os"
 	"time"
 
-	//"github.com/alvaroglvn/ravensfield-collection/handlers"
-	//"github.com/alvaroglvn/ravensfield-collection/cloudinary"
-	//"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/utils"

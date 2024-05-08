@@ -4,13 +4,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	//"io"
 	"net/http"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func UpdatePost(postID, updatedAt, featImg, title, content, capt string, config internal.ApiConfig) error {
+func updatePost(postID, updatedAt, featImg, title, content, capt string, config internal.ApiConfig) error {
 
 	//prepare updated data
 	payload := GhostPost{Posts: []Post{{
@@ -40,8 +39,6 @@ func UpdatePost(postID, updatedAt, featImg, title, content, capt string, config 
 	if err != nil {
 		return fmt.Errorf("failed to build request: %s", err)
 	}
-
-	// fmt.Println(string(jsonData))
 
 	//ghost authorization
 	ghostKey := config.GhostKey

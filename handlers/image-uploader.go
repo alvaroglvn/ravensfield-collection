@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/alvaroglvn/ravensfield-collection/ghost"
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/pipelines"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
@@ -21,7 +22,7 @@ func ImageUploader(config internal.ApiConfig) http.HandlerFunc {
 
 func GenTextAndPost(config internal.ApiConfig) http.HandlerFunc {
 	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
-		err := pipelines.UpdateGentext(config)
+		err := ghost.UpdateGentext(config)
 		if err != nil {
 			utils.RespondWithError(w, 500, fmt.Sprintf("failed to generate article: %s", err))
 		}
