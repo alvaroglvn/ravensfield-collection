@@ -35,14 +35,14 @@ func main() {
 	router.Use(cors.Handler(cors.Options{}))
 
 	//Endpoints
+	//Generate image and upload to Cloudinary
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-generation", handlers.ImgGenerator(config))
+
 	//Upload images to Ghost and create empty articles
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/uploader", handlers.ImageUploader(config))
+
 	//Generate new article from feature image
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/generate", handlers.GenTextAndPost(config))
-	//post using openai
-	// router.With(handlers.CreateMasterKeyWare(config)).Post("/ghostpost", handlers.PostArticle(config))
-	// //post using claude
-	// router.With(handlers.CreateMasterKeyWare(config)).Post("/claudepost", handlers.PostClaudeArticle(config))
 
 	//Start server
 	server := &http.Server{

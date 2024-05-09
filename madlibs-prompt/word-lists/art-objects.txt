@@ -1,52 +1,52 @@
-Aboriginal Petroglyphs
+petroglyph
 altarpiece
 amphora
 amulet
 armor
 artifact
-Astrolabe
+astrolabe
 bench
 bio-art
-Bonsai Tree
+bonsai
 book
-Book of the Dead
-Bronze Vessels
-Bust
+bible
+book of the dead
+vessel
+bust
 cabinet
-calligraphic Scroll
-Calligraphy
+calligraphy sample
 candelabra
-Canopic Jars
+canopic jar
 carving
-Celadon
-Censer
+celadon
+censer
 ceramics
 chair
 chalice
 chandelier
 chest
 clock
-Cloisonné
+cloisonné
 codex
 coffin
 coin
 collage
 column
-Compass
+compass
 costume
-Crosier
-Cuneiform Tablet
-Cylinder Seal
+crosier
+cuneiform tablet
+cylinder seal
 dagger
-Delft Ceramic
+delft ceramic
 desk
 diary
-Diptych
+diptych
 drawing
-Embroidery
-Enamelwork
+embroidery
+enamelwork
 engraving
-Epitaph
+epitaph
 etching
 Fabergé Egg
 fabric
@@ -57,19 +57,19 @@ fresco
 furniture
 garment
 helmet
-Hieroglyph
+hieroglyph
 icon
 idol
-Ikebana
-Illuminated Manuscript
+ikebana
+manuscript
 illustration
 insignia
 installation
 interactive art
-Jade Carving
+jade carving
 jewelry
-Kachina Doll
-Kimono
+achina Doll
+kimono
 kinetic sculpture
 Lacquerware
 lamp
@@ -80,72 +80,70 @@ manuscript
 map
 mask
 medal
-Meissen Porcelain
-Metalwork
+Meissen porcelain
+metalwork
 mirror
 Moai
 monument
 mosaic
-Mosaic Tiles
-Mummy
+mummy
 mural
 obelisk
 painting
-Papyrus
+papyrus
 performance piece
 photograph
 pillar
-Porcelain
+porcelain
 portrait
 postcard
 pottery
 print
 record
 relic
-Reliefs
-Bas-relief
+reliefs
+bas-relief
 reliquary
 weapon
 runestone
 sarcophagus
 satue
-Scepter
+scepter
 scroll
 sculpture
 shield
 sketch
-Soapstone Carving
-Sphinx
-Stained Glass
+soapstone carving
+sphinx
+stained glass
 statuette
 Stelae
 stele
 stone
-Stone Carving
-Sundial
+stone carving
+sundial
 sword
 table
 tape
 tapestry
 textile
-Tiffany Lamp
+Tiffany lamp
 tombstone
 totem
-Totem Pole
-Triptych
+totem pole
+triptych
 urn
-Ushabtis
+ushabtis
 vase
-Venetian Glass
+Venetian glass
 vestment
 video
-virtual reality experience
 wardrobe
 weapon
-Weavings
-Woodblock Print
-Woodcarving
+weavings
+woodblock print
+woodcarving
 doll
-Toy
+toy
 musical instrument
 music sheet

@@ -23,7 +23,7 @@ func BuildRandPrompt() (string, error) {
 		return "", fmt.Errorf("error getting random object: %s", err)
 	}
 
-	prompt := fmt.Sprintf("professional photograph of a museum piece for an art catalog: %s %s %s", mood, artStyle, object)
+	prompt := fmt.Sprintf("museum piece showcase: %s %s %s. The artwork must be by itself an centered in plain color background that opposes the object's color palette.", mood, artStyle, object)
 
 	fmt.Println(prompt)
 

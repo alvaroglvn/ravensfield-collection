@@ -70,6 +70,7 @@ jobs:
           GHOST_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
           GHOST_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
           LEONARDO_KEY: ${{ secrets.LEONARDO_KEY }}
+          CLAUDE_KEY: ${{secrets.CLAUDE_KEY}}
           MASTER_KEY: ${{secrets.MASTER_KEY}}
 
   theme:

@@ -20,11 +20,12 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 	leoReq := LeonardoReq{
 		Prompt:         prompt,
 		NegativePr:     "text, fonts, lettering, letters",
-		GuidanceScale:  8,
+		GuidanceScale:  7,
 		Width:          width,
 		Height:         height,
 		NofImages:      1,
 		Steps:          30,
+		SDVersion:      "SDXL_LIGHTNING",
 		Public:         false,
 		Alchemy:        true,
 		PhotoReal:      true,
