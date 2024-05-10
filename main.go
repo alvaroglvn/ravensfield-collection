@@ -35,6 +35,9 @@ func main() {
 	router.Use(cors.Handler(cors.Options{}))
 
 	//Endpoints
+	//Health Check
+	router.Get("/health", handlers.HealthCheck(config))
+
 	//Generate image and upload to Cloudinary
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-generation", handlers.ImgGenerator(config))
 
