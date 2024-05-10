@@ -46,7 +46,7 @@ func main() {
 
 	//Start server
 	server := &http.Server{
-		Addr:              ":" + config.Port,
+		Addr:              "0.0.0.0:" + config.Port,
 		Handler:           router,
 		ReadHeaderTimeout: 2 * time.Second,
 	}
