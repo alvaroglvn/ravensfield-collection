@@ -63,15 +63,19 @@ jobs:
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Fly deploy
-        run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GHOST_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
-          GHOST_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
-          LEONARDO_KEY: ${{ secrets.LEONARDO_KEY }}
-          CLAUDE_KEY: ${{secrets.CLAUDE_KEY}}
-          MASTER_KEY: ${{secrets.MASTER_KEY}}
+        run: |
+          flyctl secrets set \
+            FLY_API_TOKEN="${{ secrets.FLY_API_TOKEN }}" \
+            MASTER_KEY="${{secrets.MASTER_KEY}}" \
+            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            GHOST_KEY="${{ secrets.GHOST_ADMIN_API_KEY }}" \
+            GHOST_URL="${{ secrets.GHOST_ADMIN_API_URL }}" \
+            LEONARDO_KEY="${{ secrets.LEONARDO_KEY }}" \
+            CLAUDE_KEY="${{secrets.CLAUDE_KEY}}"
+
+          flyctl deploy --remote-only
 
   theme:
     runs-on: ubuntu-latest

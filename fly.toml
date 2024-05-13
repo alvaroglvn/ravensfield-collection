@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for ravensfield-collection on 2024-05-10T11:33:10+01:00
+# fly.toml app configuration file generated for ravensfield-collection-cool-dawn-6901 on 2024-05-10T12:55:38+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -16,11 +16,6 @@ GO_VERSION = '1.22.0'
 [env]
 PORT = '8080'
 
-[[restart]]
-policy = "always"
-retries = 10
-processes = ["app"]
-
 [http_service]
 internal_port = 8080
 force_https = true
@@ -29,12 +24,10 @@ auto_start_machines = true
 min_machines_running = 0
 processes = ['app']
 
-[[http_service.checks]]
-grace_period = "10s"
-interval = "30s"
-method = "GET"
-timeout = "5s"
-path = "/health"
+[[restart]]
+policy = 'always'
+retries = 10
+processes = ['app']
 
 [[vm]]
 cpu_kind = 'shared'
