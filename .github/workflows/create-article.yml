@@ -1,0 +1,19 @@
+name: Schedule Article Generation
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Generate new article
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping article generator endpoint
+        run: |
+          curl \
+          --request POST \
+          -H "Accept: application/json"
+          -H "Api-Key: ${{secrets.MASTER_KEY }}" \
+          https://api.ravensfield.art/text-gen

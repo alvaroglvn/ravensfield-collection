@@ -1,0 +1,19 @@
+name: Schedule Image Upload
+
+on:
+  schedule:
+    - cron: "15 0 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Upload Images to Ghost
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping uploader endpoint
+        run: |
+          curl \
+          --request POST \
+          -H "Accept: application/json"
+          -H "Api-Key: ${{secrets.MASTER_KEY }}" \
+          https://api.ravensfield.art/img-upload

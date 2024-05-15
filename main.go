@@ -39,13 +39,13 @@ func main() {
 	router.Get("/health", handlers.HealthCheck(config))
 
 	//Generate image and upload to Cloudinary
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-generation", handlers.ImgGenerator(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-gen", handlers.ImgGenerator(config))
 
 	//Upload images to Ghost and create empty articles
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/uploader", handlers.ImageUploader(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-upload", handlers.ImageUploader(config))
 
 	//Generate new article from feature image
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/generate", handlers.GenTextAndPost(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/text-gen", handlers.GenTextAndPost(config))
 
 	//Start server
 	server := &http.Server{
