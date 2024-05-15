@@ -2,7 +2,7 @@ name: Schedule Article Generation
 
 on:
   schedule:
-    - cron: "30 0 * * *"
+    - cron: "2 0 * * *"
   workflow_dispatch: {}
 
 jobs:
@@ -14,6 +14,6 @@ jobs:
         run: |
           curl \
           --request POST \
-          -H "Accept: application/json"
+          -H "Accept: application/json" \
           -H "Api-Key: ${{secrets.MASTER_KEY }}" \
           https://api.ravensfield.art/text-gen
