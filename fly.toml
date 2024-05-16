@@ -12,6 +12,7 @@ buildpacks = ['gcr.io/paketo-buildpacks/go']
 
 [build.args]
 GO_VERSION = '1.22.0'
+BP_KEEP_FILES = 'claude/prompts/*'
 
 [env]
 PORT = '8080'

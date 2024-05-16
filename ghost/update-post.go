@@ -9,7 +9,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 )
 
-func updatePost(postID, updatedAt, featImg, title, content, capt string, config internal.ApiConfig) error {
+func updatePost(postID, updatedAt, featImg, title, caption, content string, config internal.ApiConfig) error {
 
 	//prepare updated data
 	payload := GhostPost{Posts: []Post{{
@@ -17,7 +17,7 @@ func updatePost(postID, updatedAt, featImg, title, content, capt string, config 
 		FeatImage: featImg,
 		Title:     title,
 		HTML:      content,
-		ImgCapt:   capt,
+		ImgCapt:   caption,
 		Status:    "draft",
 		Tags:      []Tag{},
 	},

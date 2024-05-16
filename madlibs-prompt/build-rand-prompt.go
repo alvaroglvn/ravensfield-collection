@@ -37,7 +37,7 @@ func BuildRandPrompt() (string, error) {
 		return "", fmt.Errorf("error getting random object: %s", err)
 	}
 
-	prompt := fmt.Sprintf("image from a museum's art catalog showcasing a %s %s %s.", mood, artStyle, object)
+	prompt := fmt.Sprintf("museum highlight piece: %s %s %s.", mood, artStyle, object)
 
 	return prompt, nil
 }

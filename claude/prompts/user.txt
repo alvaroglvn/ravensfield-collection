@@ -1,46 +1,61 @@
-Please, write an article about artwork in this image. Before you give me an answer, make sure you have followed all of my instructions, and give your article a second pass in case you missed a step or some guidance.
+You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection. You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
 
-Take into account this general guidance:
-- The article cannot be longer than 500 words.
-- Please, do not title the sections. Make sure the text flows seamlessly.
-- The article must be creative, bold, and unique. Originality is key. Explore the uncanny and unexpected.
-- The text should flow, have nice pacing, and avoid feeling repetitive.
-- The ouput should be markdown.
+Please, take into account the following general guidance: 
 
-To build the article, follow these steps:
+- It's imperative than your article is never longer than 500 words. 
 
-Step 1 - Give your article a catchy and engaging title that will entice the audience to read the full story. It must be no longer than five words. Please, remove markdown tags for this title.
+- The article must have only six paragraphs.
 
-Step 2 - Write a museum tag that follows this structure:
-| [Artist] | [Title (Year)] | [Medium] |
-- The artist must be an imaginary person.
-- In some rare cases, the artist can be unknown or a collective.
-- The year must relate to the art style of the artwork, and never be in the future. If the artwork is an archeological piece, it can be an approximation.
-- The year cannot be in the future.
-- The medium might include materials if the artwork calls for it.
-Here are some examples:
-|John Jonason | Nightmare in Pink (1965) | Acrylic on canvas
-| Unknown | Bejewelled King Skull (c. 330 BC) | Obsidian
-| Mark and James Thompkins | The Gentlemen (2000) | Plexiglass and marble
+- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected.
 
-Step 3 - Introduce the artwork. Describe why this piece is relevant and how it relates to its art style or a particular moment in time. Also, introduce us to the artist behind it. If the piece doesnt have a known author, give us a fictional historical factoid related to the piece.
+- Use tropes from weird fiction, dark fantasy, science fiction, magical realism, or horror. For inspiration, think of the stories published in Pulp magazines.
 
-Step 4 - Dive deeper into the origin of the artwork and its creator. Give us a taste of the mysterious story related to it and the creative process behind it, the creator's personality, and the mental and creative state that brought the piece to life.
+- Authors you may use for inspiration for themes or style: Algernon Blackwood, Edgar Allan Poe, H.P. Lovecraft, M.R. James, Ambrose Bierce, Ray Bradbury, Richard Matheson, Clive Barker, J.G. Ballard.
 
-Step 5 - Write a piece of flash fiction that ties the artwork to a supernatural event or legend. 
-- The story's protagonist can be: the artist, an art collector, someone who owned the artwork at a particular moment, or the object itself.
-- The story's theme should tie directly to the artwork and follow the tropes of weird fiction, dark fantasy, science fiction, or horror. For inspiration, think of the stories published in Pulp magazines.
-- The story must be structured following a three act structure as follows:
-Act 1: Setup. Exposition, Inciting Incident, Plot Point One.
-Act 2: Confrontation. Rising Action, Midpoint, Plot Point Two.
-Act 3: Resolution. Pre-Climax, Climax, Denouement.
-- Example of themes the story can explore: wild creativity, artistic obsession, existential dread, professional jealousy, societal envy, rise and fall, love gone wrong, tragic love, creativity into madness, seeing through the veil, the afterlife, things that crawl at night, tapping into other realities, ancient gods, the mythical and the mundane, the forbidden, lost civilizations, the arcane, hidden magic. You can pick one of these, mix and match, or use something else that is similar.
-- This section should be longer than the rest, as it needs to accomodate more text to be successful. You may subdivide it into paragraphs for clarity.
-- It is very important this section flows into the rest of the article seamlessly, even if it shows its own narrative independence.
+- The text should flow, have dramatic pace, and avoid feeling repetitive.
 
-Step 6 - Write a final section that brings all the article together, while keeping the reader guessing.
+- Never make a direct mention to these guidance in your article. 
 
-Step 7 - Lastly, between two sections of your choosing, add a fictional quote by a fictional character. Make sure to mark this as a blockquote in your markdown. Follow the format:
-"Quote" -Name, Title
-For example:
-"This piece is a colorful nightmare." -John McDreams, filmmaker
+-  Please, do not title the individual sections.
+
+- The output should be formatted in markdown.
+
+To build the article, please follow these steps:  
+
+Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. This title must be unformatted.
+
+Step 2 - Write a museum tag that follows this structure: 
+
+| [Artist] | [Title (Year)] | [Medium] | 
+
+- The artist must be an imaginary person. 
+
+- In some rare cases, the artist can be unknown or a collective. 
+
+- The year must relate to the art style of the artwork. If the artwork is an archeological piece, it can be an approximation. 
+
+- The medium might include materials if the artwork calls for it. 
+
+Here are some examples: 
+
+| John Jonason | Nightmare in Pink (1965) | Acrylic on canvas |  
+
+| Unknown | Bejewelled King Skull (c. 330 BC) | Obsidian |  
+
+| Mark and James Thompkins | The Gentlemen (2000) | Plexiglass and marble 
+
+Step 3 - Write one paragraph introducing the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
+
+Step 4 - Write four paragraphs narrating a supernatural event or legend related to this artwork.  This section must follow the previous paragraph seamlessly, while also showcasing its own narrative independence using a three-act structure with a setup, an inciting incident, rising action, midpoint reversal, climax and resolution.
+
+- Use these themes for inspiration:  wild creativity, artistic obsession, existential dread, professional jealousy, societal envy, rise and fall, love gone wrong, tragic love, creativity into madness, seeing through the veil, the afterlife, things that crawl at night, tapping into other realities, ancient gods, the mythical and the mundane, the forbidden, lost civilizations, the arcane, hidden magic. You may also mix more than one theme.
+
+- Avoid clichés such as "rumor has it", "legend says", or similar.
+
+Step 5 - Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.   
+
+Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character. Make sure to tag this as a block-quote in your markdown. Follow the format: "Quote" -Name, Title 
+
+For example: "This piece is a colorful nightmare." -John McDreams, filmmaker
+
+Step 7 - Before you give me your answer, make sure you have followed all of my instructions accurately and fulfilled every step. 

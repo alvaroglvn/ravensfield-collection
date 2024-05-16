@@ -22,7 +22,7 @@ func ImageUploader(config internal.ApiConfig) http.HandlerFunc {
 
 func GenTextAndPost(config internal.ApiConfig) http.HandlerFunc {
 	handlerFunc := func(w http.ResponseWriter, r *http.Request) {
-		err := ghost.UpdateGentext(config)
+		err := ghost.GenTextClaude(config)
 		if err != nil {
 			utils.RespondWithError(w, 500, fmt.Sprintf("failed to generate article: %s", err))
 		}
