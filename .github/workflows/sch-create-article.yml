@@ -2,7 +2,7 @@ name: Schedule Article Generation
 
 on:
   schedule:
-    - cron: "2 0 * * *"
+    - cron: "30 2 * * *"
   workflow_dispatch: {}
 
 jobs:
