@@ -16,4 +16,4 @@ jobs:
           --request POST \
           -H "Accept: application/json" \
           -H "Api-Key: ${{secrets.MASTER_KEY }}" \
-          https://api.ravensfield.art/text-gen
+          https://api.ravensfield.art/textgen-chatgpt
