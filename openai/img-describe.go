@@ -41,6 +41,10 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						- Authors you may use for inspiration for themes or style: Algernon Blackwood, Edgar Allan Poe, H.P. Lovecraft, M.R. James, Ambrose Bierce, Ray Bradbury, Richard Matheson, Clive Barker, J.G. Ballard.
 						
 						- The text should flow, have dramatic pace, and avoid feeling repetitive.
+
+						- Please, avoid clichés.
+
+						- Keep your use of adverbs to a minimum. Use strong and expressive verbs instead.
 						
 						- Never make a direct mention to these guidance in your article. 
 						
@@ -50,7 +54,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						To build the article, please follow these steps:  
 						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. This title must be unformatted.
+						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. This title must be unformatted, not in markdown.
 						
 						Step 2 - Write a museum tag that follows this structure: 
 						
@@ -78,7 +82,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						- Use these themes for inspiration:  wild creativity, artistic obsession, existential dread, professional jealousy, societal envy, rise and fall, love gone wrong, tragic love, creativity into madness, seeing through the veil, the afterlife, things that crawl at night, tapping into other realities, ancient gods, the mythical and the mundane, the forbidden, lost civilizations, the arcane, hidden magic. You may also mix more than one theme.
 						
-						- Avoid clichés such as \"rumor has it\", \"legend says\", or similar.
+						- Avoid clichés such as "rumor has it", "legend says", or similar.
 						
 						Step 5 - Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.   
 						
