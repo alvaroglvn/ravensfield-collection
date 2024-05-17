@@ -44,8 +44,11 @@ func main() {
 	//Upload images to Ghost and create empty articles
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-upload", handlers.ImageUploader(config))
 
-	//Generate new article from feature image
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/text-gen", handlers.GenTextAndPost(config))
+	//Generate new article from feature image - Claude
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/text-gen", handlers.GenTextClaude(config))
+
+	//Generate new article from feature image - ChatGPT
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/textgen-chatgpt", handlers.GenTextChatGpt(config))
 
 	//Start server
 	server := &http.Server{
