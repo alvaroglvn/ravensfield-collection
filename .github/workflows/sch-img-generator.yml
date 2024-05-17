@@ -2,7 +2,7 @@ name: Schedule Image Generation
 
 on:
   schedule:
-    - cron: "0 17,18 * * *"
+    - cron: "0 0,1 * * *"
   workflow_dispatch: {}
 
 jobs:
