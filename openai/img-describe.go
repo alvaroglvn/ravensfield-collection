@@ -44,7 +44,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						- Please, avoid clichés.
 
-						- Keep your use of adverbs to a minimum. Use strong and expressive verbs instead.
+						- Keep your use of adverbs to a minimum. Use strong and expressive verbs.
 						
 						- Never make a direct mention to these guidance in your article. 
 						

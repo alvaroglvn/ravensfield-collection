@@ -18,20 +18,25 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 	width, height := utils.GetRandomSize()
 
 	leoReq := LeonardoReq{
-		Prompt:         prompt,
-		NegativePr:     "text, fonts, lettering, letters",
-		Width:          width,
-		Height:         height,
-		GuidanceScale:  7,
-		NofImages:      1,
-		Steps:          30,
-		SDVersion:      "SDXL_LIGHTNING",
-		Public:         false,
-		Alchemy:        true,
-		PhotoReal:      true,
-		PhRealStrength: 0.45,
-		PromptMagic:    false,
-		PresetStyle:    "PHOTOGRAPHY",
+		Alchemy:       true,
+		ContrastRatio: 1,
+		GuidanceScale: 7,
+		Height:        height,
+		HighContrast:  true,
+		HighRes:       true,
+		ModelId:       "5c232a9e-9061-4777-980a-ddc8e65647c6", //Leonardo Vision XL
+		NegativePr:    "text, fonts, lettering, letters",
+		NImages:       1,
+		NSteps:        60,
+		PhotoReal:     true,
+		PhRealV:       "v2",
+		PresetStyle:   "PHOTOGRAPHY",
+		Prompt:        prompt,
+		PromptMagic:   true,
+		PromptMagicV:  "v3",
+		Public:        false,
+		SDVersion:     "SDXL_1_0",
+		Width:         width,
 	}
 
 	respBody, err := utils.ExternalAIPostReq(leoReq, leoEndpoint, leoKey)

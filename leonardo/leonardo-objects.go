@@ -1,20 +1,25 @@
 package leonardo
 
 type LeonardoReq struct {
-	Prompt         string  `json:"prompt"`
-	NegativePr     string  `json:"negative_prompt"`
-	GuidanceScale  int     `json:"guidance_scale"`
-	Width          int     `json:"width"`
-	Height         int     `json:"height"`
-	NofImages      int     `json:"num_images"`
-	Steps          int     `json:"num_inference_steps"`
-	Public         bool    `json:"public"`
-	Alchemy        bool    `json:"alchemy"`
-	PhotoReal      bool    `json:"photoReal"`
-	PhRealStrength float32 `json:"photoRealStrength"`
-	PromptMagic    bool    `json:"promptMagic"`
-	PresetStyle    string  `json:"presetStyle"`
-	SDVersion      string  `json:"sd_version"`
+	Alchemy       bool    `json:"alchemy"`
+	ContrastRatio float32 `json:"contrastRatio"`
+	GuidanceScale int     `json:"guidance_scale"`
+	Height        int     `json:"height"`
+	HighContrast  bool    `json:"highContrast"`
+	HighRes       bool    `json:"highResolution"`
+	ModelId       string  `json:"modelId"`
+	NegativePr    string  `json:"negative_prompt"`
+	NImages       int     `json:"num_images"`
+	NSteps        int     `json:"num_inference_steps"`
+	PhotoReal     bool    `json:"photoReal"`
+	PhRealV       string  `json:"photoRealVersion"`
+	PresetStyle   string  `json:"presetStyle"`
+	Prompt        string  `json:"prompt"`
+	PromptMagic   bool    `json:"promptMagic"`
+	PromptMagicV  string  `json:"promptMagicVersion"`
+	Public        bool    `json:"public"`
+	SDVersion     string  `json:"sd_version"`
+	Width         int     `json:"width"`
 }
 
 type LeonardoResp struct {
