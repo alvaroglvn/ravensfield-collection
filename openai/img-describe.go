@@ -56,10 +56,12 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						-  Please, do not title the individual sections.
 						
 						- The output should be formatted in markdown.
+
+						- Before you give me your answer, make sure you have followed all of my instructions accurately and fulfilled every single step.
 						
 						To build the article, please follow these steps:  
 						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. This title must be unformatted, not in markdown.
+						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. Remove the title's markdown tags.
 						
 						Step 2 - Write a museum tag that follows this structure: 
 						
@@ -91,11 +93,12 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Step 5 - Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.   
 						
-						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character. Make sure to tag this as a block-quote in your markdown. Follow the format: \"Quote\" -Name, Title 
-						
-						For example: \"This piece is a colorful nightmare.\" -John McDreams, filmmaker
-						
-						Step 7 - Before you give me your answer, make sure you have followed all of my instructions accurately and fulfilled every step.`,
+						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
+						Follow the structure: "Quote" -Name, Title 
+						Format this quote as a markdown blockquote.
+						For example: 
+						"This piece is a colorful nightmare." 
+						-John McDreams, filmmaker`,
 					},
 					ImageContent{
 						Type: "image_url",
@@ -116,8 +119,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.48,
-		PresencePenalty: 0.48,
+		FreqPenalty:     0.5,
+		PresencePenalty: 0.5,
 		Temperature:     1,
 	}
 
@@ -164,7 +167,9 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 						
 						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best be as loyal to the original text as possible.
 						
-						Respect the original text's format, keeping its title and museum tag untouched. 
+						Respect the original text's structure.
+
+						If the title is formatted in markdown, remove the formatting.
 						
 						Please, respond with the edited text.
 						
