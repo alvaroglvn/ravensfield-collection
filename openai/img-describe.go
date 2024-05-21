@@ -111,8 +111,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.5,
-		PresencePenalty: 0.5,
+		FreqPenalty:     0.48,
+		PresencePenalty: 0.48,
 		Temperature:     1,
 	}
 
@@ -130,9 +130,61 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	fmt.Println(string(respBody))
+	// fmt.Println(string(respBody))
 
 	description := visionResponse.Choices[0].Message.Content
 
 	return description, nil
+}
+
+func AutoEdit(text, openAiKey string) (editedText string, err error) {
+	chatRequest := CompRequest{
+		Model: "gpt-4o",
+		Messages: []Message{
+			{
+				Role: "system",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Be a thorough literary editor.",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: fmt.Sprintf(`Please edit this text. Go through a developmental edit, copy edit, and proof read.
+						
+						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best be as loyal to the original text as possible.
+						
+						Respect the original text's format, keeping its title and museum tag untouched. 
+						
+						Please, respond with the edited text.
+						
+						Here's the original text: %s`, text),
+					},
+				},
+			},
+		},
+	}
+
+	var chatResponse CompResponse
+
+	gptEndpoint := "https://api.openai.com/v1/chat/completions"
+
+	respBody, err := utils.ExternalAIPostReq(chatRequest, gptEndpoint, openAiKey)
+	if err != nil {
+		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
+	}
+
+	err = json.Unmarshal(respBody, &chatResponse)
+	if err != nil {
+		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
+	}
+
+	editedText = chatResponse.Choices[0].Message.Content
+
+	return editedText, nil
 }

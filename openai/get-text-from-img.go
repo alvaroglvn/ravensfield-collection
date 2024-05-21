@@ -8,12 +8,19 @@ import (
 )
 
 func GetTextFromImg(imgUrl, openaiKey string) (title, caption, content string, err error) {
+	//Get text content from image
 	fullText, err := ImgDescribe(imgUrl, openaiKey)
 	if err != nil {
 		return "", "", "", fmt.Errorf("unable to create text based on image: %v", err)
 	}
 
-	splitText := strings.Split(fullText, "\n")
+	//Auto edit
+	editedText, err := AutoEdit(fullText, openaiKey)
+	if err != nil {
+		return "", "", "", fmt.Errorf("unable to edit text: %s", err)
+	}
+
+	splitText := strings.Split(editedText, "\n")
 	caption = splitText[2]
 	title = splitText[0]
 	contentParts := splitText[4:]
