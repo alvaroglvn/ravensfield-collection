@@ -19,6 +19,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	// 	return "", fmt.Errorf("error gathering system text: %v", err)
 	// }
 
+	imgData, err := utils.ImgUrltoBase64(imgURL)
+	if err != nil {
+		return "", err
+	}
+
 	visionRequest := CompRequest{
 		Model: "gpt-4o",
 		Messages: []Message{
@@ -95,7 +100,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 					ImageContent{
 						Type: "image_url",
 						ImageURL: ImageURL{
-							URL: imgURL,
+							URL: fmt.Sprintf("data:image/webp;base64,%s", imgData),
 						},
 					},
 				},
@@ -130,7 +135,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	fmt.Println(string(respBody))
+	// fmt.Println(string(respBody))
 
 	description := visionResponse.Choices[0].Message.Content
 
@@ -168,6 +173,7 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 				},
 			},
 		},
+		MaxTokens: 1000,
 	}
 
 	var chatResponse CompResponse
@@ -183,6 +189,8 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 	if err != nil {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
+
+	// fmt.Println(string(respBody))
 
 	editedText = chatResponse.Choices[0].Message.Content
 

@@ -24,7 +24,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 	// 	return "", fmt.Errorf("error loading user prompt: %s", err)
 	// }
 
-	imageBase64, err := imgUrltoBase64(imgUrl)
+	imageBase64, err := utils.ImgUrltoBase64(imgUrl)
 	if err != nil {
 		return "", fmt.Errorf("error converting image to base64: %s", err)
 	}

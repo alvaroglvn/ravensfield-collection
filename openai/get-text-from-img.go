@@ -20,6 +20,8 @@ func GetTextFromImg(imgUrl, openaiKey string) (title, caption, content string, e
 		return "", "", "", fmt.Errorf("unable to edit text: %s", err)
 	}
 
+	fmt.Println(editedText)
+
 	splitText := strings.Split(editedText, "\n")
 	caption = splitText[2]
 	title = splitText[0]

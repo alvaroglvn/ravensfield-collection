@@ -1,4 +1,4 @@
-package claude
+package utils
 
 import (
 	"encoding/base64"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func imgUrltoBase64(imgUrl string) (string, error) {
+func ImgUrltoBase64(imgUrl string) (string, error) {
 	resp, err := http.Get(imgUrl) //#nosec G107
 	if err != nil {
 		return "", fmt.Errorf("error loading image from url: %s", err)
@@ -21,7 +21,7 @@ func imgUrltoBase64(imgUrl string) (string, error) {
 
 	var base64Encoding string
 
-	base64Encoding += "data:image/png;base64,"
+	base64Encoding += "data:image/webp;base64,"
 
 	encoded := base64.StdEncoding.EncodeToString(bytes)
 
