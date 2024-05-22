@@ -4,20 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 
+	madlibsprompt "github.com/alvaroglvn/ravensfield-collection/madlibs-prompt"
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
 func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
-	// userText, err := utils.ConvertToPrompt("openai/prompts/img-describe-user.txt")
-	// if err != nil {
-	// 	return "", fmt.Errorf("error gathering user text: %v", err)
-	// }
-
-	// systemText, err := utils.ConvertToPrompt("openai/prompts/img-describe-system.txt")
-	// if err != nil {
-	// 	return "", fmt.Errorf("error gathering system text: %v", err)
-	// }
+	//Make new random story prompt
+	storyPrompt, err := madlibsprompt.BuildRandStory()
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(storyPrompt)
 
 	imgData, err := utils.ImgUrltoBase64(imgURL)
 	if err != nil {
@@ -31,7 +29,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: `You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection. You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
+						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection. You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
 
 						Please, take into account the following general guidance: 
 						
@@ -53,15 +51,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						- Never make a direct mention to these guidance in your article. 
 						
-						-  Please, do not title the individual sections.
-						
-						- The output should be formatted in markdown.
+						- Please, do not title the individual sections.
 
-						- Before you give me your answer, make sure you have followed all of my instructions accurately and fulfilled every single step.
-						
 						To build the article, please follow these steps:  
 						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words. Remove the title's markdown tags.
+						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words, unformatted, and untagged.
 						
 						Step 2 - Write a museum tag that follows this structure: 
 						
@@ -87,18 +81,17 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Step 4 - Write four paragraphs narrating a supernatural event or legend related to this artwork.  This section must follow the previous paragraph seamlessly, while also showcasing its own narrative independence using a three-act structure with a setup, an inciting incident, rising action, midpoint reversal, climax and resolution.
 						
-						- Use these themes for inspiration:  wild creativity, artistic obsession, existential dread, professional jealousy, societal envy, rise and fall, love gone wrong, tragic love, creativity into madness, seeing through the veil, the afterlife, things that crawl at night, tapping into other realities, ancient gods, the mythical and the mundane, the forbidden, lost civilizations, the arcane, hidden magic. You may also mix more than one theme.
-						
-						- Avoid clichés such as "rumor has it", "legend says", or similar.
+						%s
 						
 						Step 5 - Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.   
 						
 						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
-						Follow the structure: "Quote" -Name, Title 
+						Follow the structure: 
+						"Quote" -Name, Title 
 						Format this quote as a markdown blockquote.
 						For example: 
 						"This piece is a colorful nightmare." 
-						-John McDreams, filmmaker`,
+						-John McDreams, filmmaker`, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
@@ -166,10 +159,10 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 						Text: fmt.Sprintf(`Please edit this text. Go through a developmental edit, copy edit, and proof read.
 						
 						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best be as loyal to the original text as possible.
+
+						If the article is much longer than 500 words, please shorten it to fit a length of 500 words.
 						
 						Respect the original text's structure.
-
-						If the title is formatted in markdown, remove the formatting.
 						
 						Please, respond with the edited text.
 						
