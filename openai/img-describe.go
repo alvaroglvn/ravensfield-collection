@@ -33,9 +33,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please, take into account the following general guidance: 
 						
-						- It's imperative than your article is never longer than 500 words. 
+						- The article must be 500 words. 
 						
-						- The article must have only six paragraphs.
+						- The article must be six paragraphs long.
 						
 						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected.
 						
@@ -48,14 +48,14 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						- Please, avoid clichés.
 
 						- Keep your use of adverbs to a minimum. Use strong and expressive verbs.
+
+						- Please, do not title the individual sections.
 						
 						- Never make a direct mention to these guidance in your article. 
-						
-						- Please, do not title the individual sections.
-
+			
 						To build the article, please follow these steps:  
 						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words, unformatted, and untagged.
+						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words.
 						
 						Step 2 - Write a museum tag that follows this structure: 
 						
@@ -79,7 +79,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Step 3 - Write one paragraph introducing the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
 						
-						Step 4 - Write four paragraphs narrating a supernatural event or legend related to this artwork.  This section must follow the previous paragraph seamlessly, while also showcasing its own narrative independence using a three-act structure with a setup, an inciting incident, rising action, midpoint reversal, climax and resolution.
+						Step 4 - Write four paragraphs narrating a supernatural event or legend related to this artwork that ties seamlessly with the content so far. This story should fit organically into the rest of your article.
 						
 						%s
 						
@@ -88,10 +88,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
 						Follow the structure: 
 						"Quote" -Name, Title 
-						Format this quote as a markdown blockquote.
+						
 						For example: 
 						"This piece is a colorful nightmare." 
-						-John McDreams, filmmaker`, storyPrompt),
+						-John McDreams, filmmaker
+						Format this quote in markdown blockquote.`, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
@@ -156,15 +157,23 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: fmt.Sprintf(`Please edit this text. Go through a developmental edit, copy edit, and proof read.
-						
-						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best be as loyal to the original text as possible.
+						Text: fmt.Sprintf(`Please edit this article following these steps:
 
-						If the article is much longer than 500 words, please shorten it to fit a length of 500 words.
+						1. If the article is longer than 500 words, shorten it to fit a word count closer to that limit.
+
+						2. If the article is structured in more than six paragraphs, edit the text to make it six paragraphs exactly.
+
+						3. If the article's title is formatted in markdown, remove its formatting.
+
+						4. If you find a blockquote, make sure to format it as such in markdown.
 						
-						Respect the original text's structure.
+						5. Go through a developmental and copy edit to improve the articles narrative and flow. Improve its readability if it is too verbose. Delete clichés and unnecessary transitions.
 						
-						Please, respond with the edited text.
+						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best to be as loyal to the original text as possible.
+
+						6. Go through a proofread. Fix typos and grammatical errors.
+						
+						Please, respond only with the edited text, no need to add editor's notes.
 						
 						Here's the original text: %s`, text),
 					},
