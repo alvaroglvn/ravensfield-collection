@@ -113,8 +113,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.25,
-		PresencePenalty: 0.25,
+		FreqPenalty:     0.5,
+		PresencePenalty: 0.75,
 		Temperature:     1,
 	}
 
@@ -159,17 +159,13 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 						Type: "text",
 						Text: fmt.Sprintf(`Please edit this article following these steps:
 
-						1. Please, do not edit or remove the museum tag.
+						1. If the article is much longer than 500 words, shorten it to fit a word count closer to that limit.
 
-						2. If the article is longer than 500 words, shorten it to fit a word count closer to that limit.
+						3. If the article's title is formatted in markdown, remove its formatting.
 
-						3. If the article is structured in more than six paragraphs, edit the text to make it six paragraphs exactly.
-
-						4. If the article's title is formatted in markdown, remove its formatting.
-
-						5. If you find a blockquote, make sure to format it as such in markdown.
+						4. If you find a blockquote, make sure to format it as such in markdown.
 						
-						6. Go through a developmental and copy edit to improve the articles narrative and flow. Improve its readability if it is too verbose. Delete clichés and unnecessary transitions.
+						5. Go through a developmental and copy edit to improve the articles narrative and flow. Improve its readability if it is too verbose. Delete clichés and unnecessary transitions.
 						
 						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best to be as loyal to the original text as possible.
 
