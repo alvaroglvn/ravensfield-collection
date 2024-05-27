@@ -159,7 +159,9 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 						Type: "text",
 						Text: fmt.Sprintf(`Please edit this article following these steps:
 
-						1. If the article is much longer than 500 words, shorten it to fit a word count closer to that limit.
+						1. Please, never edit the article's title or its museum tag.
+
+						2. If the main text is much longer than 500 words, shorten it to fit a word count closer to that limit.
 
 						3. If the article's title is formatted in markdown, remove its formatting.
 
