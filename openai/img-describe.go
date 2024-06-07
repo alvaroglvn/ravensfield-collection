@@ -17,6 +17,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 	fmt.Println(storyPrompt)
 
+	artistInfo, err := madlibsprompt.GetArtistInfo()
+	if err != nil {
+		return "", err
+	}
+
 	imgData, err := utils.ImgUrltoBase64(imgURL)
 	if err != nil {
 		return "", err
@@ -29,19 +34,15 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection. You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
+						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection, a museum of the weird and wonderful.
+						
+						You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
 
 						Please, take into account the following general guidance: 
 						
-						- The article must be 500 words. 
+						- The article must be a maximum of 500 words. 
 						
-						- The article must be six paragraphs long.
-						
-						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected.
-						
-						- Use tropes from weird fiction, dark fantasy, science fiction, magical realism, or horror. For inspiration, think of the stories published in Pulp magazines.
-						
-						- Authors you may use for inspiration for themes or style: Algernon Blackwood, Edgar Allan Poe, H.P. Lovecraft, M.R. James, Ambrose Bierce, Ray Bradbury, Richard Matheson, Clive Barker, J.G. Ballard.
+						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
 						
 						- The text should flow, have dramatic pace, and avoid feeling repetitive.
 
@@ -60,14 +61,14 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Step 2 - Write a museum tag that follows this structure: 
 						
 						| [Artist] | [Title (Year)] | [Medium] | 
+
+						- %s
 						
-						- The artist must be an imaginary person. 
-						
-						- In some rare cases, the artist can be unknown or a collective. 
-						
-						- The year must relate to the art style of the artwork. If the artwork is an archeological piece, it can be an approximation. 
-						
-						- The medium might include materials if the artwork calls for it. 
+						- The year must relate to the art style of the artwork. 
+
+						- The medium might include materials if the artwork calls for it.
+
+						- If the artwork is an archeological piece, the artist can be unknown and the year an approximation.
 						
 						Here are some examples: 
 						
@@ -77,13 +78,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						| Mark and James Thompkins | The Gentlemen (2000) | Plexiglass and marble 
 						
-						Step 3 - Write one paragraph introducing the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
+						Step 3 - Introduce the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
 						
-						Step 4 - Write four paragraphs narrating a supernatural event or legend related to this artwork that ties seamlessly with the content so far. This story should fit organically into the rest of your article.
+						Step 4 - Narrate the uncanny event related to this object. %s This story should fit organically with the rest of your article.
 						
-						%s
-						
-						Step 5 - Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.   
+						Step 5 - Conclusion. Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.
 						
 						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
 						Follow the structure: 
@@ -92,7 +91,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						For example: 
 						"This piece is a colorful nightmare." 
 						-John McDreams, filmmaker
-						Format this quote in markdown blockquote.`, storyPrompt),
+						Format this quote in markdown blockquote.`, artistInfo, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
@@ -107,14 +106,14 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "This is an immersive creative writing exercise. Be unique, bold, and have a literary flare.",
+						Text: "This is an immersive creative writing exercise. Be unique, bold, and have a strong literary flare.",
 					},
 				},
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.45,
-		PresencePenalty: 0.45,
+		FreqPenalty:     0.40,
+		PresencePenalty: 0.40,
 		Temperature:     1,
 	}
 
