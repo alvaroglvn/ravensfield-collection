@@ -21,6 +21,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(artistInfo)
 
 	imgData, err := utils.ImgUrltoBase64(imgURL)
 	if err != nil {
@@ -80,7 +81,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Step 3 - Introduce the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
 						
-						Step 4 - Narrate the uncanny event related to this particular object. %s This story must flow organically and seamlessly into the article.
+						Step 4 - Narrate what makes this artwork special. %s This story must flow organically and seamlessly into the article.
 						
 						Step 5 - Conclusion. Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.
 						

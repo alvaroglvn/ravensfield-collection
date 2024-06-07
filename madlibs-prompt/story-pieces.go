@@ -319,7 +319,7 @@ var fates = []string{
 var endings = []string{
 	"Twist Ending - An unexpected turn of events that changes the story's direction",
 	"Open-Ended - Leaving some questions unanswered, allowing readers to speculate",
-	"Happy Ending - The protagonist achieves their goal or finds happiness",
+	"Happy Ending - The protagonist achieves his goal or finds happiness",
 	"Tragic Ending - The story concludes with sorrow or loss",
 	"Bittersweet Ending - A mix of positive and negative outcomes",
 	"Cliffhanger - Ending with unresolved events, creating anticipation for a sequel",

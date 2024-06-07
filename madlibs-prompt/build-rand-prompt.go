@@ -79,9 +79,8 @@ func BuildRandStory() (string, error) {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("This object carries a %s story. The story's theme is %s and it explores %s and %s. It features the %s who ultimately %s. The story's surprising and inevitable ending is a %s", subgenre, theme, adj1, adj2, protagonist, fate, ending)
+	storyPrompt := fmt.Sprintf("This object carries a %s story. The story's theme is %s and it explores %s and %s. It features a %s who interacts with the artwork and ultimately %s. The story's surprising and inevitable ending is a %s", subgenre, theme, adj1, adj2, protagonist, fate, ending)
 
-	fmt.Println(storyPrompt)
 	return storyPrompt, nil
 }
 
@@ -115,6 +114,5 @@ func GetArtistInfo() (string, error) {
 		artistInfo = fmt.Sprintf("The author of this piece is %s", artistType)
 	}
 
-	fmt.Println(artistInfo)
 	return artistInfo, nil
 }
