@@ -8,7 +8,7 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func ImgDescribe(imgURL, openAiKey string) (string, error) {
+func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, error) {
 
 	//Make new random story prompt
 	storyPrompt, err := madlibsprompt.BuildRandStory()
@@ -94,7 +94,12 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						For example: 
 						"This piece is a colorful nightmare." 
 						-John McDreams, filmmaker
-						Format this quote in markdown blockquote.`, artistInfo, storyPrompt),
+						Format this quote in markdown blockquote.
+						
+						To help you, here are some examples:
+						- Example 1 : %s.
+						- Example 2: %s.
+						- Example 3: %s.`, artistInfo, storyPrompt, sample1, sample2, sample3),
 					},
 					ImageContent{
 						Type: "image_url",

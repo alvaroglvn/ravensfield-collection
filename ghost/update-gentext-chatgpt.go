@@ -14,29 +14,29 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return fmt.Errorf("failed to load article: %s", err)
 	}
 
-	// Generate text based on feature image
-	genText, err := openai.GetTextFromImg(featImg, config.OpenAiKey)
-	if err != nil {
-		return fmt.Errorf("failed to generate text elements: %s", err)
-	}
-
-	//fmt.Printf("%s \n", genText)
-
-	// Match author voice based on samples
+	// Get samples
 	sample1, sample2, sample3, err := GetOldestArticles(config)
 	if err != nil {
 		return err
 	}
 
-	//fmt.Printf("%s\n%s\n%s", sample1, sample2, sample3)
-
-	tunedText, err := openai.CaptureVoice(sample1, sample2, sample3, genText, config.OpenAiKey)
+	// Generate text based on feature image
+	genText, err := openai.GetTextFromImg(featImg, sample1, sample2, sample3, config.OpenAiKey)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to generate text elements: %s", err)
 	}
 
+	// //fmt.Printf("%s \n", genText)
+
+	// //fmt.Printf("%s\n%s\n%s", sample1, sample2, sample3)
+
+	// tunedText, err := openai.CaptureVoice(sample1, sample2, sample3, genText, config.OpenAiKey)
+	// if err != nil {
+	// 	return err
+	// }
+
 	// Edit Text
-	caption, title, content, err := openai.FinalEdit(tunedText, config.OpenAiKey)
+	caption, title, content, err := openai.FinalEdit(genText, config.OpenAiKey)
 	if err != nil {
 		return err
 	}
