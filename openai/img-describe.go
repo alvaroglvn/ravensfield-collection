@@ -44,6 +44,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						- The article must be a maximum of 500 words. 
 						
 						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
+
+						- Use an exciting and varied vocabulary without using words that sound grandiloquent.
 						
 						- The text should flow, have dramatic pace, and avoid feeling repetitive.
 
@@ -113,8 +115,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.40,
-		PresencePenalty: 0.40,
+		FreqPenalty:     0.8,
+		PresencePenalty: 0.1,
 		Temperature:     1,
 	}
 
