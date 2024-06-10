@@ -58,10 +58,10 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	}
 
 	// get random articles from the list
-	src := rand.NewSource(time.Now().UnixNano())
-	randGen := rand.New(src)
+	src := rand.NewSource(time.Now().UnixNano()) // #nosec G404
+	randGen := rand.New(src)                     // #nosec G404
 
-	perm := randGen.Perm(4)
+	perm := randGen.Perm(12)
 
 	uniqueNumbers := perm[:3]
 
