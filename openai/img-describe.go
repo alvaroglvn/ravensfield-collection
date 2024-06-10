@@ -116,7 +116,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 		},
 		MaxTokens:       1000,
 		FreqPenalty:     0.7,
-		PresencePenalty: 0.1,
+		PresencePenalty: 0.7,
 		Temperature:     1,
 	}
 
@@ -163,7 +163,9 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 						
 						Step 1: Read these samples and obtain the author's voice from them: %s, %s, %s.
 
-						Step 2: Apply that author's voice to the following text: %s. Please, maintain the same text structure, its title, and its museum tag.
+						Step 2: Edit this text using the author's voice you obtained, so this text and the samples sound like written by the same person: %s.
+						
+						Please, maintain the same text structure, its title, and its museum tag.
 
 						Please, respond only with the final version of the text.
 						
