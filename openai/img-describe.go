@@ -141,6 +141,61 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	return description, nil
 }
 
+func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedText string, err error) {
+	chatRequest := CompRequest{
+		Model: "gpt-4o",
+		Messages: []Message{
+			{
+				Role: "system",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Be a thorough literary editor.",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: fmt.Sprintf(`Please follow these steps:
+						
+						Step 1: Read these samples and figure out the author's voice from them: %s, %s, %s.
+
+						Step 2: Apply that same voice to the following text so it seems as it was written by the same person as the samples: %s.
+
+						Please, respond only with the final version of the text.
+						
+						`, sample1, sample2, sample3, genText),
+					},
+				},
+			},
+		},
+		MaxTokens: 1000,
+	}
+
+	var chatResponse CompResponse
+
+	gptEndpoint := "https://api.openai.com/v1/chat/completions"
+
+	respBody, err := utils.ExternalAIPostReq(chatRequest, gptEndpoint, openAiKey)
+	if err != nil {
+		return "", fmt.Errorf("error connecting to OpenAI's API: %v", err)
+	}
+
+	err = json.Unmarshal(respBody, &chatResponse)
+	if err != nil {
+		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
+	}
+
+	// fmt.Println(string(respBody))
+
+	tunedText = chatResponse.Choices[0].Message.Content
+
+	return tunedText, nil
+}
+
 func AutoEdit(text, openAiKey string) (editedText string, err error) {
 	chatRequest := CompRequest{
 		Model: "gpt-4o",
