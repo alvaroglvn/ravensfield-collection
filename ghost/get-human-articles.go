@@ -64,9 +64,6 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	perm := randGen.Perm(4)
 
 	uniqueNumbers := perm[:3]
-	fmt.Println(uniqueNumbers)
-
-	fmt.Println(uniqueNumbers[0], uniqueNumbers[1], uniqueNumbers[2])
 
 	article1 = result.Posts[uniqueNumbers[0]].Content
 	article2 = result.Posts[uniqueNumbers[1]].Content

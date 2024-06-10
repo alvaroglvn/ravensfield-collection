@@ -45,7 +45,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
 
-						- Use an exciting and varied vocabulary without using words that sound grandiloquent.
+						- Use an exciting and varied vocabulary without being grandiloquent.
 						
 						- The text should flow, have dramatic pace, and avoid feeling repetitive.
 
@@ -115,7 +115,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.8,
+		FreqPenalty:     0.7,
 		PresencePenalty: 0.1,
 		Temperature:     1,
 	}
@@ -150,7 +150,7 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "Be a thorough literary editor.",
+						Text: "Be a precise literary editor.",
 					},
 				},
 			},
@@ -161,9 +161,9 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 						Type: "text",
 						Text: fmt.Sprintf(`Please follow these steps:
 						
-						Step 1: Read these samples and figure out the author's voice from them: %s, %s, %s.
+						Step 1: Read these samples and obtain the author's voice from them: %s, %s, %s.
 
-						Step 2: Apply that same voice to the following text so it seems as it was written by the same person as the samples: %s.
+						Step 2: Apply that author's voice to the following text: %s. Please, maintain the same text structure, its title, and its museum tag.
 
 						Please, respond only with the final version of the text.
 						
@@ -189,7 +189,7 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	// fmt.Println(string(respBody))
+	//fmt.Println(string(respBody))
 
 	tunedText = chatResponse.Choices[0].Message.Content
 
@@ -254,7 +254,7 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	// fmt.Println(string(respBody))
+	//fmt.Println(string(respBody))
 
 	editedText = chatResponse.Choices[0].Message.Content
 

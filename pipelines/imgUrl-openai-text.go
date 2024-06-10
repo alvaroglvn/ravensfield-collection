@@ -1,18 +1,18 @@
 package pipelines
 
-import (
-	"fmt"
+// import (
+// 	"fmt"
 
-	"github.com/alvaroglvn/ravensfield-collection/internal"
-	"github.com/alvaroglvn/ravensfield-collection/openai"
-)
+// 	"github.com/alvaroglvn/ravensfield-collection/internal"
+// 	"github.com/alvaroglvn/ravensfield-collection/openai"
+// )
 
-func BuildTextFromImg(imgUrl string, config internal.ApiConfig) (tag, title, descript string, err error) {
+// func BuildTextFromImg(imgUrl string, config internal.ApiConfig) (tag, title, descript string, err error) {
 
-	tag, title, descript, err = openai.GetTextFromImg(imgUrl, config.OpenAiKey)
-	if err != nil {
-		return "", "", "", fmt.Errorf("error creating text from image: %s", err)
-	}
+// 	tag, title, descript, err = openai.GetTextFromImg(imgUrl, config.OpenAiKey)
+// 	if err != nil {
+// 		return "", "", "", fmt.Errorf("error creating text from image: %s", err)
+// 	}
 
-	return tag, title, descript, nil
-}
+// 	return tag, title, descript, nil
+// }
