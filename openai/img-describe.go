@@ -174,7 +174,10 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 				},
 			},
 		},
-		MaxTokens: 1000,
+		MaxTokens:       1000,
+		FreqPenalty:     0.7,
+		PresencePenalty: 0.7,
+		Temperature:     1,
 	}
 
 	var chatResponse CompResponse
