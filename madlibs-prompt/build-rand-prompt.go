@@ -42,7 +42,7 @@ func BuildRandPrompt() (string, error) {
 	return prompt, nil
 }
 
-func BuildRandStory() (string, error) {
+func ObjectHistory() (string, error) {
 
 	subgenre, err := getRandFromList(subgenres)
 	if err != nil {
@@ -59,6 +59,17 @@ func BuildRandStory() (string, error) {
 		return "", err
 	}
 
+	theme, err := getRandFromList(themes)
+	if err != nil {
+		return "", err
+	}
+
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s.", subgenre, adj1, adj2, theme)
+
+	return storyPrompt, nil
+}
+
+func ObjectAnecdote() (string, error) {
 	protagonist, err := getRandFromList(protagonists)
 	if err != nil {
 		return "", err
@@ -69,26 +80,21 @@ func BuildRandStory() (string, error) {
 		return "", err
 	}
 
-	theme, err := getRandFromList(themes)
-	if err != nil {
-		return "", err
-	}
-
 	ending, err := getRandFromList(endings)
 	if err != nil {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("This object carries a %s story. The story's theme is %s and it explores %s and %s. It features a %s who interacts with the artwork and ultimately %s. The story's surprising and inevitable ending is a %s", subgenre, theme, adj1, adj2, protagonist, fate, ending)
+	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s. This uncanny story has a %s.", protagonist, fate, ending)
 
-	return storyPrompt, nil
+	return anecdotePrompt, nil
 }
 
 func GetArtistInfo() (string, error) {
 
-	artistTypes := []string{"man", "woman", "collective", "unknown"}
+	artistTypes := []string{"man", "man", "man", "woman", "woman", "woman", "collective", "unknown"}
 	artistAges := []string{"young", "adult", "middle-aged", "mature"}
-	artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
+	// artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
 
 	artistType, err := getRandFromList(artistTypes)
 	if err != nil {
@@ -99,17 +105,17 @@ func GetArtistInfo() (string, error) {
 		return "", err
 	}
 
-	artistOrigin, err := getRandFromList(artistOrigins)
-	if err != nil {
-		return "", err
-	}
+	// artistOrigin, err := getRandFromList(artistOrigins)
+	// if err != nil {
+	// 	return "", err
+	// }
 
 	artistInfo := ""
 
 	if artistType == "man" || artistType == "woman" {
-		artistInfo = fmt.Sprintf("The artist is an imaginary %s %s originally from %s", artistAge, artistType, artistOrigin)
+		artistInfo = fmt.Sprintf("The artist is an imaginary remarkable %s %s.", artistAge, artistType)
 	} else if artistType == "collective" {
-		artistInfo = fmt.Sprintf("This piece is attributed to a %s", artistType)
+		artistInfo = fmt.Sprintf("This piece is attributed to an imaginary art %s", artistType)
 	} else {
 		artistInfo = fmt.Sprintf("The author of this piece is %s", artistType)
 	}

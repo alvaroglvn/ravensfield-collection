@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-func GetTextFromImg(imgUrl, sample1, sample2, sample3, openaiKey string) (genText string, err error) {
+func GetTextFromImg(imgUrl, openaiKey string) (genText string, err error) {
 	//Get text content from image
-	genText, err = ImgDescribe(imgUrl, sample1, sample2, sample3, openaiKey)
+	genText, err = ImgDescribe(imgUrl, openaiKey)
 	if err != nil {
 		return "", fmt.Errorf("unable to create text based on image: %v", err)
 	}

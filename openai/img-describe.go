@@ -8,14 +8,20 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, error) {
+func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 	//Make new random story prompt
-	storyPrompt, err := madlibsprompt.BuildRandStory()
+	storyPrompt, err := madlibsprompt.ObjectHistory()
 	if err != nil {
 		return "", err
 	}
 	fmt.Println(storyPrompt)
+
+	objectAnecdote, err := madlibsprompt.ObjectAnecdote()
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(objectAnecdote)
 
 	artistInfo, err := madlibsprompt.GetArtistInfo()
 	if err != nil {
@@ -31,90 +37,56 @@ func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, e
 	visionRequest := CompRequest{
 		Model: "gpt-4o",
 		Messages: []Message{
+			{
+				Role: "system",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "This is a genre fiction, creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key.",
+					},
+				},
+			},
 			{Role: "user",
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
 						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
 						
-						You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
+						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
-						Please, take into account the following general guidance: 
+						Stylistically, use a varied vocabulary without sounding grandiloquent. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
-						- The article must be a maximum of 500 words.
+						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
 
-						- Use an exciting and varied vocabulary without being grandiloquent.
-						
-						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
+						Structurally, the article should look like this:
 
-						- The text should flow, have dramatic pace, and avoid feeling repetitive.
+						[Title: the catchy and seductive title of the article. Keep it shorter than five words.]
 
-						- Please, avoid clichés.
+						[Museum tag: information about the piece formatted as
+						| [Artist] | [Title (Year)] | [Medium] |
+						%s
+						The artwork's year should reflect the art movement it belongs to, which you should deduce by the picture.
+						]
 
-						- Keep your use of adverbs to a minimum. Use strong and expressive verbs.
+						From this point, format your text in markdown.
 
-						- Please, do not title the individual sections.
-						
-						- Never make a direct mention to these guidance in your article. 
-			
-						To build the article, please follow these steps:  
-						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words.
-						
-						Step 2 - Write a museum tag that follows this structure: 
-						
-						| [Artist] | [Title (Year)] | [Medium] | 
+						[Introduction: introduce the piece and its author, highlighting its uniqueness and relevancy.]
+						[Artwork's legend: talk about a supernatural event related to this piece. %s Make sure this story, though short, has a beginning, middle, and end.]
+						[Final words: bring your article together, explaining how it affects audiences today.]
 
-						- %s
-						
-						- The year must relate to the art style of the artwork. 
+						Between two paragraphs of your choosing, add a fictional quote about the piece in the picture by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
 
-						- The medium might include materials if the artwork calls for it.
+						Never title each section. Make sure the text flows seamlessly, is cohesive, and maintains the same theme, tone, and narrative pace.
 
-						- If the artwork is an archeological piece, the artist can be unknown and the year an approximation.
+						Please reply with the final version of your article when you're ready.
 						
-						Here are some examples: 
-						
-						| John Jonason | Nightmare in Pink (1965) | Acrylic on canvas |  
-						
-						| Unknown | Bejewelled King Skull (c. 330 BC) | Obsidian |  
-						
-						| Mark and James Thompkins | The Gentlemen (2000) | Plexiglass and marble 
-						
-						Step 3 - Introduce the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
-						
-						Step 4 - Narrate what makes this artwork special. %s This story must flow organically and seamlessly into the article.
-						
-						Step 5 - Conclusion. Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.
-						
-						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
-						Follow the structure: 
-						"Quote" -Name, Title 
-						
-						For example: 
-						"This piece is a colorful nightmare." 
-						-John McDreams, filmmaker
-						Format this quote in markdown blockquote.
-						
-						To help you, here are some examples:
-						- Example 1 : %s.
-						- Example 2: %s.
-						- Example 3: %s.`, artistInfo, storyPrompt, sample1, sample2, sample3),
+						`, artistInfo, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
 						ImageURL: ImageURL{
 							URL: fmt.Sprintf("data:image/webp;base64,%s", imgData),
 						},
-					},
-				},
-			},
-			{
-				Role: "system",
-				Content: []interface{}{
-					TextContent{
-						Type: "text",
-						Text: "This is an immersive creative writing exercise. Be unique, bold, and have a strong literary flare.",
 					},
 				},
 			},
@@ -170,7 +142,7 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 
 						Step 2: Edit this text using the author's voice you obtained, so this text and the samples sound like written by the same person: %s.
 						
-						Please, maintain the same text structure, its title, and its museum tag.
+						Please, be as loyal to the original text as possible.
 
 						Please, respond only with the final version of the text.
 						
@@ -179,10 +151,7 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 				},
 			},
 		},
-		MaxTokens:       1000,
-		FreqPenalty:     0.7,
-		PresencePenalty: 0.7,
-		Temperature:     1,
+		MaxTokens: 1000,
 	}
 
 	var chatResponse CompResponse
@@ -228,15 +197,13 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 
 						1. Please, never edit the article's title or its museum tag.
 
-						2. If the main text is much longer than 500 words, shorten it to fit a word count closer to that limit.
+						3. If the main text is much longer than 500 words, shorten it to fit a word count closer to that limit.
 
-						3. If the article's title is formatted in markdown, remove its formatting.
-
-						4. If you find a blockquote, make sure to format it as such in markdown.
+						4. If you catch an un unformatted blockquote, format it in markdown.
 						
-						5. Go through a developmental and copy edit to improve the articles narrative and flow. Improve its readability if it is too verbose. Delete clichés and unnecessary transitions.
+						5. Improve the article's readability if it is too verbose. Delete clichés and unnecessary transitions.
 						
-						You have full freedom to rewrite or cut paragraphs that are subpar or don't make sense, but do your best to be as loyal to the original text as possible.
+						6. Rewrite nonsensical paragraphs, and cut those who are repeating a point already made. Nevertheless, stay as loyal to the original text as possible.
 
 						7. Go through a proofread. Fix typos and grammatical errors.
 						
