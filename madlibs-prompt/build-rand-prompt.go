@@ -64,7 +64,7 @@ func ObjectHistory() (string, error) {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s", subgenre, adj1, adj2, theme)
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s.", subgenre, adj1, adj2, theme)
 
 	return storyPrompt, nil
 }
@@ -85,16 +85,16 @@ func ObjectAnecdote() (string, error) {
 		return "", err
 	}
 
-	anecdotePrompt := fmt.Sprintf("I would like you to tell the story of the %s who due to interacting with this artwork %s. I recall this story having a %s.", protagonist, fate, ending)
+	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s. This uncanny story has a %s.", protagonist, fate, ending)
 
 	return anecdotePrompt, nil
 }
 
 func GetArtistInfo() (string, error) {
 
-	artistTypes := []string{"man", "woman", "collective", "unknown"}
+	artistTypes := []string{"man", "man", "man", "woman", "woman", "woman", "collective", "unknown"}
 	artistAges := []string{"young", "adult", "middle-aged", "mature"}
-	artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
+	// artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
 
 	artistType, err := getRandFromList(artistTypes)
 	if err != nil {
@@ -105,17 +105,17 @@ func GetArtistInfo() (string, error) {
 		return "", err
 	}
 
-	artistOrigin, err := getRandFromList(artistOrigins)
-	if err != nil {
-		return "", err
-	}
+	// artistOrigin, err := getRandFromList(artistOrigins)
+	// if err != nil {
+	// 	return "", err
+	// }
 
 	artistInfo := ""
 
 	if artistType == "man" || artistType == "woman" {
-		artistInfo = fmt.Sprintf("The artist is an imaginary %s %s originally from %s", artistAge, artistType, artistOrigin)
+		artistInfo = fmt.Sprintf("The artist is an imaginary remarkable %s %s.", artistAge, artistType)
 	} else if artistType == "collective" {
-		artistInfo = fmt.Sprintf("This piece is attributed to a %s", artistType)
+		artistInfo = fmt.Sprintf("This piece is attributed to an imaginary art %s", artistType)
 	} else {
 		artistInfo = fmt.Sprintf("The author of this piece is %s", artistType)
 	}

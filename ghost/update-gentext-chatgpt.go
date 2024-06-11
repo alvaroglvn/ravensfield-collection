@@ -2,6 +2,7 @@ package ghost
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
 	"github.com/alvaroglvn/ravensfield-collection/openai"
@@ -13,12 +14,6 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 	if err != nil {
 		return fmt.Errorf("failed to load article: %s", err)
 	}
-
-	// // Get samples
-	// sample1, sample2, sample3, err := GetOldestArticles(config)
-	// if err != nil {
-	// 	return err
-	// }
 
 	// Generate text based on feature image
 	genText, err := openai.GetTextFromImg(featImg, config.OpenAiKey)
@@ -32,10 +27,26 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return err
 	}
 
-	fmt.Printf("%s\n%s\n%s", caption, title, content)
+	// Avoid markdown tags in title
+	if title[0:1] == "#" {
+		title = strings.Trim(title, "#")
+	}
+
+	// Capture author's voice
+	sample1, sample2, sample3, err := GetOldestArticles(config)
+	if err != nil {
+		return err
+	}
+
+	finalStory, err := openai.CaptureVoice(sample1, sample2, sample3, content, config.OpenAiKey)
+	if err != nil {
+		return err
+	}
+
+	// fmt.Printf("%s\n%s\n%s", caption, title, content)
 
 	//update post with generated text
-	err = updatePost(postId, updatedAt, featImg, title, caption, content, config)
+	err = updatePost(postId, updatedAt, featImg, title, caption, finalStory, config)
 	if err != nil {
 		return fmt.Errorf("failed to update post: %s", err)
 	}
