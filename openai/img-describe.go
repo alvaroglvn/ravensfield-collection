@@ -8,14 +8,20 @@ import (
 	"github.com/alvaroglvn/ravensfield-collection/utils"
 )
 
-func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, error) {
+func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 	//Make new random story prompt
-	storyPrompt, err := madlibsprompt.BuildRandStory()
+	storyPrompt, err := madlibsprompt.ObjectHistory()
 	if err != nil {
 		return "", err
 	}
 	fmt.Println(storyPrompt)
+
+	objectAnecdote, err := madlibsprompt.ObjectAnecdote()
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(objectAnecdote)
 
 	artistInfo, err := madlibsprompt.GetArtistInfo()
 	if err != nil {
@@ -31,75 +37,20 @@ func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, e
 	visionRequest := CompRequest{
 		Model: "gpt-4o",
 		Messages: []Message{
+			{
+				Role: "system",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "This is a genre fiction, creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key.",
+					},
+				},
+			},
 			{Role: "user",
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
-						
-						You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
-
-						Please, take into account the following general guidance: 
-						
-						- The article must be a maximum of 500 words.
-
-						- Use an exciting and varied vocabulary without being grandiloquent.
-						
-						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
-
-						- The text should flow, have dramatic pace, and avoid feeling repetitive.
-
-						- Please, avoid clichés.
-
-						- Keep your use of adverbs to a minimum. Use strong and expressive verbs.
-
-						- Please, do not title the individual sections.
-						
-						- Never make a direct mention to these guidance in your article. 
-			
-						To build the article, please follow these steps:  
-						
-						Step 1 - Give your article a catchy and enticing title. It must be no longer than five words.
-						
-						Step 2 - Write a museum tag that follows this structure: 
-						
-						| [Artist] | [Title (Year)] | [Medium] | 
-
-						- %s
-						
-						- The year must relate to the art style of the artwork. 
-
-						- The medium might include materials if the artwork calls for it.
-
-						- If the artwork is an archeological piece, the artist can be unknown and the year an approximation.
-						
-						Here are some examples: 
-						
-						| John Jonason | Nightmare in Pink (1965) | Acrylic on canvas |  
-						
-						| Unknown | Bejewelled King Skull (c. 330 BC) | Obsidian |  
-						
-						| Mark and James Thompkins | The Gentlemen (2000) | Plexiglass and marble 
-						
-						Step 3 - Introduce the artwork. Describe why this piece is relevant and introduce us to the artist behind it. If the piece doesn't have a known author, give us a fictional historical factoid related to the piece. 
-						
-						Step 4 - Narrate what makes this artwork special. %s This story must flow organically and seamlessly into the article.
-						
-						Step 5 - Conclusion. Write one paragraph that brings the whole article together. Describe how the artwork affects audiences today.
-						
-						Step 6 - Between two sections of your choosing, add a fictional quote by a fictional character.
-						Follow the structure: 
-						"Quote" -Name, Title 
-						
-						For example: 
-						"This piece is a colorful nightmare." 
-						-John McDreams, filmmaker
-						Format this quote in markdown blockquote.
-						
-						To help you, here are some examples:
-						- Example 1 : %s.
-						- Example 2: %s.
-						- Example 3: %s.`, artistInfo, storyPrompt, sample1, sample2, sample3),
+						Text: "You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection. Please write a short article about the artwork in this picture.",
 					},
 					ImageContent{
 						Type: "image_url",
@@ -110,14 +61,123 @@ func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, e
 				},
 			},
 			{
-				Role: "system",
+				Role: "assistant",
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "This is an immersive creative writing exercise. Be unique, bold, and have a strong literary flare.",
+						Text: fmt.Sprintf(`Of course. I would be more than happy to talk about this unique and mysterious piece. It's, no doubt, one of the highlights of the Ravensfield Collection.
+
+						%s
+						
+						How long would you like my article to be?`, storyPrompt),
 					},
 				},
 			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "I was thinking a maximum of 500 words.",
+					},
+				},
+			},
+			{
+				Role: "assistant",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Yes, 500 words shall be enough. Is there any stylistic considerations you would want me to take into account?",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Yes, please. Use a varied vocabulary without sounding grandiloquent. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.",
+					},
+				},
+			},
+			{
+				Role: "assistant",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Understood. What about dramatic considerations?",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Just make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested.",
+					},
+				},
+			},
+			{
+				Role: "assistant",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Of course. I will make sure to balance my scholarly explanation as an art historian with some exciting storytelling. Shall we discuss the structure of the article next?",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: `Yes. Please, follow these steps:
+						
+						- Step 1: Give your article a short and catchy title in five words or less.
+						
+						- Step 2: Add the artwork's museum tag following this format: | [Artist] | [Title (Year)] | [Medium] | If the piece is an archeological find, the artist can be unkown and the year an approximation.
+						
+						- Step 3: Write the article's content itself. First, introduce us to the artwork and its author. Then, describe the uncanny anecdote surrounding the object. Finally, describe how it still affects audiences today.`,
+					},
+				},
+			},
+			{
+				Role: "assistant",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: "Of course. This object has a long history, though. Is there a particular anecdote you would like me to describe in my article?",
+					},
+				},
+			},
+			{
+				Role: "user",
+				Content: []interface{}{
+					TextContent{
+						Type: "text",
+						Text: fmt.Sprintf("%s", objectAnecdote),
+					},
+				},
+			},
+			// {
+			// 	Role: "assistant",
+			// 	Content: []interface{}{
+			// 		TextContent{
+			// 			Type: "text",
+			// 			Text: "Before I respond with my article, would you like me to check some examples so I can mimic a particular author's voice?",
+			// 		},
+			// 	},
+			// },
+			// {
+			// 	Role: "user",
+			// 	Content: []interface{}{
+			// 		TextContent{
+			// 			Type: "text",
+			// 			Text: fmt.Sprintf("That's a great idea. Please use these as examples: %s, %s, %s", sample1, sample2, sample3) ,
+			// 		},
+			// 	},
+			// },
 		},
 		MaxTokens:       1000,
 		FreqPenalty:     0.7,
@@ -139,7 +199,7 @@ func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, e
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	// fmt.Println(string(respBody))
+	fmt.Println(string(respBody))
 
 	description := visionResponse.Choices[0].Message.Content
 

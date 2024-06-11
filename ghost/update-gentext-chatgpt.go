@@ -14,14 +14,14 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return fmt.Errorf("failed to load article: %s", err)
 	}
 
-	// Get samples
-	sample1, sample2, sample3, err := GetOldestArticles(config)
-	if err != nil {
-		return err
-	}
+	// // Get samples
+	// sample1, sample2, sample3, err := GetOldestArticles(config)
+	// if err != nil {
+	// 	return err
+	// }
 
 	// Generate text based on feature image
-	genText, err := openai.GetTextFromImg(featImg, sample1, sample2, sample3, config.OpenAiKey)
+	genText, err := openai.GetTextFromImg(featImg, config.OpenAiKey)
 	if err != nil {
 		return fmt.Errorf("failed to generate text elements: %s", err)
 	}

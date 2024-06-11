@@ -42,7 +42,7 @@ func BuildRandPrompt() (string, error) {
 	return prompt, nil
 }
 
-func BuildRandStory() (string, error) {
+func ObjectHistory() (string, error) {
 
 	subgenre, err := getRandFromList(subgenres)
 	if err != nil {
@@ -59,6 +59,17 @@ func BuildRandStory() (string, error) {
 		return "", err
 	}
 
+	theme, err := getRandFromList(themes)
+	if err != nil {
+		return "", err
+	}
+
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s", subgenre, adj1, adj2, theme)
+
+	return storyPrompt, nil
+}
+
+func ObjectAnecdote() (string, error) {
 	protagonist, err := getRandFromList(protagonists)
 	if err != nil {
 		return "", err
@@ -69,19 +80,14 @@ func BuildRandStory() (string, error) {
 		return "", err
 	}
 
-	theme, err := getRandFromList(themes)
-	if err != nil {
-		return "", err
-	}
-
 	ending, err := getRandFromList(endings)
 	if err != nil {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("This object carries a %s story. The story's theme is %s and it explores %s and %s. It features a %s who interacts with the artwork and ultimately %s. The story's surprising and inevitable ending is a %s", subgenre, theme, adj1, adj2, protagonist, fate, ending)
+	anecdotePrompt := fmt.Sprintf("I would like you to tell the story of the %s who due to interacting with this artwork %s. I recall this story having a %s.", protagonist, fate, ending)
 
-	return storyPrompt, nil
+	return anecdotePrompt, nil
 }
 
 func GetArtistInfo() (string, error) {
