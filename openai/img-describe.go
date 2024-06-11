@@ -35,18 +35,18 @@ func ImgDescribe(imgURL, sample1, sample2, sample3, openAiKey string) (string, e
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection, a museum of the weird and wonderful.
+						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
 						
 						You are very knowledgeable in art history, but also have a talent for storytelling. Please, write a short article about the artwork in this picture.
 
 						Please, take into account the following general guidance: 
 						
-						- The article must be a maximum of 500 words. 
-						
-						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
+						- The article must be a maximum of 500 words.
 
 						- Use an exciting and varied vocabulary without being grandiloquent.
 						
+						- The article must be exciting, and unique. Originality is key. Explore the uncanny. Be unexpected and surprising.
+
 						- The text should flow, have dramatic pace, and avoid feeling repetitive.
 
 						- Please, avoid clichés.

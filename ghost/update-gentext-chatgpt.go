@@ -26,15 +26,6 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return fmt.Errorf("failed to generate text elements: %s", err)
 	}
 
-	// //fmt.Printf("%s \n", genText)
-
-	// //fmt.Printf("%s\n%s\n%s", sample1, sample2, sample3)
-
-	// tunedText, err := openai.CaptureVoice(sample1, sample2, sample3, genText, config.OpenAiKey)
-	// if err != nil {
-	// 	return err
-	// }
-
 	// Edit Text
 	caption, title, content, err := openai.FinalEdit(genText, config.OpenAiKey)
 	if err != nil {
