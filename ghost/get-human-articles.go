@@ -20,7 +20,7 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	}
 
 	// Set endopoint
-	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=20&page=1&formats=html&order=updated_at%20asc"
+	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=20&page=2&formats=html&order=updated_at%20asc"
 
 	//make request
 	client := &http.Client{}
