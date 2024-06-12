@@ -20,7 +20,7 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	}
 
 	// Set endopoint
-	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=12&formats=html&order=updated_at%20asc"
+	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=20&formats=html&order=updated_at%20asc"
 
 	//make request
 	client := &http.Client{}
@@ -50,6 +50,7 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	var result struct {
 		Posts []struct {
 			Content string `json:"html"`
+			Title   string `json:"title"`
 		} `json:"posts"`
 	}
 
@@ -64,6 +65,12 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	perm := randGen.Perm(19)
 
 	uniqueNumbers := perm[:3]
+
+	title1 := result.Posts[uniqueNumbers[0]].Title
+	title2 := result.Posts[uniqueNumbers[1]].Title
+	title3 := result.Posts[uniqueNumbers[2]].Title
+	fmt.Printf(`The example articles are %s, %s, %s
+	`, title1, title2, title3)
 
 	article1 = result.Posts[uniqueNumbers[0]].Content
 	article2 = result.Posts[uniqueNumbers[1]].Content
