@@ -73,7 +73,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						From this point, format your text in markdown.
 
 						[Introduction: introduce the piece and its author, highlighting its uniqueness and relevancy.]
-						[Artwork's legend: %s Make sure this story, though short, follows a classic three act narrative structure.]
+						[Artwork's legend: %s This story should be intriguing and short, but have a beginning, middle, and end.]
+
 						[Final words: bring your article together, explaining how it affects audiences today.]
 
 						Between two paragraphs of your choosing, add a fictional quote about the piece in the picture by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
@@ -94,9 +95,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.8,
+		FreqPenalty:     0.7,
 		PresencePenalty: 0.5,
-		Temperature:     1.1,
+		Temperature:     1,
 	}
 
 	var visionResponse CompResponse
