@@ -64,7 +64,7 @@ func ObjectHistory() (string, error) {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("this particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s.", subgenre, adj1, adj2, theme)
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its uncanny history has always raised questions about %s.", subgenre, adj1, adj2, theme)
 
 	return storyPrompt, nil
 }

@@ -54,13 +54,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
-						Use the following guidance to build your article, but never allude to the guidance itself in your text.
-
-						Take into account %s. This theme should be consistent and coherent throughout the whole article, making sure every section adds interest and meaning to its whole. DO NOT mention any genre or subgenre in your text.
-
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
 						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
+
+						Thematically, the article should stay on theme. Every paragraph should offer new and exciting information while also building a cohesive result.
 
 						Structurally, the article should look like this:
 
@@ -74,9 +72,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						From this point, format your text in markdown.
 
-						[Introduction: introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
+						[The first two paragraphs must introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
 
-						[Artwork's legend: Describe an uncanny event related to this artwork that ties with the overall theme. This story should be around four paragraphs long, and have a beginning, middle, and end.]
+						[Artwork's legend: %s This story should be around four paragraphs long, and have a beginning, middle, and end.]
 
 						[Final words: bring your article together in one paragraph, explaining how it affects audiences today.]
 
