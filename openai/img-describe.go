@@ -69,7 +69,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						[Museum tag: information about the piece formatted as
 						| [Artist] | [Title (Year)] | [Medium] |
 						
-						The artwork's year should reflect the art movement it belongs. If it's an archeological piece, the author might be unknown and the year an approximation. If it isn't, take into account: %s.
+						The artwork's year should be historically accurate and  reflect the art movement the artwork belongs to. If it's an archeological piece, the author might be unknown and the year an approximation. If it isn't, take into account: %s.
 						]
 
 						From this point, format your text in markdown.
