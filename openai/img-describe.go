@@ -71,7 +71,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						%s
 						The artwork's year should reflect the art movement it belongs to, which you should deduce by the picture.
 
-						If you consider the piece to be an archeological find, you might change the author to unknown and the year to an approximation.
+						If you consider the piece to be an archeological find, you can re-write the tag to reflect this.
 						]
 
 						From this point, format your text in markdown.
