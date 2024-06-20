@@ -56,7 +56,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Use the following guidance to build your article, but never allude to the guidance itself in your text.
 
-						Take into account %s. Keep this theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole. DO NOT mention the genere or subgenre of the story in your text.
+						Take into account %s. This theme should be consistent and coherent throughout the whole article, making sure every section adds interest and meaning to its whole.
 
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
@@ -78,7 +78,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						[Introduction: introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
 
-						[Artwork's legend: %s This story should be around four paragraphs long, and have a beginning, middle, and end.]
+						[Artwork's legend: Describe an uncanny event related to this artwork that ties with the overall theme. This story should be around four paragraphs long, and have a beginning, middle, and end.]
 
 						[Final words: bring your article together in one paragraph, explaining how it affects audiences today.]
 
@@ -88,7 +88,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, artistInfo, storyPrompt, objectAnecdote),
+						`, artistInfo, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
