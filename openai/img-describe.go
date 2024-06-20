@@ -56,7 +56,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Use the following guidance to build your article, but never allude to the guidance itself in your text.
 
-						Take into account %s. This theme should be consistent and coherent throughout the whole article, making sure every section adds interest and meaning to its whole.
+						Take into account %s. This theme should be consistent and coherent throughout the whole article, making sure every section adds interest and meaning to its whole. DO NOT mention any genre or subgenre in your text.
 
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
