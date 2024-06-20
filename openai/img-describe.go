@@ -54,6 +54,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
+						%s
+
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
 						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
@@ -72,19 +74,19 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						From this point, format your text in markdown.
 
-						[The first two paragraphs must introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
+						[In two paragraphs, introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
 
-						[Artwork's legend: %s This story should be around four paragraphs long, and have a beginning, middle, and end.]
+						[In five paragraphs, describe a legend or supernatural or uncanny event related to this particular artwork.]
 
-						[Final words: bring your article together in one paragraph, explaining how it affects audiences today.]
+						[In one paragraph, bring your article together in one paragraph, explaining how it affects audiences today.]
 
-						Between two paragraphs of your choosing, add a fictional quote about the piece in the picture by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
+						Between two paragraphs of your choosing, add a fictional quote about the artwork by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
 
 						Never title each section. Make sure the text flows seamlessly, is cohesive, and maintains the same theme, tone, and narrative pace.
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, artistInfo, storyPrompt),
+						`, storyPrompt, artistInfo),
 					},
 					ImageContent{
 						Type: "image_url",
