@@ -54,7 +54,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
-						Thematically, after choosing a particular theme, keep that theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole.
+						%s. Keep this theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole.
 
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
@@ -74,7 +74,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						[Introduction: introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
 
-						[Artwork's legend: %s This story should be intriguing and arpund four paragraphs long, and have a beginning, middle, and end.]
+						[Artwork's legend: %s This story should be around four paragraphs long, and have a beginning, middle, and end.]
 
 						[Final words: bring your article together in one paragraph, explaining how it affects audiences today.]
 
@@ -84,7 +84,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, artistInfo, storyPrompt),
+						`, artistInfo, storyPrompt, objectAnecdote),
 					},
 					ImageContent{
 						Type: "image_url",
