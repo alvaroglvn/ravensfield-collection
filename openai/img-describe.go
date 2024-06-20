@@ -56,7 +56,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Thematically, after choosing a particular theme, keep that theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole.
 
-						Stylistically, use a varied vocabulary without sounding grandiloquent. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
+						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
 						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
 
