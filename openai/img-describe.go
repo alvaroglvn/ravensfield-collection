@@ -54,6 +54,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
+						Use the following guidance to build your article, but never allude to the guidance itself in your text.
+
 						%s. Keep this theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole.
 
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
@@ -68,6 +70,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						| [Artist] | [Title (Year)] | [Medium] |
 						%s
 						The artwork's year should reflect the art movement it belongs to, which you should deduce by the picture.
+
+						If you consider the piece to be an archeological find, you might change the author to unknown and the year to an approximation.
 						]
 
 						From this point, format your text in markdown.
