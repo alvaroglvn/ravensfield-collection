@@ -54,6 +54,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
+						Thematically, after choosing a particular theme, keep that theme consistent throughout the whole article, making sure every section adds interest and meaning to the whole.
+
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
 						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
@@ -71,7 +73,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						From this point, format your text in markdown.
 
 						[Introduction: introduce the piece and its author, highlighting its uniqueness and relevancy.]
-						[Artwork's legend: talk about a supernatural event related to this piece. %s Make sure this story, though short, has a beginning, middle, and end.]
+						[Artwork's legend: %s Make sure this story, though short, follows a classic three act narrative structure.]
 						[Final words: bring your article together, explaining how it affects audiences today.]
 
 						Between two paragraphs of your choosing, add a fictional quote about the piece in the picture by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
@@ -92,9 +94,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.7,
-		PresencePenalty: 0.7,
-		Temperature:     1,
+		FreqPenalty:     0.8,
+		PresencePenalty: 0.5,
+		Temperature:     1.1,
 	}
 
 	var visionResponse CompResponse
