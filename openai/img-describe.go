@@ -74,11 +74,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						From this point, format your text in markdown.
 
-						[In two paragraphs, introduce the piece and its author in two paragraphs, highlighting its uniqueness and relevancy.]
+						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy.]
 
 						[In five paragraphs, describe a legend or supernatural or uncanny event related to this particular artwork.]
 
-						[In one paragraph, bring your article together in one paragraph, explaining how it affects audiences today.]
+						[In one paragraph, bring your article together, explaining how it affects audiences today.]
 
 						Between two paragraphs of your choosing, add a fictional quote about the artwork by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
 
