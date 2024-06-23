@@ -8,20 +8,31 @@ import (
 )
 
 func GenTextClaude(config internal.ApiConfig) error {
-	//get next empty article on queue (oldest)
+	// Get oldest article on queue
 	postId, updatedAt, featImg, err := GetOldestPostID(config)
 	if err != nil {
 		return fmt.Errorf("failed to load article: %s", err)
 	}
 
-	// //generate text based on feature image
+	// Generate text based on feature image
 	title, caption, content, err := claude.ClaudeTextElements(featImg, config)
 	if err != nil {
 		return fmt.Errorf("failed to generate text elements: %s", err)
 	}
 
-	//update post with generated text
-	err = updatePost(postId, updatedAt, featImg, title, caption, content, config)
+	// Edit content to mimic author's voice
+	sample1, sample2, sample3, err := GetOldestArticles(config)
+	if err != nil {
+		return err
+	}
+
+	tunedText, err := claude.ClaudeAuthorVoice(sample1, sample2, sample3, content, config.ClaudeKey)
+	if err != nil {
+		return err
+	}
+
+	// Update post with generated text
+	err = updatePost(postId, updatedAt, featImg, title, caption, tunedText, config)
 	if err != nil {
 		return fmt.Errorf("failed to update post: %s", err)
 	}
