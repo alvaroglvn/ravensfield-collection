@@ -33,7 +33,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 	}
 
 	message := claudeMessage{
-		Model:       "claude-3-5-sonnet-2024062",
+		Model:       "claude-3-5-sonnet-20240620",
 		System:      "This is a genre fiction creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key.",
 		MaxTokens:   1000,
 		Temperature: 1,
@@ -122,7 +122,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 		return "", fmt.Errorf("error reading response: %s", err)
 	}
 
-	// fmt.Println(string(body))
+	//fmt.Println(string(body))
 
 	var claudeResponse ClaudeResponse
 

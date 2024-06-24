@@ -45,7 +45,7 @@ func main() {
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/img-upload", handlers.ImageUploader(config))
 
 	//Generate new article from feature image - Claude
-	router.With(handlers.CreateMasterKeyWare(config)).Post("/text-gen", handlers.GenTextClaude(config))
+	router.With(handlers.CreateMasterKeyWare(config)).Post("/textgen-claude", handlers.GenTextClaude(config))
 
 	//Generate new article from feature image - ChatGPT
 	router.With(handlers.CreateMasterKeyWare(config)).Post("/textgen-chatgpt", handlers.GenTextChatGpt(config))

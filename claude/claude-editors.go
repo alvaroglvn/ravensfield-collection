@@ -11,7 +11,7 @@ import (
 func ClaudeAuthorVoice(sample1, sample2, sample3, content, claudeKey string) (tunedText string, err error) {
 
 	message := claudeMessage{
-		Model:     "claude-3-5-sonnet-2024062",
+		Model:     "claude-3-5-sonnet-20240620",
 		System:    "Be a literary editor.",
 		MaxTokens: 1000,
 		//Temperature: 1,
@@ -60,6 +60,8 @@ func ClaudeAuthorVoice(sample1, sample2, sample3, content, claudeKey string) (tu
 	if err != nil {
 		return "", fmt.Errorf("error reading response: %s", err)
 	}
+
+	//fmt.Println(string(body))
 
 	var claudeResponse ClaudeResponse
 
