@@ -17,11 +17,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 	fmt.Println(storyPrompt)
 
-	objectAnecdote, err := madlibsprompt.ObjectAnecdote()
-	if err != nil {
-		return "", err
-	}
-	fmt.Println(objectAnecdote)
+	// objectAnecdote, err := madlibsprompt.ObjectAnecdote()
+	// if err != nil {
+	// 	return "", err
+	// }
+	// fmt.Println(objectAnecdote)
 
 	artistInfo, err := madlibsprompt.GetArtistInfo()
 	if err != nil {
@@ -54,8 +54,6 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						
 						Please write a short article about the artwork in this picture. Its length should be around 500 words.
 
-						%s
-
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
 						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
@@ -76,7 +74,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy.]
 
-						[In five paragraphs, describe an uncanny event: %s]
+						[In five paragraphs, describe an uncanny event related to this artwork. %s]
 
 						[In one paragraph, bring your article together, explaining how it affects audiences today.]
 
@@ -86,7 +84,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, storyPrompt, artistInfo, objectAnecdote),
+						`, artistInfo, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",
