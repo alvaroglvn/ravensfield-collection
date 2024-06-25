@@ -34,6 +34,9 @@ func GenTextClaude(config internal.ApiConfig) error {
 	// Autoedit
 
 	editedText, err := claude.ClaudeAutoEdit(tunedText, config.ClaudeKey)
+	if err != nil {
+		return err
+	}
 
 	// Update post with generated text
 	err = updatePost(postId, updatedAt, featImg, title, caption, editedText, config)
