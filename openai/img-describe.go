@@ -209,7 +209,7 @@ func AutoEdit(text, openAiKey string) (editedText string, err error) {
 						
 						5. Improve the article's readability if it is too verbose. Delete clichés and unnecessary transitions.
 						
-						6. Rewrite nonsensical paragraphs, and cut those who are repeating a point already made. Nevertheless, stay as loyal to the original text as possible.
+						6. Rewrite nonsensical paragraphs, and cut those which are repeating a point already made. Nevertheless, stay as loyal to the original text as possible.
 
 						7. Go through a proofread. Fix typos and grammatical errors.
 						
