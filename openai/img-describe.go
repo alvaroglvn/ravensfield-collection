@@ -76,7 +76,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy.]
 
-						[In five paragraphs, describe a legend or supernatural or uncanny event related to this particular artwork.]
+						[In five paragraphs, describe an uncanny event: %s]
 
 						[In one paragraph, bring your article together, explaining how it affects audiences today.]
 
@@ -86,7 +86,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, storyPrompt, artistInfo),
+						`, storyPrompt, artistInfo, objectAnecdote),
 					},
 					ImageContent{
 						Type: "image_url",
