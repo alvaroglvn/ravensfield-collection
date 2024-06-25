@@ -92,9 +92,9 @@ func ClaudeAutoEdit(content, claudeKey string) (editedText string, err error) {
 						
 						3. Cut paragraphs which are repeating a point already made. Change words that sound repetitive to a synonym.
 						
-						4. Make sure the text is correctly formatted as markdown, including its blockquotes.
-						
-						Please responde with the edited text, no need to add the editor's notes.
+						4. Make sure the text is correctly formatted as markdown, including its blockquotes. Separate the paragraphs accordingly.
+			
+						Please respond with the edited text ONLY, no need to add the editor's notes.
 						
 						Here's the original text: %s`, content),
 					},
