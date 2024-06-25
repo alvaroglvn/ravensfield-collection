@@ -73,8 +73,6 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 
 						Otherwise: %s. The artwork's year shuld reflect the art movement it belongs to and be historically accurate.]
 
-						From this point on, please format your text in markdown.
-
 						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy. If the artist is unkown, offer an interesting factoid instead.]
 
 						[%s. In five paragraphs, describe a legend or supernatural event related to this artwork. Consider this section a piece of flash fiction with a beginning, middle, and end, but make sure to keep it on theme and cohesive with the rest of your article]
