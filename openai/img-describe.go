@@ -42,7 +42,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "This is a genre fiction, creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key.",
+						Text: "This is a genre fiction, creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key. Your inspiration are the fantastic stories published in the golden era of Pulp magazines.",
 					},
 				},
 			},
