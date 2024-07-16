@@ -82,6 +82,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Never title each section. Make sure the text flows seamlessly, is cohesive, and maintains the same theme, tone, and narrative pace.
 
+						Please, use this guidance to inspire your text, but never mention it directly in your result.
+
 						Please reply with the final version of your article when you're ready.
 						
 						`, artistInfo, storyPrompt),
