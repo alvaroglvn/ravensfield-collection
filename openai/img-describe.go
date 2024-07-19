@@ -35,7 +35,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 
 	visionRequest := CompRequest{
-		Model: "gpt-4o",
+		Model: "gpt-4o-mini",
 		Messages: []Message{
 			{
 				Role: "system",
@@ -52,7 +52,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Type: "text",
 						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
 						
-						Please write a short article about the artwork in this picture. Its length should be around 500 words.
+						Please write a short article about the artwork in this picture. %s
+						
+						The article's length should be around 500 words.
 
 						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
 						
@@ -74,7 +76,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy.]
 
-						[In five paragraphs, describe an uncanny event related to this artwork. %s]
+						[In five paragraphs, describe an uncanny event related to this artwork. ]
 
 						[In one paragraph, bring your article together, explaining how it affects audiences today.]
 
@@ -86,7 +88,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Please reply with the final version of your article when you're ready.
 						
-						`, artistInfo, storyPrompt),
+						`, storyPrompt, artistInfo),
 					},
 					ImageContent{
 						Type: "image_url",
