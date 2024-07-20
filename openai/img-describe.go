@@ -35,7 +35,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 
 	visionRequest := CompRequest{
-		Model: "gpt-4o-mini",
+		Model: "gpt-4o",
 		Messages: []Message{
 			{
 				Role: "system",
@@ -128,7 +128,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedText string, err error) {
 	chatRequest := CompRequest{
-		Model: "gpt-4o-mini",
+		Model: "gpt-4o",
 		Messages: []Message{
 			{
 				Role: "system",
@@ -185,7 +185,7 @@ func CaptureVoice(sample1, sample2, sample3, genText, openAiKey string) (tunedTe
 
 func AutoEdit(text, openAiKey string) (editedText string, err error) {
 	chatRequest := CompRequest{
-		Model: "gpt-4o-mini",
+		Model: "gpt-4o",
 		Messages: []Message{
 			{
 				Role: "system",
