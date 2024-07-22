@@ -21,25 +21,108 @@ func getRandFromList(itemList []string) (string, error) {
 }
 
 func BuildRandPrompt() (string, error) {
+	prompt := ""
+	// What kind of artwork
+	artwork, err := getRandFromList(basicObjects)
+	if err != nil {
+		return "", fmt.Errorf("unable to get random artwork: %s", err)
+	}
+	// Tailor options to artwork's type
+	if artwork == "painting" {
+		prompt, err = imaginePainting()
+		if err != nil {
+			return "", err
+		}
+	} else if artwork == "sculpture" {
+		prompt, err = imagineSculpture()
+		if err != nil {
+			return "", err
+		}
+	} else if artwork == "object d'art" {
+		prompt, err = imagineObject()
+		if err != nil {
+			return "", err
+		}
+	}
 
+	fmt.Print(prompt)
+	return prompt, nil
+}
+
+func imaginePainting() (string, error) {
+	// Artwork's characteristic
 	mood, err := getRandFromList(genreMood)
 	if err != nil {
-		return "", fmt.Errorf("error getting random mood: %s", err)
+		return "", err
 	}
-
-	artStyle, err := getRandFromList(artStyles)
+	// Painting type
+	paint_type, err := getRandFromList(paint_type)
 	if err != nil {
-		return "", fmt.Errorf("error getting random art style: %s", err)
+		return "", err
 	}
-
-	object, err := getRandFromList(artObjects)
+	// Medium
+	paint_medium, err := getRandFromList(paint_media)
 	if err != nil {
-		return "", fmt.Errorf("error getting random object: %s", err)
+		return "", err
+	}
+	// Theme
+	paint_theme, err := getRandFromList(paint_themes)
+	if err != nil {
+		return "", err
+	}
+	// Art movement
+	paint_movement, err := getRandFromList(paint_movements)
+	if err != nil {
+		return "", err
 	}
 
-	prompt := fmt.Sprintf("Uncanny museum piece photographed by itself for art catalog: %s %s %s.", mood, artStyle, object)
+	return fmt.Sprintf("%s %s on %s %s from the %s movement", mood, paint_type, paint_medium, paint_theme, paint_movement), nil
+}
 
-	return prompt, nil
+func imagineSculpture() (string, error) {
+	// Characteristic
+	mood, err := getRandFromList(genreMood)
+	if err != nil {
+		return "", err
+	}
+	// Material
+	material, err := getRandFromList(sculpt_material)
+	if err != nil {
+		return "", err
+	}
+	// Sculpture type
+	sculpt_type, err := getRandFromList(sculpt_types)
+	if err != nil {
+		return "", err
+	}
+	// Movement
+	art_movement, err := getRandFromList(sculpt_movements)
+	if err != nil {
+		return "", err
+	}
+
+	return fmt.Sprintf("%s %s %s from the %s movement", mood, material, sculpt_type, art_movement), nil
+
+}
+
+func imagineObject() (string, error) {
+	// Characteristic
+	mood, err := getRandFromList(genreMood)
+	if err != nil {
+		return "", err
+	}
+	// Object
+	object, err := getRandFromList(objects)
+	if err != nil {
+		return "", err
+	}
+	// Movement
+	movement, err := getRandFromList(design_movements)
+	if err != nil {
+		return "", err
+	}
+
+	return fmt.Sprintf("%s %s from the %s movement.", mood, object, movement), nil
 }
 
 func ObjectHistory() (string, error) {
