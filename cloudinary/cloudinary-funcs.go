@@ -87,12 +87,13 @@ func DeleteImg(imgId string, resp *admin.AssetsResult) error {
 	return nil
 }
 
-func UploadImgFromUrl(url string) error {
+func UploadImgFromUrl(url, alt string) error {
 	cld, ctx := CloudCredentials()
 
 	_, err := cld.Upload.Upload(ctx, url, uploader.UploadParams{
-		Folder: "ravensfield-objects",
-		Tags:   []string{"new"},
+		Folder:  "ravensfield-objects",
+		Tags:    []string{"new"},
+		Context: map[string]string{"alt": alt},
 	})
 
 	if err != nil {

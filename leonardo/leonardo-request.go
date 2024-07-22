@@ -111,21 +111,21 @@ func getImgUrl(imgId, leoKey string) (imgUrl string, err error) {
 	}
 }
 
-func LeonardoPipeline(leoKey string) (imgUrl string, err error) {
+func LeonardoPipeline(leoKey string) (imgUrl, alt string, err error) {
 	prompt, err := madlibsprompt.BuildRandPrompt()
 	if err != nil {
-		return "", fmt.Errorf("error creating prompt: %s", err)
+		return "", "", fmt.Errorf("error creating prompt: %s", err)
 	}
 
 	imgId, err := generateLeoImg(prompt, leoKey)
 	if err != nil {
-		return "", fmt.Errorf("error generating image: %s", err)
+		return "", "", fmt.Errorf("error generating image: %s", err)
 	}
 
 	imgUrl, err = getImgUrl(imgId, leoKey)
 	if err != nil {
-		return "", fmt.Errorf("unable to retrieve image url: %s", err)
+		return "", "", fmt.Errorf("unable to retrieve image url: %s", err)
 	}
 
-	return imgUrl, nil
+	return imgUrl, prompt, nil
 }

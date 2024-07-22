@@ -10,13 +10,13 @@ import (
 
 func LeoToCloud(config internal.ApiConfig) error {
 	//create leo image
-	imgUrl, err := leonardo.LeonardoPipeline(config.LeoKey)
+	imgUrl, prompt, err := leonardo.LeonardoPipeline(config.LeoKey)
 	if err != nil {
 		return fmt.Errorf("error: %s", err)
 	}
 
 	//upload created image to cloudinary
-	err = cloudinary.UploadImgFromUrl(imgUrl)
+	err = cloudinary.UploadImgFromUrl(imgUrl, prompt)
 	if err != nil {
 		return fmt.Errorf("error: %s", err)
 	}
