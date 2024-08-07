@@ -3,10 +3,10 @@ package madlibsprompt
 var basicObjects = []string{
 	"painting",
 	"sculpture",
-	"drawing",
+	//"drawing",
 	"photography",
 	"object d'art",
-	"archeological finding",
+	//"archeological finding",
 }
 
 // var artObjects = []string{

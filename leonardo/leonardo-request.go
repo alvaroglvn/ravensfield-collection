@@ -30,7 +30,7 @@ func generateLeoImg(prompt, leoKey string) (imgId string, err error) {
 		NSteps:        60,
 		PhotoReal:     true,
 		PhRealV:       "v2",
-		PresetStyle:   "PHOTOGRAPHY",
+		PresetStyle:   "HDR",
 		Prompt:        prompt,
 		PromptMagic:   false,
 		//PromptMagicV:  "v3",
