@@ -70,28 +70,81 @@ func imaginePainting() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	// Painting type
-	paint_type, err := getRandFromList(paint_type)
-	if err != nil {
-		return "", err
-	}
-	// Medium
-	paint_medium, err := getRandFromList(paint_media)
+	// Period
+	paintPeriod, err := getRandFromList(paintPeriod)
 	if err != nil {
 		return "", err
 	}
 	// Theme
-	paint_theme, err := getRandFromList(paint_themes)
-	if err != nil {
-		return "", err
-	}
-	// Art movement
-	paint_movement, err := getRandFromList(paint_movements)
+	theme, err := getRandFromList(paintThemes)
 	if err != nil {
 		return "", err
 	}
 
-	return fmt.Sprintf("%s %s on %s %s from the %s movement", mood, paint_type, paint_medium, paint_theme, paint_movement), nil
+	paintingPrompt := ""
+	if paintPeriod == "Ancient" {
+		technique, err := getRandFromList(paintMedia[0:2])
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", paintPeriod, mood, technique, theme)
+	} else if paintPeriod == "Medieval" {
+		technique, err := getRandFromList(paintMedia[3:6])
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", paintPeriod, mood, technique, theme)
+	} else if paintPeriod == "Renaissance" {
+		technique, err := getRandFromList(paintMedia[6:10])
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", paintPeriod, mood, technique, theme)
+	} else if paintPeriod == "Baroque" || paintPeriod == "Rococo" {
+		technique, err := getRandFromList(paintMedia[11:15])
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", paintPeriod, mood, technique, theme)
+	} else if paintPeriod == "Neoclassicism" || paintPeriod == "Romanticism" {
+		technique, err := getRandFromList(paintMedia[16:20])
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", paintPeriod, mood, technique, theme)
+	} else if paintPeriod == "Mid to Late 19th Century" {
+		technique, err := getRandFromList(paintMedia[16:20])
+		if err != nil {
+			return "", err
+		}
+		movement, err := getRandFromList(midLate19th)
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", movement, mood, technique, theme)
+	} else if paintPeriod == "Avant-Garde" {
+		technique, err := getRandFromList(paintMedia[16:28])
+		if err != nil {
+			return "", err
+		}
+		movement, err := getRandFromList(avantGarde)
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", movement, mood, technique, theme)
+	} else {
+		technique, err := getRandFromList(paintMedia[16:30])
+		if err != nil {
+			return "", err
+		}
+		movement, err := getRandFromList(contemporary)
+		if err != nil {
+			return "", err
+		}
+		paintingPrompt = fmt.Sprintf("%s %s %s %s", movement, mood, technique, theme)
+	}
+	fmt.Print(paintingPrompt)
+	return paintingPrompt, nil
 }
 
 func imagineSculpture() (string, error) {
