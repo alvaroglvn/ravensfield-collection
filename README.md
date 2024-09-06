@@ -10,7 +10,7 @@ This project uses the following open-source software. Thanks to the maintainers 
 - [godotenv](https://github.com/joho/godotenv)
 - [go-sqlite3](https://github.com/mattn/go-sqlite3)
 - [blackfriday](https://github.com/russross/blackfriday)
-  - [go-webp](https://github.com/kolesa-team/go-webp)
+- [go-webp](https://github.com/kolesa-team/go-webp)
 
 ## Development commands
 
