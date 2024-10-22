@@ -15,19 +15,19 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	fmt.Println(storyPrompt)
+	// fmt.Println(storyPrompt)
 
 	objectAnecdote, err := madlibsprompt.ObjectAnecdote()
 	if err != nil {
 		return "", err
 	}
-	fmt.Println(objectAnecdote)
+	// fmt.Println(objectAnecdote)
 
 	artistInfo, err := madlibsprompt.GetArtistInfo()
 	if err != nil {
 		return "", err
 	}
-	fmt.Println(artistInfo)
+	// fmt.Println(artistInfo)
 
 	imgData, err := utils.ImgUrltoBase64(imgURL)
 	if err != nil {

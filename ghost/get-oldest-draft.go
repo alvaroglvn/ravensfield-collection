@@ -61,7 +61,7 @@ func GetOldestPostID(config internal.ApiConfig) (postId, updatedAt, featImgUrl s
 	updatedAt = result.Posts[0].UpdatedAt
 	featImgUrl = result.Posts[0].FeatImageUrl
 
-	fmt.Printf("Post ID: %s, Updated at: %s, Feature Image: %s\n", postId, updatedAt, featImgUrl)
+	// fmt.Printf("Post ID: %s, Updated at: %s, Feature Image: %s\n", postId, updatedAt, featImgUrl)
 
 	return postId, updatedAt, featImgUrl, nil
 }
