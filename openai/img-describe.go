@@ -95,8 +95,8 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 			},
 		},
 		MaxTokens:       1000,
-		FreqPenalty:     0.7,
-		PresencePenalty: 0.7,
+		FreqPenalty:     0.6,
+		PresencePenalty: 0.6,
 		Temperature:     1,
 	}
 
