@@ -5,7 +5,7 @@
         <h2 class="section-title archive">The Ravensfield Archive</h2>
         {{#if @member}}
         <main class="latest-posts">
-        {{#get "posts" limit="all"}}
+        {{#get "posts" limit="5"}}
         {{#foreach posts}}
         <div class="post-container">
             {{> card-sm }}
@@ -18,3 +18,4 @@
         {{/if}}
     </div>
 </div>
+{{pagination}}
