@@ -52,7 +52,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Type: "text",
 						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
 						
-						Please write a 500 word article about the artwork in this picture. %s. Take the following guidance into account:
+						Please write a short article about the artwork in this picture. %s. Follow this guidance:
 
 						1. Style:
 						1.1. Use an exciting and varied vocabulary.
@@ -73,7 +73,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
 						2.3. Article content. This section must be formatted in markdown.
 						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
-						2.3.2. In five paragraphs, describe the uncanny event related to this artwork: %s
+						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
