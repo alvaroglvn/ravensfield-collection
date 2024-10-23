@@ -11,7 +11,7 @@ import (
 func ClaudeAuthorVoice(sample1, sample2, sample3, content, claudeKey string) (tunedText string, err error) {
 
 	message := claudeMessage{
-		Model:     "claude-3-5-sonnet-20240620",
+		Model:     "claude-3-5-sonnet-20241022",
 		System:    "Be a literary editor.",
 		MaxTokens: 1000,
 		//Temperature: 1,
@@ -75,7 +75,7 @@ func ClaudeAuthorVoice(sample1, sample2, sample3, content, claudeKey string) (tu
 
 func ClaudeAutoEdit(content, claudeKey string) (editedText string, err error) {
 	message := claudeMessage{
-		Model:     "claude-3-5-sonnet-20240620",
+		Model:     "claude-3-5-sonnet-20241022",
 		System:    "Be a thorough but evenhanded literary editor.",
 		MaxTokens: 1000,
 		//Temperature: 1,

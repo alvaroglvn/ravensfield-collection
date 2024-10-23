@@ -35,7 +35,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 
 	visionRequest := CompRequest{
-		Model: "gpt-4o",
+		Model: "o1-mini",
 		Messages: []Message{
 			{
 				Role: "system",

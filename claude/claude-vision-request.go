@@ -33,8 +33,8 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 	}
 
 	message := claudeMessage{
-		Model:       "claude-3-5-sonnet-20240620",
-		System:      "This is a genre fiction creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key.",
+		Model:       "claude-3-5-sonnet-20241022",
+		System:      "This is a creative writing exercise. The genre is weird fiction and speculative fiction. Be unique, bold, and have a strong literary flare. Originality is key.",
 		MaxTokens:   1000,
 		Temperature: 1,
 		Messages: []Message{
@@ -52,39 +52,35 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						Type: "text",
 						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection, an eclectic museum of the weird and wonderful.
 
-						Please write a short article about the artwork in this picture following this guidance:
-						
-						- The article's length should be around 500 words.
+						1. Style:
+						1.1. Use an exciting and varied vocabulary.
+						1.2. Keep your use of adverbs to a minimum.
+						1.3. Use strong and expressive verbs.
+						1.4. Avoid clichés.
+						1.5. Make the text enticicing and engaging.
+						1.6. Create a great sense of dramatic pacing.
+						1.7. Balance scholarly information with exciting storytelling.
+						1.8. Every paragraph must give new information, never be repetitive.
+						1.9. The article should be cohesive in style, genre, and dramatic themes.
 
-						- Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
+						2. Structure:
+						2.1. Title. It must be shorter than five words, catchy, and seductive.
+						2.2. Museum Tag. Description of the artwork formatted as | Artist's name | Title (Year) | Medium |
+						The year should match the art period or movement the artwork belongs to.
+						About the artist, %s.
+						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
 
-						- Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
+						2.3. Article content. This section must be formatted in markdown.
+						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
+						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories. This story must be thematically related to the artwork.
+						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
+						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
-						- Thematically, dive into the uncanny while using strong metaphors. Be exciting, unique, and unexpected. Make sure the whole article stays on theme, every paragraph offering information that strengthens the whole.
+						Never title individual sections.
 
-						- Structurally, the article should look like this:
+						Use this guidance to inspire your text, but never mention it directly in your result.
 
-						[Title: the catchy and seductive title of the article. Keep it shorter than five words.]
-
-						[Museum tag: information about the piece formatted as
-						| [Artist] | [Title (Year)] | [Medium] |
-
-						If the piece is an archeological find, the author can be unkown and its year an approximation.
-
-						Otherwise: %s. The artwork's year shuld reflect the art movement it belongs to and be historically accurate.]
-
-						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy. If the artist is unkown, offer an interesting factoid instead.]
-
-						[%s. In five paragraphs, describe a legend or supernatural event related to this artwork. Consider this section a piece of flash fiction with a beginning, middle, and end, but make sure to keep it on theme and cohesive with the rest of your article]
-
-						[In one paragraph, bring your article together, explaining how it affects audiences today.]
-
-						- Between two paragraphs of your choosing, add a fictional quote about the artwork by a fictional expert. Format it as a separate blockquote as follows: 
-						"Quote" -Author (profession).
-
-						- Never title each section. Make sure the text flows seamlessly, is cohesive, and maintains the same theme, tone, voice, and narrative pace.
-
-						Please reply with the final version of your article when you're ready.
+						Reply with the final version of your article when you're ready.
 						`, artistInfo, storyPrompt),
 					},
 				},

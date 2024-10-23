@@ -281,10 +281,10 @@ func imaginePhoto() (string, error) {
 
 func ObjectHistory() (string, error) {
 
-	// subgenre, err := getRandFromList(subgenres)
-	// if err != nil {
-	// 	return "", err
-	// }
+	subgenre, err := getRandFromList(subgenres)
+	if err != nil {
+		return "", err
+	}
 
 	adj1, err := getRandFromList(generalMood)
 	if err != nil {
@@ -301,7 +301,22 @@ func ObjectHistory() (string, error) {
 		return "", err
 	}
 
-	storyPrompt := fmt.Sprintf("This particular object carries an uncanny and original story of %s and %s. Its history has always raised questions about %s.", adj1, adj2, theme)
+	protagonist, err := getRandFromList(protagonists)
+	if err != nil {
+		return "", err
+	}
+
+	fate, err := getRandFromList(fates)
+	if err != nil {
+		return "", err
+	}
+
+	ending, err := getRandFromList(endings)
+	if err != nil {
+		return "", err
+	}
+
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its history has always raised questions about %s. The protagonist is a %s who %s and ultimately reaches a %s.", subgenre, adj1, adj2, theme, protagonist, fate, ending)
 
 	return storyPrompt, nil
 }
