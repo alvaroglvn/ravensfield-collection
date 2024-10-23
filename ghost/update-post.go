@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
+	// "io"
 	"net/http"
 
 	"github.com/alvaroglvn/ravensfield-collection/internal"
@@ -34,7 +34,7 @@ func updatePost(postID, updatedAt, featImg, title, caption, content string, conf
 		return fmt.Errorf("marshalling error: %s", err)
 	}
 
-	fmt.Printf("Created json data:%s", string(jsonData))
+	fmt.Print("Created json data")
 
 	//prepare request
 
@@ -75,12 +75,12 @@ func updatePost(postID, updatedAt, featImg, title, caption, content string, conf
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return fmt.Errorf("error reading response: %s", err)
-	}
+	// body, err := io.ReadAll(resp.Body)
+	// if err != nil {
+	// 	return fmt.Errorf("error reading response: %s", err)
+	// }
 
-	fmt.Println(string(body))
+	// fmt.Println(string(body))
 
 	return nil
 }

@@ -29,7 +29,7 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return fmt.Errorf("failed to generate text elements: %s", err)
 	}
 
-	log.Printf("Text generated:%s[...]", genText[0:25])
+	log.Printf("Text generated:%s...", genText[0:100])
 
 	// Edit Text
 
@@ -40,7 +40,7 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return err
 	}
 
-	log.Printf("Text edited:\nCaption: %s\nTitle: %s\nContent:%s[...]", caption, title, content[0:25])
+	log.Printf("Text edited:\nCaption: %s\nTitle: %s\nContent:%s[...]", caption, title, content[0:50])
 
 	// Avoid markdown tags in title
 
@@ -48,6 +48,10 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 
 	if title[0:1] == "#" {
 		title = strings.Trim(title, "#")
+	}
+
+	if title[0:1] == "*" {
+		title = strings.Trim(title, "*")
 	}
 
 	log.Printf("Title formatted: %s", title)
@@ -65,9 +69,7 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 		return err
 	}
 
-	log.Printf("Final text ready: %s[...]", finalStory[0:25])
-
-	// fmt.Printf("%s\n%s\n%s", caption, title, content)
+	log.Printf("Final text ready: %s...", finalStory[0:50])
 
 	//update post with generated text
 
@@ -77,6 +79,8 @@ func GenTextChatgpt(config internal.ApiConfig) error {
 	if err != nil {
 		return fmt.Errorf("failed to update post: %s", err)
 	}
+
+	log.Print("Post created")
 
 	return nil
 }

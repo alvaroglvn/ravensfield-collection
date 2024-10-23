@@ -42,7 +42,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: "This is a genre fiction, creative writing exercise. Be unique, bold, and have a strong literary flare. Originality is key. Your inspiration are the fantastic stories published in the golden era of Pulp magazines.",
+						Text: "This is a creative writing exercise. The genre is weird fiction and speculative fiction. Be unique, bold, and have a strong literary flare. Originality is key.",
 					},
 				},
 			},
@@ -52,41 +52,36 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Type: "text",
 						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
 						
-						Please write a short article about the artwork in this picture. %s
-						
-						The article's length should be around 500 words.
+						Please write a 500 word article about the artwork in this picture. %s. Take the following guidance into account:
 
-						Stylistically, use a varied vocabulary without sounding grandiloquent. Avoid the word "enigmatic", using a more exciting synonym instead. Also, keep you use of adverbs to a minimum, using strong and expressive verbs instead. Finally, avoid clichés.
-						
-						Dramatically, make sure your article is engaging and enticing. Your article should have superb pacing and keep the readers interested. Balance your scholarly explanation as an art historian with some exciting storytelling.
+						1. Style:
+						1.1. Use an exciting and varied vocabulary.
+						1.2. Keep your use of adverbs to a minimum.
+						1.3. Use strong and expressive verbs.
+						1.4. Avoid clichés.
+						1.5. Make the text enticicing and engaging.
+						1.6. Create a great sense of dramatic pacing.
+						1.7. Balance scholarly information with exciting storytelling.
+						1.8. Every paragraph must give new information, never be repetitive.
+						1.9. The article should be cohesive in style, genre, and dramatic themes. 
 
-						Thematically, the article should stay on theme. Every paragraph should offer new and exciting information while also building a cohesive result.
+						2. Structure:
+						2.1. Title. It must be shorter than five words, catchy, and seductive.
+						2.2. Museum Tag. Description of the artwork formatted as | Artist's name | Title (Year) | Medium |
+						The year should match the art period or movement the artwork belongs to.
+						About the artist, %s.
+						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
+						2.3. Article content. This section must be formatted in markdown.
+						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
+						2.3.2. In five paragraphs, describe the uncanny event related to this artwork: %s
+						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
+						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
-						Structurally, the article should look like this:
+						Never title individual sections.
 
-						[Title: the catchy and seductive title of the article. Keep it shorter than five words.]
+						Use this guidance to inspire your text, but never mention it directly in your result.
 
-						[Museum tag: information about the piece formatted as
-						| [Artist] | [Title (Year)] | [Medium] |
-						
-						The artwork's year should be historically accurate and  reflect the art movement the artwork belongs to. If it's an archeological piece, the author might be unknown and the year an approximation. If it isn't, take into account: %s.
-						]
-
-						From this point, format your text in markdown.
-
-						[In two paragraphs, introduce the piece and its author, highlighting its uniqueness and relevancy.]
-
-						[In five paragraphs, describe an uncanny event related to this artwork. %s]
-
-						[In one paragraph, bring your article together, explaining how it affects audiences today.]
-
-						Between two paragraphs of your choosing, add a fictional quote about the artwork by a fictional expert. Format it as a separate blockquote as follows: "Quote" -Author (profession).
-
-						Never title each section. Make sure the text flows seamlessly, is cohesive, and maintains the same theme, tone, and narrative pace.
-
-						Please, use this guidance to inspire your text, but never mention it directly in your result.
-
-						Please reply with the final version of your article when you're ready.
+						Reply with the final version of your article when you're ready.
 						
 						`, storyPrompt, objectAnecdote, artistInfo),
 					},
