@@ -3,18 +3,26 @@
 <div class="gh-page">
     <div class="gh-container">
         <h2 class="section-title archive">The Ravensfield Archive</h2>
+
         {{#if @member}}
-        <main class="latest-posts">
-        {{#get "posts" limit="5"}}
-        {{#foreach posts}}
-        <div class="post-container">
-            {{> card-sm }}
-        </div>
-        {{/foreach}}
-        {{/get}}
-        </main>
+            <main class="latest-posts">
+                {{#get "posts" limit="5" page="{{@page}}" as |posts|}}
+                    {{#if posts.length}}
+                        {{#foreach posts}}
+                            <div class="post-container">
+                                {{> card-sm }}
+                            </div>
+                        {{/foreach}}
+
+                        <!-- Pagination Controls -->
+                        {{pagination}}
+                    {{else}}
+                        <p>Archive seems to be empty!</p>
+                    {{/if}}
+                {{/get}}
+            </main>
         {{else}}
-        {{> members-only-card}}
+            {{> members-only-card}}
         {{/if}}
     </div>
 </div>
