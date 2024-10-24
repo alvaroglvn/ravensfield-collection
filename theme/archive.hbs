@@ -1,32 +1,20 @@
 {{!< default}}
 
-<main id="main">
-    {{#if @member}}
-        <section class="posts">
-            {{#foreach posts}}
-            <article>
-                <header>
-                    <h2>
-                        <a href="{{url}}">{{title}}</a>
-                    </h2>
-                </header>
-
-                {{#if feature_image}}
-                <figure class="image main">
-                    <img src="{{img_url feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
-                    <figcaption>{{feature_image_alt}}</figcaption>
-                </figure>
-                {{/if}}
-
-                <p>{{excerpt words="33"}}</p>
-
-                <ul class="actions special">
-                    <li><a href="{{url}}" class="button">Learn more</a></li>
-                </ul>
-            </article>
-            {{/foreach}}
-        </section>
-    {{else}}
-        {{> "members-only-card"}}
-    {{/if}}
-</main>
+<div class="gh-page">
+    <div class="gh-container">
+        <h2 class="section-title archive">The Ravensfield Archive</h2>
+        {{#if @member}}
+        <main class="latest-posts">
+        {{#get "posts" limit="all"}}
+        {{#foreach posts}}
+        <div class="post-container">
+            {{> card-sm }}
+        </div>
+        {{/foreach}}
+        {{/get}}
+        </main>
+        {{else}}
+        {{> members-only-card}}
+        {{/if}}
+    </div>
+</div>
