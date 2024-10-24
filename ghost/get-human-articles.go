@@ -22,9 +22,6 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	// Set endopoint
 	getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=15&page=1&formats=html&order=updated_at%20asc"
 
-	//FOR LOCAL TESTING
-	//getPostsEp := config.GhostURL + "/ghost/api/admin/posts/?limit=3&page=1&formats=html&order=updated_at%20asc"
-
 	//make request
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", getPostsEp, nil)
@@ -66,8 +63,6 @@ func GetOldestArticles(config internal.ApiConfig) (article1, article2, article3 
 	randGen := rand.New(src)                     // #nosec G404
 
 	perm := randGen.Perm(15)
-	//FOR LOCAL TESTING
-	//perm := randGen.Perm(3)
 
 	uniqueNumbers := perm[:3]
 

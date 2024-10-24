@@ -12,7 +12,7 @@ import (
 
 func updatePost(postID, updatedAt, featImg, title, caption, content string, config internal.ApiConfig) error {
 
-	fmt.Print("Creating payload")
+	fmt.Print("\nCreating payload...\n")
 
 	//prepare updated data
 	payload := GhostPost{Posts: []Post{{
@@ -27,22 +27,22 @@ func updatePost(postID, updatedAt, featImg, title, caption, content string, conf
 	},
 	}
 
-	fmt.Print("Payload created")
+	fmt.Print("\nPayload created\n")
 
 	jsonData, err := json.Marshal(payload)
 	if err != nil {
 		return fmt.Errorf("marshalling error: %s", err)
 	}
 
-	fmt.Print("Created json data")
+	fmt.Print("\nJson data ready\n")
 
 	//prepare request
 
-	fmt.Printf("Preparing request")
+	fmt.Printf("\nPreparing request...\n")
 
 	endpoint := config.GhostURL + "/ghost/api/admin/posts/" + postID + "?source=html"
 
-	fmt.Printf("Sending request to: %s", endpoint)
+	fmt.Printf("\nSending request to: %s\n", endpoint)
 
 	client := &http.Client{}
 
@@ -52,28 +52,30 @@ func updatePost(postID, updatedAt, featImg, title, caption, content string, conf
 	}
 
 	//ghost authorization
-	fmt.Print("Authorizing...")
+	fmt.Print("\nAuthorizing...\n")
 
 	ghostKey := config.GhostKey
-	fmt.Printf("Loaded API key: %s", ghostKey)
+	fmt.Print("Loaded API key")
 	ghostToken, err := CreateAdminToken(ghostKey)
 	if err != nil {
 		return fmt.Errorf("error generating ghost authorization token: %s", err)
 	}
-	fmt.Printf("Ghost token created: %s", ghostToken)
+	fmt.Print("\nGhost token ready\n")
 
 	//set headers
-	fmt.Print("Setting headers")
+	fmt.Print("\nSetting headers\n")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Ghost "+ghostToken)
 
 	//send request
-	fmt.Print("Sending request")
+	fmt.Print("\nSending request...\n")
 	resp, err := client.Do(req)
 	if err != nil {
 		return fmt.Errorf("request error: %s", err)
 	}
 	defer resp.Body.Close()
+
+	fmt.Print("\nPost created\n")
 
 	// body, err := io.ReadAll(resp.Body)
 	// if err != nil {
