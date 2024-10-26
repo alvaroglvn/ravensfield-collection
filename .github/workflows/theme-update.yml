@@ -15,18 +15,15 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - name: Install Dependencies
         run: |
           cd themes/source-ravens
-          yarn install
+          npm install
 
       - name: Run Build
         run: |
           cd themes/source-ravens
-          yarn build
+          npm run build
 
       - name: Deploy Ghost Theme
         uses: TryGhost/action-deploy-theme@v1
