@@ -8,6 +8,7 @@
     },
     "license": "MIT",
     "scripts": {
+        "build": "gulp build",
         "dev": "gulp",
         "zip": "gulp zip",
         "test": "gscan .",
