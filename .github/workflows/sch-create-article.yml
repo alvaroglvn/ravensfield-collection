@@ -21,7 +21,7 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          fly machine start 0801e02c121338
+          flyctl machine start 0801e02c121338
 
       - name: Wait Until Machine is Ready
         env:
