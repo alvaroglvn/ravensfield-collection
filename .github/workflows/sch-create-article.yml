@@ -2,18 +2,53 @@ name: Schedule Article Generation
 
 on:
   schedule:
-    - cron: "0 3,4,5 * * *"
-  workflow_dispatch: {}
+    - cron: "0 3,4,5 * * *" # Scheduled every day at 3 AM, 4 AM, and 5 AM
+  workflow_dispatch: {} # Allows manual trigger
 
 jobs:
   build:
-    name: Generate new article
+    name: Generate New Article
     runs-on: ubuntu-latest
+
     steps:
-      - name: Ping article generator endpoint
+      - name: Install Flyctl
         run: |
-          curl \
-          --request POST \
-          -H "Accept: application/json" \
-          -H "Api-Key: ${{secrets.MASTER_KEY }}" \
-          https://api.ravensfield.art/textgen-claude
+          curl -L https://fly.io/install.sh | sh
+          export PATH="$HOME/.fly/bin:$PATH"
+
+      - name: Authenticate with Fly.io
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          fly auth token ${FLY_API_TOKEN}
+
+      - name: Start Fly Machine
+        run: |
+          fly machine start --app my-fly-app
+
+      - name: Wait Until Machine is Ready
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          until [ "$(fly machine status --app my-fly-app --json | jq -r '.[0].state')" = "started" ]; do
+            echo "Waiting for machine to start..."
+            sleep 5
+          done
+          echo "Machine is ready!"
+
+      - name: Ping Article Generator Endpoint
+        env:
+          API_KEY: ${{ secrets.MASTER_KEY }}
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            --request POST \
+            -H "Accept: application/json" \
+            -H "Api-Key: ${API_KEY}" \
+            https://api.ravensfield.art/textgen-claude)
+
+          if [ "$RESPONSE" -ne 200 ]; then
+            echo "API request failed with status $RESPONSE"
+            exit 1
+          else
+            echo "API request succeeded with status $RESPONSE"
+          fi
