@@ -24,13 +24,13 @@ jobs:
 
       - name: Start Fly Machine
         run: |
-          fly machine start --app my-fly-app
+          fly machine start --ravensfield-collection
 
       - name: Wait Until Machine is Ready
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          until [ "$(fly machine status --app my-fly-app --json | jq -r '.[0].state')" = "started" ]; do
+          until [ "$(fly machine status --app ravensfield-collection --json | jq -r '.[0].state')" = "started" ]; do
             echo "Waiting for machine to start..."
             sleep 5
           done
