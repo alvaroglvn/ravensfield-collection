@@ -2793,10 +2793,11 @@ figcaption a {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     column-gap: 32px;
-    margin-bottom: 100px;
-    padding-block: 28px;
+    margin-bottom: 5%;
+    padding-block: 5%;
     font-weight: 550;
-    border-block: 1px solid var(--color-border);
+    float: left;
+    /* border-block: 1px solid var(--color-border); */
 }
 
 .gh-footer-logo {
@@ -2805,6 +2806,7 @@ figcaption a {
     font-weight: 725;
     letter-spacing: -0.015em;
     white-space: nowrap;
+    width: fit-content;
 }
 
 .gh-footer-logo img {
@@ -2836,8 +2838,9 @@ figcaption a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 160px;
+    padding-block: 5%;
     text-align: center;
+    float: right;
 }
 
 .gh-footer-signup-header {
@@ -3389,4 +3392,23 @@ figcaption a {
 .gh-cta-inner{
     border-style: double;
     border-width: 0.75vh;
+}
+
+#foot-info{
+    clear: both;
+    padding-block: 3%;
+    text-align: center;
+    font-size: 0.75em;
+}
+
+@media (max-width: 1040px) {
+    .gh-footer-bar {
+        float: none;
+        margin: 0px;
+    }
+    .gh-footer-signup{
+        float: none;
+        padding-block: 0;
+    }
+
 }
