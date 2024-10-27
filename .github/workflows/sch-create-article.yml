@@ -24,7 +24,7 @@ jobs:
 
       - name: Start Fly Machine
         run: |
-          fly machine start --ravensfield-collection
+          fly machine start 0801e02c121338
 
       - name: Wait Until Machine is Ready
         env:
