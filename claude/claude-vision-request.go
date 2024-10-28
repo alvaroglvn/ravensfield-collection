@@ -54,14 +54,16 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 
 						1. Style:
 						1.1. Use an exciting and varied vocabulary.
-						1.2. Keep your use of adverbs to a minimum.
-						1.3. Use strong and expressive verbs.
-						1.4. Avoid clichés.
-						1.5. Make the text enticicing and engaging.
-						1.6. Create a great sense of dramatic pacing.
-						1.7. Balance scholarly information with exciting storytelling.
-						1.8. Every paragraph must give new information, never be repetitive.
-						1.9. The article should be cohesive in style, genre, and dramatic themes.
+						1.2. Avoid non-descriptive introductions similar to "The [piece name] stands as one of the most enigmatic pieces in the Ravensfield Collection.".
+						1.3. Keep your use of adverbs to a minimum.
+						1.4. Use strong and expressive verbs.
+						1.5. Avoid clichés.
+						1.6. Make the text enticicing and engaging.
+						1.7. Create a great sense of dramatic pacing.
+						1.8. Balance scholarly information with exciting storytelling.
+						1.9. Every paragraph must give new information, never be repetitive.
+						1.10. Make the characters' names original and different.
+						1.11. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
 						2.1. Title. It must be shorter than five words, catchy, and seductive.

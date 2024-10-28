@@ -2,8 +2,8 @@ name: Schedule Article Generation
 
 on:
   schedule:
-    - cron: "0 3,4,5 * * *" # Scheduled every day at 3 AM, 4 AM, and 5 AM
-  workflow_dispatch: {} # Allows manual trigger
+    - cron: "0 3,4,5 * * *"
+  workflow_dispatch: {}
 
 jobs:
   build:
