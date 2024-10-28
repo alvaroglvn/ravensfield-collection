@@ -317,6 +317,7 @@ func ObjectHistory() (string, error) {
 	}
 
 	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its history has always raised questions about %s. The protagonist is a %s who %s and ultimately reaches a %s.", subgenre, adj1, adj2, theme, protagonist, fate, ending)
+	fmt.Println(storyPrompt)
 
 	return storyPrompt, nil
 }
