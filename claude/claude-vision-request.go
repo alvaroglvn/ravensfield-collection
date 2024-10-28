@@ -54,7 +54,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 
 						1. Style:
 						1.1. Use an exciting and varied vocabulary.
-						1.2. Avoid non-descriptive introductions similar to "The [piece name] stands as one of the most enigmatic pieces in the Ravensfield Collection.".
+						1.2. NEVER START with this introduction: "The [piece name] stands as one of the most enigmatic pieces...".
 						1.3. Keep your use of adverbs to a minimum.
 						1.4. Use strong and expressive verbs.
 						1.5. Avoid clichés.
@@ -62,7 +62,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						1.7. Create a great sense of dramatic pacing.
 						1.8. Balance scholarly information with exciting storytelling.
 						1.9. Every paragraph must give new information, never be repetitive.
-						1.10. Make the characters' names original and different.
+						1.10. Make the characters' names uncanny and different.
 						1.11. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
