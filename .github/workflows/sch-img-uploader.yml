@@ -1,19 +1,51 @@
 name: Schedule Image Upload
 
 on:
-  # schedule:
-  #   - cron: "30 2 * * *"
+  schedule:
+    - cron: "30 2 * * *"
   workflow_dispatch: {}
 
 jobs:
   build:
-    name: Upload Images to Ghost
+    name: Generate New Article
     runs-on: ubuntu-latest
+
     steps:
-      - name: Ping uploader endpoint
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Start Fly Machine
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          curl \
-          --request POST \
-          -H "Accept: application/json" \
-          -H "Api-Key: ${{secrets.MASTER_KEY }}" \
-          https://api.ravensfield.art/img-upload
+          flyctl machine start 0801e02c121338
+
+      - name: Wait Until Machine is Ready
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          until [ "$(flyctl machine list --app ravensfield-collection --json | jq -r '.[0].state')" = "started" ]; do
+          echo "Waiting for machine to start..."
+          sleep 5
+          done
+          echo "Machine is ready!"
+
+      - name: Ping Article Generator Endpoint
+        env:
+          API_KEY: ${{ secrets.MASTER_KEY }}
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            --request POST \
+            -H "Accept: application/json" \
+            -H "Api-Key: ${API_KEY}" \
+            https://api.ravensfield.art/img-upload)
+
+          if [ "$RESPONSE" -ne 200 ]; then
+            echo "API request failed with status $RESPONSE"
+            exit 1
+          else
+            echo "API request succeeded with status $RESPONSE"
+          fi

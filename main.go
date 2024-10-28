@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/alvaroglvn/ravensfield-collection/handlers"
@@ -57,5 +60,24 @@ func main() {
 		ReadHeaderTimeout: 2 * time.Second,
 	}
 
-	log.Fatal(server.ListenAndServe())
+	//Graceful shutdown setup
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+	go func() {
+		log.Println("Starting server...")
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("Server failed: %v", err)
+		}
+	}()
+	//Wait for termination signal
+	<-ctx.Done()
+	//Initiate shutdown w/ 5 sec timeout
+	log.Println("Shutting down gracefully...")
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := server.Shutdown(shutdownCtx); err != nil {
+		log.Fatalf("Shutdown failed: %v", err)
+	}
+	log.Println("Server stopped.")
 }

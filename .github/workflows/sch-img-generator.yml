@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Generate New Article
+    name: Generate New Image
     runs-on: ubuntu-latest
 
     steps:
