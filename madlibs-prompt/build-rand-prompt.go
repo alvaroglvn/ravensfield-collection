@@ -347,7 +347,7 @@ func GetArtistInfo() (string, error) {
 
 	artistTypes := []string{"man", "man", "man", "woman", "woman", "woman", "collective", "unknown"}
 	artistAges := []string{"young", "adult", "middle-aged", "mature"}
-	// artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
+	artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
 
 	artistType, err := getRandFromList(artistTypes)
 	if err != nil {
@@ -358,20 +358,22 @@ func GetArtistInfo() (string, error) {
 		return "", err
 	}
 
-	// artistOrigin, err := getRandFromList(artistOrigins)
-	// if err != nil {
-	// 	return "", err
-	// }
+	artistOrigin, err := getRandFromList(artistOrigins)
+	if err != nil {
+		return "", err
+	}
 
 	artistInfo := ""
 
 	if artistType == "man" || artistType == "woman" {
-		artistInfo = fmt.Sprintf("The artist is an imaginary remarkable %s %s.", artistAge, artistType)
+		artistInfo = fmt.Sprintf("The artist is an imaginary remarkable %s %s from %s", artistAge, artistType, artistOrigin)
 	} else if artistType == "collective" {
-		artistInfo = fmt.Sprintf("This piece is attributed to an imaginary art %s", artistType)
+		artistInfo = fmt.Sprintf("This piece is attributed to an imaginary art %s from %s", artistType, artistOrigin)
 	} else {
 		artistInfo = fmt.Sprintf("The author of this piece is %s", artistType)
 	}
+
+	fmt.Println(artistInfo)
 
 	return artistInfo, nil
 }
