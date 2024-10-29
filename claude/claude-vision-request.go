@@ -54,16 +54,15 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 
 						1. Style:
 						1.1. Use an exciting and varied vocabulary.
-						1.2. NEVER START with this introduction: "The [piece name] stands as one of the most enigmatic pieces...".
-						1.3. Keep your use of adverbs to a minimum.
-						1.4. Use strong and expressive verbs.
-						1.5. Avoid clichés.
-						1.6. Make the text enticicing and engaging.
-						1.7. Create a great sense of dramatic pacing.
-						1.8. Balance scholarly information with exciting storytelling.
-						1.9. Every paragraph must give new information, never be repetitive.
-						1.10. Make the characters' names uncanny and different.
-						1.11. The article should be cohesive in style, genre, and dramatic themes.
+						1.2. Keep your use of adverbs to a minimum.
+						1.3. Use strong and expressive verbs.
+						1.4. Avoid clichés.
+						1.5. Make the text enticicing and engaging.
+						1.6. Create a great sense of dramatic pacing.
+						1.7. Balance scholarly information with exciting storytelling.
+						1.8. Every paragraph must give new information, never be repetitive.
+						1.9. Make the characters' names uncanny and different. Aim for originality.
+						1.10. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
 						2.1. Title. It must be shorter than five words, catchy, and seductive.
@@ -73,7 +72,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
 
 						2.3. Article content. This section must be formatted in markdown.
-						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
+						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy. The first sentence should already share an intriguing factoid about the piece.
 						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories. This story must be thematically related to the artwork.
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
