@@ -85,6 +85,8 @@ func ClaudeAutoEdit(content, claudeKey string) (editedText string, err error) {
 					ContentText{
 						Type: "text",
 						Text: fmt.Sprintf(`Please edit this text following this guidance without losing its structure or essence:
+
+						1. If the first sentence begins: "[Artwork name] stands as one of the most enigmatic pieces in The Ravensfield Collection", change it.
 						
 						1. If the text is much longer than 600 words, shorten it to be closer to that limit.
 						
