@@ -50,9 +50,9 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 				Content: []interface{}{
 					TextContent{
 						Type: "text",
-						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection.
-						
-						Please write an article about the artwork in this picture. The article must be between 500 and 600 words. %s. Follow this guidance:
+						Text: fmt.Sprintf(`You are a prestigious art scholar and the curator of the exclusive Ravensfield Collection, an eclectic museum of the weird and wonderful.
+
+						Write a short article between 350 and 600 words about this artwork. Follow these guidelines:
 
 						1. Style:
 						1.1. Use an exciting and varied vocabulary.
@@ -63,7 +63,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						1.6. Create a great sense of dramatic pacing.
 						1.7. Balance scholarly information with exciting storytelling.
 						1.8. Every paragraph must give new information, never be repetitive.
-						1.9. The article should be cohesive in style, genre, and dramatic themes. 
+						1.9. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
 						2.1. Title. It must be shorter than five words, catchy, and seductive.
@@ -71,9 +71,10 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						The year should match the art period or movement the artwork belongs to.
 						About the artist, %s.
 						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
+
 						2.3. Article content. This section must be formatted in markdown.
 						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
-						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork. Consider this section a piece of flash fiction that follows the three act structure of short stories.
+						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories. This story must be thematically related to the artwork.
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
@@ -82,8 +83,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						Use this guidance to inspire your text, but never mention it directly in your result.
 
 						Reply with the final version of your article when you're ready.
-						
-						`, storyPrompt, artistInfo),
+						`, artistInfo, storyPrompt),
 					},
 					ImageContent{
 						Type: "image_url",

@@ -345,7 +345,7 @@ func ObjectHistory() (string, error) {
 
 func GetArtistInfo() (string, error) {
 
-	artistTypes := []string{"man", "man", "man", "woman", "woman", "woman", "collective", "unknown"}
+	artistTypes := []string{"man", "man", "man", "man", "woman", "woman", "collective", "unknown"}
 	artistAges := []string{"young", "adult", "middle-aged", "mature"}
 	artistOrigins := []string{"Europe", "North America", "South America", "Africa", "Asia", "Oceania", "Another dimension"}
 
