@@ -35,7 +35,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 
 	visionRequest := CompRequest{
-		Model: "o1-mini",
+		Model: "gpt-4o",
 		Messages: []Message{
 			{
 				Role: "system",
@@ -114,7 +114,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 		return "", fmt.Errorf("error unmarshalling response's body: %v", err)
 	}
 
-	// fmt.Println(string(respBody))
+	fmt.Println(string(respBody))
 
 	description := visionResponse.Choices[0].Message.Content
 
