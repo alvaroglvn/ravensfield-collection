@@ -17,11 +17,11 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 	}
 	// fmt.Println(storyPrompt)
 
-	objectAnecdote, err := madlibsprompt.ObjectAnecdote()
-	if err != nil {
-		return "", err
-	}
-	// fmt.Println(objectAnecdote)
+	// objectAnecdote, err := madlibsprompt.ObjectAnecdote()
+	// if err != nil {
+	// 	return "", err
+	// }
+	// // fmt.Println(objectAnecdote)
 
 	artistInfo, err := madlibsprompt.GetArtistInfo()
 	if err != nil {
@@ -73,7 +73,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 						The only exception is if the artwork is an archeological piece. In that case, the artist can be unknown and the year an approximation.
 						2.3. Article content. This section must be formatted in markdown.
 						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
-						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories.
+						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork. Consider this section a piece of flash fiction that follows the three act structure of short stories.
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
@@ -83,7 +83,7 @@ func ImgDescribe(imgURL, openAiKey string) (string, error) {
 
 						Reply with the final version of your article when you're ready.
 						
-						`, storyPrompt, objectAnecdote, artistInfo),
+						`, storyPrompt, artistInfo),
 					},
 					ImageContent{
 						Type: "image_url",
