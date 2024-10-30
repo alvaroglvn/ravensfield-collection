@@ -77,7 +77,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						2.3. Article content. This section must be formatted in markdown.
 						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
 						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories. This story must be thematically related to the artwork.
-						- To name the story's characters, think of a list of 10 names and 10 last names and combine them at random.
+						- To name the story's characters, build a random list of 50 names and 50 last names, and pick a combination.
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
