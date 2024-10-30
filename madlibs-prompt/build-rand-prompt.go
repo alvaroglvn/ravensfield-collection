@@ -333,12 +333,12 @@ func ObjectAnecdote() (string, error) {
 		return "", err
 	}
 
-	ending, err := getRandFromList(endings)
-	if err != nil {
-		return "", err
-	}
+	// ending, err := getRandFromList(endings)
+	// if err != nil {
+	// 	return "", err
+	// }
 
-	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s. This uncanny story has a %s.", protagonist, fate, ending)
+	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s.", protagonist, fate)
 
 	return anecdotePrompt, nil
 }
