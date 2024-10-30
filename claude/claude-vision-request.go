@@ -65,8 +65,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						1.6. Create a great sense of dramatic pacing.
 						1.7. Balance scholarly information with exciting storytelling.
 						1.8. Every paragraph must give new information, never be repetitive.
-						1.9. When naming the characters, use any name from any language or culture and an original but credible last name.
-						1.10. The article should be cohesive in style, genre, and dramatic themes.
+						1.9. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
 						2.1. Title. It must be shorter than five words, catchy, and seductive.
@@ -78,6 +77,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						2.3. Article content. This section must be formatted in markdown.
 						2.3.1. Use the first two paragraphs to introduce the piece, its author, and highlight its uniqueness and relevancy.
 						2.3.2. Use five paragraphs to describe the uncanny event related to this artwork: %s. Consider this section a piece of flash fiction that follows the three act structure of short stories. This story must be thematically related to the artwork.
+						- To name the story's characters, think of a list of 10 names and 10 last names and combine them at random.
 						2.3.3. Use the last paragraph to bring the article together and explain how the piece affects audiences today.
 						2.3.4. Between two paragraphs of your choosing, add a fictional blockquote about the artwork by a fictional expert. Format it as follows: "Quote" -Author (profession).
 
