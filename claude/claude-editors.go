@@ -88,13 +88,13 @@ func ClaudeAutoEdit(content, claudeKey string) (editedText string, err error) {
 
 						1. If the first sentence begins: "[Artwork name] stands as one of the most enigmatic pieces in The Ravensfield Collection", change it.
 						
-						1. If the text is much longer than 600 words, shorten it to be closer to that limit.
+						2. If the text is much longer than 600 words, shorten it to be closer to that limit.
 						
-						2. Improve the article's readability if it is too verbose. Delete clichés and unnecessary transitions.
+						3. Improve the article's readability if it is too verbose. Delete clichés and unnecessary transitions.
 						
-						3. Cut paragraphs which are repeating a point already made. Change words that sound repetitive to a synonym.
+						4. Cut paragraphs which are repeating a point already made. Change words that sound repetitive to a synonym.
 						
-						4. Make sure the text is correctly formatted in html, separating the paragraphs and formatting any blockquotes accordingly.
+						5. Make sure the text is correctly formatted in html, separating the paragraphs and formatting any blockquotes accordingly.
 			
 						Please respond with the edited text ONLY, no need to add the editor's notes.
 						

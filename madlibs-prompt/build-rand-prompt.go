@@ -311,37 +311,37 @@ func ObjectHistory() (string, error) {
 		return "", err
 	}
 
-	ending, err := getRandFromList(endings)
-	if err != nil {
-		return "", err
-	}
-
-	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its history has always raised questions about %s. The protagonist is a %s who %s and ultimately reaches a %s.", subgenre, adj1, adj2, theme, protagonist, fate, ending)
-	fmt.Println(storyPrompt)
-
-	return storyPrompt, nil
-}
-
-func ObjectAnecdote() (string, error) {
-	protagonist, err := getRandFromList(protagonists)
-	if err != nil {
-		return "", err
-	}
-
-	fate, err := getRandFromList(fates)
-	if err != nil {
-		return "", err
-	}
-
 	// ending, err := getRandFromList(endings)
 	// if err != nil {
 	// 	return "", err
 	// }
 
-	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s.", protagonist, fate)
+	storyPrompt := fmt.Sprintf("This particular object carries a %s story of %s and %s. Its history has always raised questions about %s. The protagonist is a %s who due to interacting with this artwork %s.", subgenre, adj1, adj2, theme, protagonist, fate)
+	fmt.Println(storyPrompt)
 
-	return anecdotePrompt, nil
+	return storyPrompt, nil
 }
+
+// func ObjectAnecdote() (string, error) {
+// 	protagonist, err := getRandFromList(protagonists)
+// 	if err != nil {
+// 		return "", err
+// 	}
+
+// 	fate, err := getRandFromList(fates)
+// 	if err != nil {
+// 		return "", err
+// 	}
+
+// 	// ending, err := getRandFromList(endings)
+// 	// if err != nil {
+// 	// 	return "", err
+// 	// }
+
+// 	anecdotePrompt := fmt.Sprintf("Directly related to this object, tell the story of a %s who due to interacting with this artwork %s.", protagonist, fate)
+
+// 	return anecdotePrompt, nil
+// }
 
 func GetArtistInfo() (string, error) {
 

@@ -65,7 +65,7 @@ func ClaudeVisionReq(imgUrl, claudeKey string) (string, error) {
 						1.6. Create a great sense of dramatic pacing.
 						1.7. Balance scholarly information with exciting storytelling.
 						1.8. Every paragraph must give new information, never be repetitive.
-						1.9. Make the characters' names uncanny and different. Aim for originality.
+						1.9. When naming the characters, use any name from any language or culture and an original but credible last name.
 						1.10. The article should be cohesive in style, genre, and dramatic themes.
 
 						2. Structure:
